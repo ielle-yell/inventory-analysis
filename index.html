@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ielle Bermel | Retail Analytics Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0D0A0B;
+      --bg-secondary: #1A1517;
+      --bg-card: #241F21;
+      --fg-primary: #FAF7F5;
+      --fg-secondary: #A8A2A4;
+      --accent-pink: #E91E8C;
+      --accent-pink-light: #FF6BB3;
+      --accent-pink-dark: #B5156B;
+      --accent-green: #2ECC71;
+      --accent-red: #E74C3C;
+      --accent-blue: #5DADE2;
+      --accent-gold: #F4C430;
+      --border: rgba(233, 30, 140, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg-primary);
+      color: var(--fg-primary);
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent-pink-light) 0%, var(--accent-pink) 50%, var(--accent-pink-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Animated background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .blob-1 {
+      width: 600px;
+      height: 600px;
+      background: linear-gradient(135deg, var(--accent-pink) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+      animation-delay: 0s;
+    }
+
+    .blob-2 {
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, var(--accent-pink-dark) 0%, transparent 70%);
+      bottom: -150px;
+      left: -150px;
+      animation-delay: -7s;
+    }
+
+    .blob-3 {
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, var(--accent-pink-light) 0%, transparent 70%);
+      top: 40%;
+      left: 30%;
+      animation-delay: -14s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(50px, -30px) scale(1.1); }
+      50% { transform: translate(-30px, 50px) scale(0.95); }
+      75% { transform: translate(-50px, -20px) scale(1.05); }
+    }
+
+    /* Grid pattern */
+    .grid-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(233, 30, 140, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(233, 30, 140, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 1;
+    }
+
+    /* Card styles */
+    .dash-card {
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(36, 31, 33, 0.8) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .dash-card:hover {
+      border-color: rgba(233, 30, 140, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -20px rgba(233, 30, 140, 0.25);
+    }
+
+    /* Stat card */
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-pink), var(--accent-pink-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s ease;
+    }
+
+    .stat-card.visible::before {
+      transform: scaleX(1);
+    }
+
+    /* Progress bars */
+    .progress-bar {
+      height: 8px;
+      background: rgba(233, 30, 140, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Navigation */
+    nav {
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(13, 10, 11, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Button styles */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-pink) 0%, var(--accent-pink-dark) 100%);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent-pink-light) 0%, var(--accent-pink) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -10px rgba(233, 30, 140, 0.5);
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
+
+    .btn-primary span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--accent-pink);
+      color: var(--accent-pink);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(233, 30, 140, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Counter animation */
+    .counter {
+      display: inline-block;
+    }
+
+    /* Chart bars */
+    .chart-bar {
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Table styles */
+    .data-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: 16px;
+      font-weight: 500;
+      color: var(--fg-secondary);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table td {
+      padding: 16px;
+      border-bottom: 1px solid rgba(233, 30, 140, 0.05);
+      transition: background 0.3s ease;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(233, 30, 140, 0.03);
+    }
+
+    /* Tabs */
+    .tab-btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      background: transparent;
+      color: var(--fg-secondary);
+    }
+
+    .tab-btn:hover {
+      color: var(--fg-primary);
+    }
+
+    .tab-btn.active {
+      background: var(--accent-pink);
+      color: white;
+    }
+
+    /* Skill badges */
+    .skill-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 50px;
+      background: rgba(233, 30, 140, 0.1);
+      border: 1px solid var(--border);
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .skill-badge:hover {
+      background: rgba(233, 30, 140, 0.15);
+      border-color: var(--accent-pink);
+      transform: translateY(-2px);
+    }
+
+    /* Timeline */
+    .timeline-item {
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent-pink);
+      box-shadow: 0 0 0 4px rgba(233, 30, 140, 0.2);
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 28px;
+      width: 2px;
+      height: calc(100% + 20px);
+      background: linear-gradient(to bottom, var(--accent-pink), transparent);
+    }
+
+    .timeline-item:last-child::after {
+      display: none;
+    }
+
+    /* Floating particles */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--accent-pink);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: particle-float 15s linear infinite;
+    }
+
+    @keyframes particle-float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.3;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Focus states */
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent-pink);
+      outline-offset: 2px;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-pink-dark);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-pink);
+    }
+
+    /* Canvas container */
+    #network-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="font-display font-bold text-xl tracking-tight">
+        <span class="gradient-text">ielle</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#dashboard" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Dashboard</a>
+        <a href="#insights" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Insights</a>
+        <a href="#about" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">About</a>
+        <a href="#contact" class="btn-primary text-sm"><span>Contact</span></a>
+      </div>
+      <button class="md:hidden p-2" id="mobile-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="hidden md:hidden bg-[var(--bg-secondary)] border-t border-[var(--border)]" id="mobile-menu">
+      <div class="px-6 py-4 flex flex-col gap-4">
+        <a href="#dashboard" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Dashboard</a>
+        <a href="#insights" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Insights</a>
+        <a href="#about" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">About</a>
+        <a href="#contact" class="btn-primary text-sm text-center"><span>Contact</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="hero-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="grid-pattern"></div>
+      <canvas id="network-canvas"></canvas>
+    </div>
+
+    <!-- Floating particles -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" id="particles-container"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      <div class="reveal">
+        <p class="text-sm font-medium tracking-[0.3em] text-[var(--accent-pink)] mb-6 uppercase">Retail Analytics Portfolio</p>
+      </div>
+      <h1 class="font-display font-800 text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] mb-8 reveal reveal-delay-1">
+        <span class="gradient-text">Data-Driven</span><br>
+        <span class="text-[var(--fg-primary)]">Inventory Strategy</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--fg-secondary)] max-w-2xl mx-auto mb-12 reveal reveal-delay-2">
+        Transforming raw sales data into actionable insights. A comprehensive analysis of demand forecasting, inventory allocation, and category optimization.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
+        <a href="#dashboard" class="btn-primary"><span>View Dashboard</span></a>
+        <a href="#about" class="btn-secondary">About Ielle</a>
+      </div>
+
+      <!-- Stats preview -->
+      <div class="grid grid-cols-3 gap-4 md:gap-8 mt-20 reveal reveal-delay-4">
+        <div class="text-center">
+          <div class="font-display font-bold text-3xl md:text-4xl text-[var(--fg-primary)]">
+            <span class="counter" data-target="48">0</span>%
+          </div>
+          <p class="text-xs md:text-sm text-[var(--fg-secondary)] mt-1">Size Coverage Gap</p>
+        </div>
+        <div class="text-center">
+          <div class="font-display font-bold text-3xl md:text-4xl text-[var(--fg-primary)]">
+            <span class="counter" data-target="1807">0</span>
+          </div>
+          <p class="text-xs md:text-sm text-[var(--fg-secondary)] mt-1">Units Analyzed</p>
+        </div>
+        <div class="text-center">
+          <div class="font-display font-bold text-3xl md:text-4xl text-[var(--fg-primary)]">
+            <span class="counter" data-target="42">0</span>%
+          </div>
+          <p class="text-xs md:text-sm text-[var(--fg-secondary)] mt-1">Top 10 Sales Share</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal reveal-delay-4">
+      <span class="text-xs text-[var(--fg-secondary)] tracking-widest uppercase">Scroll</span>
+      <div class="w-px h-12 bg-gradient-to-b from-[var(--accent-pink)] to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- Dashboard Section -->
+  <section id="dashboard" class="relative py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Section header -->
+      <div class="text-center mb-16 reveal">
+        <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Live Analysis</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Key Performance Metrics</h2>
+        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">YTD performance through May 4, 2026. Identifying gaps between demand and inventory allocation.</p>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <!-- Card 1 -->
+        <div class="dash-card stat-card p-6 reveal">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-[var(--accent-pink)]/10 flex items-center justify-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <span class="text-xs font-medium px-2 py-1 rounded-full bg-[var(--accent-red)]/10 text-[var(--accent-red)]">Critical</span>
+          </div>
+          <p class="text-sm text-[var(--fg-secondary)] mb-1">Women's Coverage Gap</p>
+          <div class="font-display font-bold text-3xl text-[var(--fg-primary)]">-27.5%</div>
+          <p class="text-xs text-[var(--fg-secondary)] mt-2">Sales vs Inventory Share</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="dash-card stat-card p-6 reveal reveal-delay-1">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-[var(--accent-pink)]/10 flex items-center justify-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <span class="text-xs font-medium px-2 py-1 rounded-full bg-[var(--accent-red)]/10 text-[var(--accent-red)]">Critical</span>
+          </div>
+          <p class="text-sm text-[var(--fg-secondary)] mb-1">Men's Coverage Gap</p>
+          <div class="font-display font-bold text-3xl text-[var(--fg-primary)]">-14.9%</div>
+          <p class="text-xs text-[var(--fg-secondary)] mt-2">Sales vs Inventory Share</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="dash-card stat-card p-6 reveal reveal-delay-2">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-[var(--accent-green)]/10 flex items-center justify-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+            </div>
+            <span class="text-xs font-medium px-2 py-1 rounded-full bg-[var(--accent-green)]/10 text-[var(--accent-green)]">Good</span>
+          </div>
+          <p class="text-sm text-[var(--fg-secondary)] mb-1">Neutral Trainer Alignment</p>
+          <div class="font-display font-bold text-3xl text-[var(--fg-primary)]">91%</div>
+          <p class="text-xs text-[var(--fg-secondary)] mt-2">Women's Category Health</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="dash-card stat-card p-6 reveal reveal-delay-3">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-[var(--accent-pink)]/10 flex items-center justify-center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              </svg>
+            </div>
+            <span class="text-xs font-medium px-2 py-1 rounded-full bg-[var(--accent-gold)]/10 text-[var(--accent-gold)]">Moderate</span>
+          </div>
+          <p class="text-sm text-[var(--fg-secondary)] mb-1">Stability Alignment</p>
+          <div class="font-display font-bold text-3xl text-[var(--fg-primary)]">72%</div>
+          <p class="text-xs text-[var(--fg-secondary)] mt-2">Women's Category Health</p>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <!-- Top Sellers Chart -->
+        <div class="dash-card p-6 md:p-8 reveal">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h3 class="font-display font-semibold text-xl">Top 10 Sellers</h3>
+              <p class="text-sm text-[var(--fg-secondary)]">Combined Women's + Men's</p>
+            </div>
+            <div class="flex gap-2">
+              <button class="tab-btn active text-xs" data-tab="sales">Sales Share</button>
+              <button class="tab-btn text-xs" data-tab="inventory">Inventory Share</button>
+            </div>
+          </div>
+          <div class="space-y-4" id="top-sellers-chart">
+            <!-- Bars will be injected here -->
+          </div>
+        </div>
+
+        <!-- Brand Performance -->
+        <div class="dash-card p-6 md:p-8 reveal reveal-delay-1">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h3 class="font-display font-semibold text-xl">Brand Performance</h3>
+              <p class="text-sm text-[var(--fg-secondary)]">Sales vs Inventory Deviation</p>
+            </div>
+          </div>
+          <div class="space-y-4" id="brand-chart">
+            <!-- Brand bars will be injected here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Health -->
+      <div class="dash-card p-6 md:p-8 reveal">
+        <h3 class="font-display font-semibold text-xl mb-6">Category Health Matrix</h3>
+        <div class="overflow-x-auto">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Women's Inv %</th>
+                <th>Women's Sales %</th>
+                <th>Women's Align</th>
+                <th>Men's Inv %</th>
+                <th>Men's Sales %</th>
+                <th>Men's Align</th>
+              </tr>
+            </thead>
+            <tbody id="category-table">
+              <!-- Table rows will be injected here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insights Section -->
+  <section id="insights" class="relative py-24 md:py-32 bg-[var(--bg-secondary)]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Strategic Analysis</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Key Findings</h2>
+        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Critical insights uncovered through systematic data analysis and cross-referencing.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Insight 1 -->
+        <div class="dash-card p-6 reveal">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent-pink)] to-[var(--accent-pink-dark)] flex items-center justify-center mb-6">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-3">Size Distribution Crisis</h3>
+          <p class="text-[var(--fg-secondary)] text-sm leading-relaxed">
+            Core sizes (Women's 7.5-9.5, Men's 9.5-11.5) represent 72% of population demand but only receive 45% inventory allocation. This 27-33% gap is driving missed sales opportunities.
+          </p>
+          <div class="mt-6 pt-6 border-t border-[var(--border)]">
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-[var(--fg-secondary)]">Core Size Demand</span>
+              <span class="font-medium">72%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill bg-[var(--accent-pink)]" style="width: 72%"></div>
+            </div>
+            <div class="flex justify-between text-sm mb-2 mt-4">
+              <span class="text-[var(--fg-secondary)]">Inventory Allocation</span>
+              <span class="font-medium text-[var(--accent-red)]">45%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill bg-[var(--accent-red)]" style="width: 45%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insight 2 -->
+        <div class="dash-card p-6 reveal reveal-delay-1">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent-green)] to-[#1ABC9C] flex items-center justify-center mb-6">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-3">Neutral Trainer Success</h3>
+          <p class="text-[var(--fg-secondary)] text-sm leading-relaxed">
+            The Neutral Trainer category shows the best alignment at 91% (Women's) and 96% (Men's), representing 59.8% of total sales. This category should remain the primary focus for inventory investment.
+          </p>
+          <div class="mt-6 pt-6 border-t border-[var(--border)]">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <div class="text-2xl font-display font-bold text-[var(--accent-green)]">59.8%</div>
+                <div class="text-xs text-[var(--fg-secondary)]">Women's Sales Share</div>
+              </div>
+              <div>
+                <div class="text-2xl font-display font-bold text-[var(--accent-green)]">57.0%</div>
+                <div class="text-xs text-[var(--fg-secondary)]">Men's Sales Share</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insight 3 -->
+        <div class="dash-card p-6 reveal reveal-delay-2">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent-gold)] to-[#F39C12] flex items-center justify-center mb-6">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-3">Brand Leadership</h3>
+          <p class="text-[var(--fg-secondary)] text-sm leading-relaxed">
+            Brooks dominates with 25.5% sales share, followed by HOKA (18.3%) and ASICS (19.3%). However, ASICS shows a concerning -7.4% inventory vs sales deviation, indicating significant understocking.
+          </p>
+          <div class="mt-6 pt-6 border-t border-[var(--border)]">
+            <div class="flex items-center gap-3">
+              <div class="flex-1">
+                <div class="text-sm font-medium">Brooks</div>
+                <div class="progress-bar mt-1">
+                  <div class="progress-fill bg-[var(--accent-pink)]" style="width: 25.5%"></div>
+                </div>
+              </div>
+              <span class="text-sm font-medium">25.5%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insight 4 -->
+        <div class="dash-card p-6 reveal">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent-blue)] to-[#3498DB] flex items-center justify-center mb-6">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="9" y1="21" x2="9" y2="9"></line>
+            </svg>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-3">Width Availability Gap</h3>
+          <p class="text-[var(--fg-secondary)] text-sm leading-relaxed">
+            Wide width (D) inventory sits at only 25% for women's core sizes despite representing 62% of the width curve alignment demand. Extra wide widths (2E/4E) are nearly non-existent in stock.
+          </p>
+          <div class="mt-6 pt-6 border-t border-[var(--border)]">
+            <div class="flex gap-2">
+              <span class="skill-badge">Wide (D): -38%</span>
+              <span class="skill-badge">Extra Wide: Critical</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insight 5 -->
+        <div class="dash-card p-6 reveal reveal-delay-1">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent-red)] to-[#C0392B] flex items-center justify-center mb-6">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-3">Plated Category Overstock</h3>
+          <p class="text-[var(--fg-secondary)] text-sm leading-relaxed">
+            Plated shoes show 5.8x inventory vs ideal scaling for women's, while representing only 2.2% of sales. This category needs immediate reallocation to prevent dead stock accumulation.
+          </p>
+          <div class="mt-6 pt-6 border-t border-[var(--border)]">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-[var(--fg-secondary)]">Overstock Ratio</span>
+              <span class="text-xl font-display font-bold text-[var(--accent-red)]">5.8x</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insight 6 -->
+        <div class="dash-card p-6 reveal reveal-delay-2">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#9B59B6] to-[#8E44AD] flex items-center justify-center mb-6">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <h3 class="font-display font-semibold text-lg mb-3">Replenishment Priority</h3>
+          <p class="text-[var(--fg-secondary)] text-sm leading-relaxed">
+            Brooks Adrenaline, HOKA Bondi, and ASICS Kayano are the top 3 sellers but show critical inventory gaps. Immediate replenishment recommended for sizes 7-9 (Women's) and 9-11 (Men's).
+          </div>
+          <div class="mt-6 pt-6 border-t border-[var(--border)]">
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge">Adrenaline</span>
+              <span class="skill-badge">Bondi</span>
+              <span class="skill-badge">Kayano</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="relative py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Image/Visual -->
+        <div class="reveal">
+          <div class="relative">
+            <div class="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-[var(--accent-pink)]/20 to-[var(--accent-pink-dark)]/20 border border-[var(--border)]">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center">
+                  <div class="w-32 h-32 rounded-full bg-gradient-to-br from-[var(--accent-pink)] to-[var(--accent-pink-dark)] mx-auto mb-6 flex items-center justify-center">
+                    <span class="font-display font-bold text-4xl text-white">IB</span>
+                  </div>
+                  <p class="text-[var(--fg-secondary)]">Retail Analytics Professional</p>
+                </div>
+              </div>
+              <!-- Decorative elements -->
+              <div class="absolute top-4 right-4 w-24 h-24 rounded-xl border border-[var(--accent-pink)]/20"></div>
+              <div class="absolute bottom-4 left-4 w-16 h-16 rounded-lg border border-[var(--accent-pink)]/20"></div>
+            </div>
+            <!-- Floating stats -->
+            <div class="absolute -bottom-6 -right-6 dash-card p-4">
+              <div class="text-sm text-[var(--fg-secondary)]">Experience</div>
+              <div class="font-display font-bold text-2xl">4+ Years</div>
+            </div>
+            <div class="absolute -top-6 -left-6 dash-card p-4">
+              <div class="text-sm text-[var(--fg-secondary)]">Location</div>
+              <div class="font-display font-bold text-lg">Long Beach, CA</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div>
+          <div class="reveal">
+            <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">About</p>
+          </div>
+          <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 reveal reveal-delay-1">Ielle Bermel</h2>
+          <p class="text-[var(--fg-secondary)] text-lg leading-relaxed mb-8 reveal reveal-delay-2">
+            Detail-oriented eCommerce and operations professional with experience supporting Shopify-based retail systems, product database management, inventory accuracy, and process documentation. Skilled in catalog maintenance, cross-functional coordination, and spreadsheet-driven reporting.
+          </p>
+          <p class="text-[var(--fg-secondary)] leading-relaxed mb-8 reveal reveal-delay-3">
+            Known for building structured workflows that improve accuracy, efficiency, and launch execution in fast-moving environments. Experienced working independently in digital systems, with strong attention to detail and self-directed workflow management.
+          </p>
+
+          <!-- Skills -->
+          <div class="reveal reveal-delay-4">
+            <h3 class="font-display font-semibold text-lg mb-4">Core Skills</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge">Shopify POS</span>
+              <span class="skill-badge">Inventory Management</span>
+              <span class="skill-badge">Google Sheets</span>
+              <span class="skill-badge">Data Analysis</span>
+              <span class="skill-badge">RICS</span>
+              <span class="skill-badge">Product Database</span>
+              <span class="skill-badge">B2B Operations</span>
+              <span class="skill-badge">Workflow Documentation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Timeline -->
+      <div class="mt-24">
+        <h3 class="font-display font-semibold text-2xl mb-12 text-center reveal">Experience</h3>
+        <div class="max-w-3xl mx-auto space-y-8">
+          <!-- Fleet Feet -->
+          <div class="timeline-item reveal">
+            <div class="dash-card p-6">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="font-display font-semibold text-lg">Fleet Feet</h4>
+                <span class="text-xs px-3 py-1 rounded-full bg-[var(--accent-pink)]/10 text-[var(--accent-pink)]">Current</span>
+              </div>
+              <p class="text-[var(--fg-secondary)] text-sm mb-3">Shift Supervisor | Long Beach, CA | Aug 2025 - Present</p>
+              <ul class="text-sm text-[var(--fg-secondary)] space-y-2">
+                <li>• Supported launch of new retail location by developing operational workflows, documentation, and product management procedures</li>
+                <li>• Maintained product database integrity within legacy POS (RICS), ensuring SKU accuracy and transaction consistency</li>
+                <li>• Created internal documentation to standardize processes and reduce operational errors</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Runners High -->
+          <div class="timeline-item reveal reveal-delay-1">
+            <div class="dash-card p-6">
+              <h4 class="font-display font-semibold text-lg mb-1">Runners High</h4>
+              <p class="text-[var(--fg-secondary)] text-sm mb-3">Assistant Manager | Long Beach, CA | Mar 2024 - Nov 2024</p>
+              <ul class="text-sm text-[var(--fg-secondary)] space-y-2">
+                <li>• Managed Shopify POS product database, performing product uploads, pricing updates, SKU management, and variant configuration</li>
+                <li>• Built Google Sheets tools to streamline inventory tracking and scheduling</li>
+                <li>• Oversaw B2B ordering and coordinated inventory replenishment with vendors</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Runners Lane -->
+          <div class="timeline-item reveal reveal-delay-2">
+            <div class="dash-card p-6">
+              <h4 class="font-display font-semibold text-lg mb-1">Runners Lane</h4>
+              <p class="text-[var(--fg-secondary)] text-sm mb-3">Keyholder | Santa Clarita, CA | Dec 2021 - Feb 2024</p>
+              <ul class="text-sm text-[var(--fg-secondary)] space-y-2">
+                <li>• Led migration of full product catalog (hundreds of SKUs) from WooCommerce to Shopify POS</li>
+                <li>• Designed a streamlined Shopify-based ordering process for local run club members</li>
+                <li>• Created and maintained detailed tracking spreadsheets for customer order management</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="relative py-24 md:py-32 bg-[var(--bg-secondary)]">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="reveal">
+        <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Get in Touch</p>
+      </div>
+      <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 reveal reveal-delay-1">Let's Work Together</h2>
+      <p class="text-[var(--fg-secondary)] text-lg max-w-2xl mx-auto mb-12 reveal reveal-delay-2">
+        Interested in data-driven inventory solutions or retail operations consulting? I'd love to hear from you.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
+        <a href="mailto:ielle.yell@gmail.com" class="btn-primary"><span>Send Email</span></a>
+        <a href="mailto:ielle.yell@gmail.com" class="btn-secondary">ielle.yell@gmail.com</a>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-3 gap-8 mt-20 pt-12 border-t border-[var(--border)] reveal reveal-delay-4">
+        <div>
+          <div class="font-display font-bold text-3xl gradient-text">1,807</div>
+          <p class="text-sm text-[var(--fg-secondary)] mt-1">Units Analyzed</p>
+        </div>
+        <div>
+          <div class="font-display font-bold text-3xl gradient-text">10</div>
+          <p class="text-sm text-[var(--fg-secondary)] mt-1">Brand Coverage</p>
+        </div>
+        <div>
+          <div class="font-display font-bold text-3xl gradient-text">55</div>
+          <p class="text-sm text-[var(--fg-secondary)] mt-1">Shoe Models</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-[var(--border)]">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="font-display font-bold text-lg">
+        <span class="gradient-text">ielle bermel</span>
+      </div>
+      <p class="text-sm text-[var(--fg-secondary)]">Portfolio Project 2026. Retail Analytics Dashboard.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Data
+    const topSellersData = [
+      { brand: 'BROOKS', model: 'Adrenaline', sales: 7.0, inventory: 3.2 },
+      { brand: 'ASICS', model: 'Kayano', sales: 5.7, inventory: 1.8 },
+      { brand: 'ASICS', model: 'Nimbus', sales: 5.1, inventory: 1.5 },
+      { brand: 'BROOKS', model: 'Ghost', sales: 5.1, inventory: 6.2 },
+      { brand: 'HOKA', model: 'Bondi', sales: 4.9, inventory: 1.8 },
+      { brand: 'BROOKS', model: 'Glycerin', sales: 4.6, inventory: 2.9 },
+      { brand: 'HOKA', model: 'Arahi', sales: 4.4, inventory: 2.7 },
+      { brand: 'BROOKS', model: 'Ghost Max', sales: 3.9, inventory: 2.5 },
+      { brand: 'HOKA', model: 'Clifton', sales: 3.9, inventory: 2.5 },
+      { brand: 'NEW BALANCE', model: '860', sales: 3.2, inventory: 2.5 }
+    ];
+
+    const brandData = [
+      { brand: 'Brooks', sales: 25.5, inventory: 20.8, deviation: -4.7 },
+      { brand: 'HOKA', sales: 18.3, inventory: 14.8, deviation: -3.5 },
+      { brand: 'ASICS', sales: 19.3, inventory: 11.8, deviation: -7.4 },
+      { brand: 'New Balance', sales: 11.4, inventory: 9.6, deviation: -1.8 },
+      { brand: 'Saucony', sales: 7.2, inventory: 6.7, deviation: -0.5 },
+      { brand: 'ON', sales: 5.3, inventory: 3.8, deviation: -1.6 },
+      { brand: 'Altra', sales: 4.6, inventory: 12.0, deviation: 7.4 },
+      { brand: 'Puma', sales: 3.5, inventory: 10.8, deviation: 7.2 }
+    ];
+
+    const categoryData = [
+      { category: 'Neutral Trainer', womenInv: 54.2, womenSales: 59.8, womenAlign: 91, menInv: 59.6, menSales: 57.0, menAlign: 96 },
+      { category: 'Stability', womenInv: 25.2, womenSales: 34.9, womenAlign: 72, menInv: 26.8, menSales: 36.2, menAlign: 74 },
+      { category: 'Plated', womenInv: 12.8, womenSales: 2.2, womenAlign: 17, menInv: 10.2, menSales: 3.5, menAlign: 34 },
+      { category: 'Trail', womenInv: 4.6, womenSales: 1.3, womenAlign: 29, menInv: 1.7, menSales: 1.9, menAlign: 89 },
+      { category: 'Slip Resistant', womenInv: 3.2, womenSales: 1.8, womenAlign: 56, menInv: 1.7, menSales: 1.4, menAlign: 86 }
+    ];
+
+    // Initialize all DOM-dependent variables first
+    let navbar = null;
+    let mobileMenuBtn = null;
+    let mobileMenu = null;
+    let topSellersChart = null;
+    let brandChart = null;
+    let categoryTable = null;
+    let particlesContainer = null;
+    let networkCanvas = null;
+    let ctx = null;
+
+    // Wait for DOM to be ready
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize DOM references
+      navbar = document.getElementById('navbar');
+      mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      mobileMenu = document.getElementById('mobile-menu');
+      topSellersChart = document.getElementById('top-sellers-chart');
+      brandChart = document.getElementById('brand-chart');
+      categoryTable = document.getElementById('category-table');
+      particlesContainer = document.getElementById('particles-container');
+      networkCanvas = document.getElementById('network-canvas');
+      
+      if (networkCanvas) {
+        ctx = networkCanvas.getContext('2d');
+      }
+
+      // Initialize all components
+      initNavigation();
+      initCharts();
+      initTable();
+      initScrollReveal();
+      initCounters();
+      initParticles();
+      initNetworkCanvas();
+      initTabButtons();
+    });
+
+    // Navigation
+    function initNavigation() {
+      if (!navbar || !mobileMenuBtn || !mobileMenu) return;
+
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close mobile menu on link click
+      mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    // Charts
+    function initCharts() {
+      if (!topSellersChart || !brandChart) return;
+      renderTopSellers('sales');
+      renderBrandChart();
+    }
+
+    function renderTopSellers(type) {
+      if (!topSellersChart) return;
+      
+      topSellersChart.innerHTML = '';
+      topSellersData.forEach(function(item, index) {
+        const value = type === 'sales' ? item.sales : item.inventory;
+        const maxVal = Math.max(...topSellersData.map(function(d) { return type === 'sales' ? d.sales : d.inventory; }));
+        const percentage = (value / maxVal) * 100;
+        const gap = item.sales - item.inventory;
+        
+        const bar = document.createElement('div');
+        bar.className = 'flex items-center gap-4';
+        bar.innerHTML = '\
+          <div class="w-24 md:w-32 shrink-0">\
+            <div class="text-sm font-medium">' + item.brand + '</div>\
+            <div class="text-xs text-[var(--fg-secondary)]">' + item.model + '</div>\
+          </div>\
+          <div class="flex-1">\
+            <div class="progress-bar">\
+              <div class="progress-fill chart-bar" style="width: 0%; background: linear-gradient(90deg, var(--accent-pink), var(--accent-pink-light))"></div>\
+            </div>\
+          </div>\
+          <div class="w-16 text-right">\
+            <span class="text-sm font-medium">' + value.toFixed(1) + '%</span>\
+          </div>\
+        ';
+        topSellersChart.appendChild(bar);
+        
+        // Animate bar
+        setTimeout(function() {
+          const fill = bar.querySelector('.progress-fill');
+          if (fill) {
+            fill.style.width = percentage + '%';
+          }
+        }, 100 + index * 50);
+      });
+    }
+
+    function renderBrandChart() {
+      if (!brandChart) return;
+      
+      brandChart.innerHTML = '';
+      brandData.forEach(function(item, index) {
+        const isNegative = item.deviation < 0;
+        const barColor = isNegative ? 'var(--accent-red)' : 'var(--accent-green)';
+        
+        const row = document.createElement('div');
+        row.className = 'flex items-center gap-4';
+        row.innerHTML = '\
+          <div class="w-28 shrink-0">\
+            <div class="text-sm font-medium">' + item.brand + '</div>\
+          </div>\
+          <div class="flex-1">\
+            <div class="flex items-center gap-2">\
+              <div class="flex-1 progress-bar">\
+                <div class="progress-fill chart-bar" style="width: 0%; background: linear-gradient(90deg, var(--accent-pink), var(--accent-pink-light))"></div>\
+              </div>\
+            </div>\
+          </div>\
+          <div class="w-20 text-right">\
+            <span class="text-sm font-medium" style="color: ' + barColor + '">' + (isNegative ? '' : '+') + item.deviation + '%</span>\
+          </div>\
+        ';
+        brandChart.appendChild(row);
+        
+        // Animate bar
+        setTimeout(function() {
+          const fill = row.querySelector('.progress-fill');
+          if (fill) {
+            fill.style.width = (item.sales / 30) * 100 + '%';
+          }
+        }, 100 + index * 50);
+      });
+    }
+
+    // Table
+    function initTable() {
+      if (!categoryTable) return;
+      
+      categoryTable.innerHTML = '';
+      categoryData.forEach(function(item) {
+        const womenStatus = item.womenAlign >= 80 ? 'var(--accent-green)' : item.womenAlign >= 50 ? 'var(--accent-gold)' : 'var(--accent-red)';
+        const menStatus = item.menAlign >= 80 ? 'var(--accent-green)' : item.menAlign >= 50 ? 'var(--accent-gold)' : 'var(--accent-red)';
+        
+        const row = document.createElement('tr');
+        row.innerHTML = '\
+          <td class="font-medium">' + item.category + '</td>\
+          <td>' + item.womenInv + '%</td>\
+          <td>' + item.womenSales + '%</td>\
+          <td><span style="color: ' + womenStatus + '">' + item.womenAlign + '%</span></td>\
+          <td>' + item.menInv + '%</td>\
+          <td>' + item.menSales + '%</td>\
+          <td><span style="color: ' + menStatus + '">' + item.menAlign + '%</span></td>\
+        ';
+        categoryTable.appendChild(row);
+      });
+    }
+
+    // Tab buttons
+    function initTabButtons() {
+      document.querySelectorAll('.tab-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const tab = this.getAttribute('data-tab');
+          document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+          this.classList.add('active');
+          renderTopSellers(tab);
+        });
+      });
+    }
+
+    // Scroll reveal
+    function initScrollReveal() {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            
+            // Animate progress bars when visible
+            entry.target.querySelectorAll('.progress-fill').forEach(function(bar) {
+              const width = bar.style.width;
+              bar.style.width = '0%';
+              setTimeout(function() {
+                bar.style.width = width;
+              }, 100);
+            });
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('.reveal, .stat-card').forEach(function(el) {
+        observer.observe(el);
+      });
+    }
+
+    // Counter animation
+    function initCounters() {
+      const counters = document.querySelectorAll('.counter');
+      
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            const target = parseInt(entry.target.getAttribute('data-target'));
+            animateCounter(entry.target, target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(function(counter) {
+        observer.observe(counter);
+      });
+    }
+
+    function animateCounter(element, target) {
+      let current = 0;
+      const increment = target / 50;
+      const timer = setInterval(function() {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target;
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current);
+        }
+      }, 30);
+    }
+
+    // Particles
+    function initParticles() {
+      if (!particlesContainer) return;
+      
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reducedMotion) return;
+
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Network canvas background
+    function initNetworkCanvas() {
+      if (!networkCanvas || !ctx) return;
+      
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reducedMotion) return;
+
+      let width = 0;
+      let height = 0;
+      let nodes = [];
+      let animationId = null;
+
+      function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        networkCanvas.width = width;
+        networkCanvas.height = height;
+        initNodes();
+      }
+
+      function initNodes() {
+        nodes = [];
+        const count = Math.floor((width * height) / 25000);
+        for (let i = 0; i < count; i++) {
+          nodes.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            radius: Math.max(1, Math.random() * 2 + 1)
+          });
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        // Update and draw nodes
+        nodes.forEach(function(node, i) {
+          node.x += node.vx;
+          node.y += node.vy;
+          
+          // Bounce off edges
+          if (node.x < 0 || node.x > width) node.vx *= -1;
+          if (node.y < 0 || node.y > height) node.vy *= -1;
+          
+          // Draw node
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(233, 30, 140, 0.3)';
+          ctx.fill();
+          
+          // Draw connections
+          nodes.forEach(function(other, j) {
+            if (i >= j) return;
+            const dx = node.x - other.x;
+            const dy = node.y - other.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            if (dist < 150) {
+              ctx.beginPath();
+              ctx.moveTo(node.x, node.y);
+              ctx.lineTo(other.x, other.y);
+              const alpha = Math.max(0.01, Math.min(0.15, (1 - dist / 150) * 0.15));
+              ctx.strokeStyle = 'rgba(233, 30, 140, ' + alpha + ')';
+              ctx.stroke();
+            }
+          });
+        });
+        
+        animationId = requestAnimationFrame(animate);
+      }
+
+      resize();
+      window.addEventListener('resize', resize);
+      animate();
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
