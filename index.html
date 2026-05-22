@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ielle Bermel | Retail Analytics Portfolio</title>
+  <title>ielle Bermel | Retail Analytics Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,20 +91,9 @@
       animation-delay: -7s;
     }
 
-    .blob-3 {
-      width: 400px;
-      height: 400px;
-      background: linear-gradient(135deg, var(--accent-pink-light) 0%, transparent 70%);
-      top: 40%;
-      left: 30%;
-      animation-delay: -14s;
-    }
-
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(50px, -30px) scale(1.1); }
       50% { transform: translate(-30px, 50px) scale(0.95); }
-      75% { transform: translate(-50px, -20px) scale(1.05); }
     }
 
     .grid-pattern {
@@ -125,12 +114,6 @@
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .dash-card:hover {
-      border-color: rgba(233, 30, 140, 0.3);
-      transform: translateY(-2px);
-      box-shadow: 0 20px 40px -20px rgba(233, 30, 140, 0.25);
-    }
-
     .progress-bar {
       height: 8px;
       background: rgba(233, 30, 140, 0.1);
@@ -141,7 +124,7 @@
     .progress-fill {
       height: 100%;
       border-radius: 4px;
-      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: width 0.5s ease;
     }
 
     nav { transition: all 0.3s ease; }
@@ -158,29 +141,15 @@
       padding: 14px 32px;
       border-radius: 50px;
       font-weight: 600;
-      letter-spacing: 0.5px;
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
       cursor: pointer;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--accent-pink-light) 0%, var(--accent-pink) 100%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      color: white;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 30px -10px rgba(233, 30, 140, 0.5);
     }
-
-    .btn-primary:hover::before { opacity: 1; }
-    .btn-primary span { position: relative; z-index: 1; }
 
     .btn-secondary {
       background: transparent;
@@ -195,7 +164,6 @@
 
     .btn-secondary:hover {
       background: rgba(233, 30, 140, 0.1);
-      transform: translateY(-2px);
     }
 
     .reveal {
@@ -211,10 +179,6 @@
 
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-
-    .counter { display: inline-block; }
 
     button:focus-visible,
     a:focus-visible,
@@ -227,7 +191,6 @@
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--bg-primary); }
     ::-webkit-scrollbar-thumb { background: var(--accent-pink-dark); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent-pink); }
 
     #network-canvas {
       position: absolute;
@@ -240,12 +203,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 36px;
-      height: 36px;
+      min-width: 32px;
+      height: 32px;
       padding: 0 8px;
       border-radius: 8px;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .grade-a { background: rgba(46, 204, 113, 0.2); color: var(--grade-a); }
@@ -256,7 +219,6 @@
 
     .skill-badge {
       display: inline-flex;
-      align-items: center;
       padding: 8px 16px;
       border-radius: 50px;
       background: rgba(233, 30, 140, 0.1);
@@ -268,7 +230,6 @@
     .skill-badge:hover {
       background: rgba(233, 30, 140, 0.15);
       border-color: var(--accent-pink);
-      transform: translateY(-2px);
     }
 
     .particle {
@@ -282,33 +243,27 @@
     }
 
     @keyframes particle-float {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      0% { transform: translateY(100vh); opacity: 0; }
       10% { opacity: 0.3; }
       90% { opacity: 0.3; }
-      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+      100% { transform: translateY(-100vh); opacity: 0; }
     }
 
-    /* Tool specific styles */
+    /* Tool styles */
     .size-input {
-      width: 60px;
+      width: 50px;
       background: var(--bg-primary);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 8px;
+      border-radius: 6px;
+      padding: 6px 4px;
       text-align: center;
       color: var(--fg-primary);
-      font-size: 14px;
+      font-size: 13px;
       transition: all 0.3s ease;
     }
 
     .size-input:focus {
       border-color: var(--accent-pink);
-      background: rgba(233, 30, 140, 0.05);
-    }
-
-    .size-input.urgent {
-      border-color: var(--accent-red);
-      background: rgba(231, 76, 60, 0.1);
     }
 
     .size-input.good {
@@ -316,21 +271,14 @@
       background: rgba(46, 204, 113, 0.1);
     }
 
-    .urgency-indicator {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
+    .size-input.warning {
+      border-color: var(--accent-gold);
+      background: rgba(244, 196, 48, 0.1);
     }
 
-    .urgency-critical { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); }
-    .urgency-high { background: var(--accent-orange); box-shadow: 0 0 10px var(--accent-orange); }
-    .urgency-moderate { background: var(--accent-gold); box-shadow: 0 0 10px var(--accent-gold); }
-    .urgency-low { background: var(--accent-green); }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(1.2); }
+    .size-input.bad {
+      border-color: var(--accent-red);
+      background: rgba(231, 76, 60, 0.1);
     }
 
     .select-styled {
@@ -342,15 +290,13 @@
       color: var(--fg-primary);
       font-size: 14px;
       cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23E91E8C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23E91E8C' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 12px center;
       background-size: 16px;
-      transition: all 0.3s ease;
     }
 
     .select-styled:focus { border-color: var(--accent-pink); }
-    .select-styled option { background: var(--bg-secondary); color: var(--fg-primary); }
 
     .toggle-group {
       display: flex;
@@ -361,7 +307,7 @@
     }
 
     .toggle-btn {
-      padding: 10px 20px;
+      padding: 10px 16px;
       border-radius: 6px;
       font-weight: 500;
       transition: all 0.3s ease;
@@ -369,48 +315,87 @@
       color: var(--fg-secondary);
       cursor: pointer;
       border: none;
+      font-size: 13px;
     }
 
     .toggle-btn.active { background: var(--accent-pink); color: white; }
     .toggle-btn:hover:not(.active) { color: var(--fg-primary); }
 
-    .gauge-container {
-      position: relative;
-      width: 120px;
-      height: 120px;
+    .data-row {
+      display: grid;
+      grid-template-columns: 60px repeat(5, 1fr);
+      gap: 8px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(233, 30, 140, 0.05);
     }
 
-    .gauge-bg {
-      fill: none;
-      stroke: rgba(233, 30, 140, 0.1);
-      stroke-width: 10;
+    .data-row:last-child {
+      border-bottom: none;
     }
 
-    .gauge-fill {
-      fill: none;
-      stroke-width: 10;
-      stroke-linecap: round;
-      transform: rotate(-90deg);
-      transform-origin: center;
-      transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    .data-row.header {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--fg-secondary);
+      border-bottom: 1px solid var(--border);
     }
 
-    /* Warning box */
-    .warning-box {
+    .data-row.core {
+      background: rgba(233, 30, 140, 0.05);
+      margin: 0 -12px;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    .info-box {
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+
+    .info-box.success {
+      background: rgba(46, 204, 113, 0.1);
+      border: 1px solid rgba(46, 204, 113, 0.3);
+    }
+
+    .info-box.warning {
+      background: rgba(244, 196, 48, 0.1);
+      border: 1px solid rgba(244, 196, 48, 0.3);
+    }
+
+    .info-box.error {
       background: rgba(231, 76, 60, 0.1);
       border: 1px solid rgba(231, 76, 60, 0.3);
-      border-radius: 12px;
-      padding: 16px;
     }
 
-    .warning-box.success {
-      background: rgba(46, 204, 113, 0.1);
-      border-color: rgba(46, 204, 113, 0.3);
+    .info-box.neutral {
+      background: rgba(233, 30, 140, 0.1);
+      border: 1px solid var(--border);
     }
 
-    .warning-box.caution {
-      background: rgba(244, 196, 48, 0.1);
-      border-color: rgba(244, 196, 48, 0.3);
+    .range-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--bg-primary);
+      outline: none;
+    }
+
+    .range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent-pink);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .range-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
     }
   </style>
 </head>
@@ -423,10 +408,9 @@
       </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="#tool" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Tool</a>
-        <a href="#dashboard" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Dashboard</a>
-        <a href="#process" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Process</a>
+        <a href="#methodology" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Methodology</a>
         <a href="#about" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">About</a>
-        <a href="#contact" class="btn-primary text-sm"><span>Contact</span></a>
+        <a href="#contact" class="btn-primary text-sm">Contact</a>
       </div>
       <button class="md:hidden p-2" id="mobile-menu-btn" aria-label="Toggle menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -438,11 +422,10 @@
     </div>
     <div class="hidden md:hidden bg-[var(--bg-secondary)] border-t border-[var(--border)]" id="mobile-menu">
       <div class="px-6 py-4 flex flex-col gap-4">
-        <a href="#tool" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Tool</a>
-        <a href="#dashboard" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Dashboard</a>
-        <a href="#process" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Process</a>
-        <a href="#about" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">About</a>
-        <a href="#contact" class="btn-primary text-sm text-center"><span>Contact</span></a>
+        <a href="#tool" class="text-sm text-[var(--fg-secondary)]">Tool</a>
+        <a href="#methodology" class="text-sm text-[var(--fg-secondary)]">Methodology</a>
+        <a href="#about" class="text-sm text-[var(--fg-secondary)]">About</a>
+        <a href="#contact" class="btn-primary text-sm text-center">Contact</a>
       </div>
     </div>
   </nav>
@@ -452,11 +435,9 @@
     <div class="hero-bg">
       <div class="blob blob-1"></div>
       <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
       <div class="grid-pattern"></div>
       <canvas id="network-canvas"></canvas>
     </div>
-
     <div class="absolute inset-0 overflow-hidden pointer-events-none" id="particles-container"></div>
 
     <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
@@ -468,27 +449,26 @@
         <span class="text-[var(--fg-primary)]">Scoring System</span>
       </h1>
       <p class="text-lg md:text-xl text-[var(--fg-secondary)] max-w-2xl mx-auto mb-12 reveal reveal-delay-2">
-        A custom-built framework for evaluating inventory alignment with actual demand. Interactive tools for simulating order impact and prioritizing replenishment.
+        Transform demand data into optimized order quantities. Focus on core sizes where 72% of sales occur.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
-        <a href="#tool" class="btn-primary"><span>Try the Tool</span></a>
-        <a href="#process" class="btn-secondary">See Methodology</a>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-2">
+        <a href="#tool" class="btn-primary">Try the Tool</a>
+        <a href="#methodology" class="btn-secondary">How It Works</a>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Tool Section -->
+  <!-- Tool Section -->
   <section id="tool" class="relative py-24 md:py-32 bg-[var(--bg-secondary)]">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-12 reveal">
-        <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Interactive Demo</p>
-        <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Size Curve Simulator</h2>
-        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Simulate order impact on size distribution. Only orders that address core size gaps will improve your score.</p>
+        <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Interactive Tool</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Order Planning Simulator</h2>
+        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Enter your desired order quantity and see the projected impact on size distribution. Optimal orders target core size gaps.</p>
       </div>
 
-      <!-- Tool Container -->
       <div class="dash-card p-6 md:p-8 reveal">
-        <!-- Controls Row -->
+        <!-- Controls -->
         <div class="flex flex-col lg:flex-row gap-6 mb-8">
           <div class="flex-1">
             <label class="block text-sm font-medium mb-2">Select Model</label>
@@ -499,8 +479,6 @@
               <option value="clifton">HOKA Clifton</option>
               <option value="kayano">ASICS Kayano</option>
               <option value="nimbus">ASICS Nimbus</option>
-              <option value="glycerin">Brooks Glycerin</option>
-              <option value="arahi">HOKA Arahi</option>
             </select>
           </div>
 
@@ -513,285 +491,199 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium mb-2">Width</label>
-            <div class="toggle-group">
-              <button class="toggle-btn width-btn active" data-width="medium">Medium (B/D)</button>
-              <button class="toggle-btn width-btn" data-width="wide">Wide (2E)</button>
+            <label class="block text-sm font-medium mb-2">Order Budget</label>
+            <div class="flex items-center gap-3">
+              <input type="number" id="order-budget" class="size-input w-20 text-left pl-3" value="24" min="0" max="100">
+              <span class="text-sm text-[var(--fg-secondary)]">units</span>
             </div>
           </div>
         </div>
 
-        <!-- Size Grid and Chart -->
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
-          <!-- Size Input Grid -->
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="font-display font-semibold text-lg">Order Quantities by Size</h3>
-              <button id="reset-btn" class="text-sm text-[var(--accent-pink)] hover:text-[var(--accent-pink-light)] transition-colors">Reset All</button>
-            </div>
+        <!-- Main Grid -->
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+          
+          <!-- Left: Current Inventory + Order Entry -->
+          <div class="xl:col-span-2">
+            <h3 class="font-display font-semibold text-lg mb-4">Size Distribution Table</h3>
             
-            <div class="space-y-4" id="size-grid">
-              <div>
-                <p class="text-xs text-[var(--fg-secondary)] mb-2">Small Sizes</p>
-                <div class="flex flex-wrap gap-2" id="row-small"></div>
+            <!-- Legend -->
+            <div class="flex flex-wrap gap-4 mb-4 text-xs text-[var(--fg-secondary)]">
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded bg-[var(--accent-pink)]/30"></div>
+                <span>Core sizes (72% of demand)</span>
               </div>
-              
-              <div>
-                <p class="text-xs text-[var(--accent-pink)] font-medium mb-2">Core Sizes (72% of demand)</p>
-                <div class="flex flex-wrap gap-2" id="row-core"></div>
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded bg-[var(--accent-red)]"></div>
+                <span>Understocked</span>
               </div>
-              
-              <div>
-                <p class="text-xs text-[var(--fg-secondary)] mb-2">Large Sizes</p>
-                <div class="flex flex-wrap gap-2" id="row-large"></div>
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded bg-[var(--accent-green)]"></div>
+                <span>Optimal</span>
               </div>
             </div>
 
-            <!-- Total Units -->
-            <div class="mt-6 p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-[var(--fg-secondary)]">Total Units to Order</span>
-                <span class="font-display font-bold text-2xl" id="total-units">0</span>
+            <!-- Data Table -->
+            <div class="overflow-x-auto">
+              <div class="min-w-[600px]">
+                <div class="data-row header">
+                  <div>Size</div>
+                  <div class="text-center">Current Stock</div>
+                  <div class="text-center">Ideal %</div>
+                  <div class="text-center">Current %</div>
+                  <div class="text-center">Order Qty</div>
+                  <div class="text-center">Projected</div>
+                </div>
+                <div id="size-table"></div>
               </div>
+            </div>
+
+            <!-- Summary Row -->
+            <div class="mt-4 p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
+              <div class="grid grid-cols-3 gap-4 text-center">
+                <div>
+                  <div class="text-xs text-[var(--fg-secondary)]">Current Total</div>
+                  <div class="font-display font-bold text-xl" id="current-total">0</div>
+                </div>
+                <div>
+                  <div class="text-xs text-[var(--fg-secondary)]">Order Total</div>
+                  <div class="font-display font-bold text-xl"><span id="order-total">0</span> / <span id="budget-display">24</span></div>
+                </div>
+                <div>
+                  <div class="text-xs text-[var(--fg-secondary)]">Projected Total</div>
+                  <div class="font-display font-bold text-xl" id="projected-total">0</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-4 flex flex-wrap gap-3">
+              <button id="auto-fill-btn" class="btn-primary text-sm py-2 px-4">Auto-Fill Optimal</button>
+              <button id="clear-btn" class="btn-secondary text-sm py-2 px-4">Clear Order</button>
             </div>
           </div>
 
-          <!-- Visualization -->
+          <!-- Right: Analysis Panel -->
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="font-display font-semibold text-lg">Size Distribution Analysis</h3>
-              <div class="flex items-center gap-4 text-xs">
+            <!-- Score Card -->
+            <div class="p-5 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)] mb-4">
+              <h4 class="text-sm font-medium mb-3">Distribution Scores</h4>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <div class="text-xs text-[var(--fg-secondary)]">Current</div>
+                  <div class="flex items-center gap-2 mt-1">
+                    <span class="font-display font-bold text-2xl" id="current-score">0</span>
+                    <span class="grade-badge grade-f text-xs" id="current-grade">F</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="text-xs text-[var(--fg-secondary)]">Projected</div>
+                  <div class="flex items-center gap-2 mt-1">
+                    <span class="font-display font-bold text-2xl" id="projected-score">0</span>
+                    <span class="grade-badge grade-f text-xs" id="projected-grade">F</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-3 pt-3 border-t border-[var(--border)]">
+                <div class="text-xs text-[var(--fg-secondary)]">Change</div>
+                <div class="font-display font-bold text-lg mt-1" id="score-change">-</div>
+              </div>
+            </div>
+
+            <!-- Order Quality -->
+            <div id="order-quality-box" class="mb-4"></div>
+
+            <!-- Chart -->
+            <div class="p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
+              <h4 class="text-sm font-medium mb-3">Distribution Comparison</h4>
+              <canvas id="chart-canvas" class="w-full h-48"></canvas>
+              <div class="flex justify-center gap-6 mt-3 text-xs text-[var(--fg-secondary)]">
                 <div class="flex items-center gap-2">
                   <div class="w-3 h-3 rounded-full bg-[var(--accent-pink)]"></div>
-                  <span class="text-[var(--fg-secondary)]">Current</span>
+                  <span>Current</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <div class="w-3 h-3 rounded-full bg-[var(--accent-green)]"></div>
-                  <span class="text-[var(--fg-secondary)]">After Order</span>
+                  <span>Projected</span>
                 </div>
                 <div class="flex items-center gap-2">
-                  <div class="w-3 h-3 rounded-full bg-[var(--accent-gold)] opacity-50"></div>
-                  <span class="text-[var(--fg-secondary)]">Ideal</span>
-                </div>
-              </div>
-            </div>
-            
-            <canvas id="curve-canvas" class="w-full h-64 rounded-xl bg-[var(--bg-primary)]"></canvas>
-
-            <!-- Order Efficiency Warning -->
-            <div class="mt-4" id="order-efficiency-box">
-              <!-- Dynamic content -->
-            </div>
-            
-            <!-- Score Impact -->
-            <div class="mt-4 grid grid-cols-2 gap-4">
-              <div class="p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
-                <div class="text-xs text-[var(--fg-secondary)] mb-1">Current Score</div>
-                <div class="flex items-center gap-2">
-                  <span class="font-display font-bold text-2xl" id="current-score">42</span>
-                  <span class="grade-badge grade-f text-xs" id="current-grade">F</span>
-                </div>
-              </div>
-              <div class="p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
-                <div class="text-xs text-[var(--fg-secondary)] mb-1">Projected Score</div>
-                <div class="flex items-center gap-2">
-                  <span class="font-display font-bold text-2xl" id="projected-score">42</span>
-                  <span class="grade-badge grade-f text-xs" id="projected-grade">F</span>
+                  <div class="w-3 h-1 bg-[var(--accent-gold)] opacity-50"></div>
+                  <span>Ideal</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Urgency Rankings -->
-        <div class="mt-8 pt-8 border-t border-[var(--border)]">
-          <h3 class="font-display font-semibold text-lg mb-4">Size Gap Analysis</h3>
-          <p class="text-sm text-[var(--fg-secondary)] mb-6">Core sizes account for 72% of demand but often receive disproportionate inventory. Address these gaps first.</p>
-          
-          <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3" id="urgency-grid"></div>
         </div>
 
         <!-- Recommendations -->
-        <div class="mt-8 p-6 rounded-xl bg-gradient-to-r from-[var(--accent-pink)]/10 to-transparent border border-[var(--accent-pink)]/20" id="recommendation-box">
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-lg bg-[var(--accent-pink)]/20 flex items-center justify-center shrink-0">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="2">
-                <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-display font-semibold mb-2">Order Strategy</h4>
-              <p class="text-sm text-[var(--fg-secondary)]" id="recommendation-text">
-                Select a model and enter order quantities to see personalized recommendations.
-              </p>
-            </div>
-          </div>
-        </div>
+        <div class="mt-8" id="recommendations-section"></div>
       </div>
     </div>
   </section>
 
-  <!-- Dashboard Section -->
-  <section id="dashboard" class="relative py-24 md:py-32">
+  <!-- Methodology Section -->
+  <section id="methodology" class="relative py-24 md:py-32">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16 reveal">
-        <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Live Analysis</p>
-        <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Category Health Dashboard</h2>
-        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Normalized scoring system with letter grades. Only properly distributed orders will achieve good scores.</p>
+        <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">How It Works</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Scoring Methodology</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        <div class="dash-card p-6 md:p-8 reveal">
-          <div class="flex items-start justify-between mb-6">
-            <div>
-              <h3 class="font-display font-semibold text-2xl">Women's Inventory Health</h3>
-              <p class="text-sm text-[var(--fg-secondary)] mt-1">Category Coverage Score</p>
-            </div>
-            <span class="grade-badge grade-d text-lg w-12 h-12">D</span>
-          </div>
-          <div class="flex items-center gap-8">
-            <div class="gauge-container">
-              <svg viewBox="0 0 120 120" class="w-full h-full">
-                <circle class="gauge-bg" cx="60" cy="60" r="50"></circle>
-                <circle class="gauge-fill" cx="60" cy="60" r="50" 
-                  stroke="var(--grade-d)" 
-                  stroke-dasharray="314.159"
-                  stroke-dashoffset="100.531"></circle>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="font-display font-bold text-2xl">68</span>
-              </div>
-            </div>
-            <div class="flex-1 space-y-4">
-              <div>
-                <div class="flex justify-between text-sm mb-1">
-                  <span class="text-[var(--fg-secondary)]">Neutral Trainer</span>
-                  <span class="grade-badge grade-f text-xs w-8 h-6">55 F</span>
-                </div>
-                <div class="progress-bar"><div class="progress-fill bg-[var(--grade-f)]" style="width: 55%"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between text-sm mb-1">
-                  <span class="text-[var(--fg-secondary)]">Stability</span>
-                  <span class="grade-badge grade-f text-xs w-8 h-6">39 F</span>
-                </div>
-                <div class="progress-bar"><div class="progress-fill bg-[var(--grade-f)]" style="width: 39%"></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="dash-card p-6 md:p-8 reveal reveal-delay-1">
-          <div class="flex items-start justify-between mb-6">
-            <div>
-              <h3 class="font-display font-semibold text-2xl">Men's Inventory Health</h3>
-              <p class="text-sm text-[var(--fg-secondary)] mt-1">Category Coverage Score</p>
-            </div>
-            <span class="grade-badge grade-b text-lg w-12 h-12">B</span>
-          </div>
-          <div class="flex items-center gap-8">
-            <div class="gauge-container">
-              <svg viewBox="0 0 120 120" class="w-full h-full">
-                <circle class="gauge-bg" cx="60" cy="60" r="50"></circle>
-                <circle class="gauge-fill" cx="60" cy="60" r="50" 
-                  stroke="var(--grade-b)" 
-                  stroke-dasharray="314.159"
-                  stroke-dashoffset="47.124"></circle>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="font-display font-bold text-2xl">85</span>
-              </div>
-            </div>
-            <div class="flex-1 space-y-4">
-              <div>
-                <div class="flex justify-between text-sm mb-1">
-                  <span class="text-[var(--fg-secondary)]">Neutral Trainer</span>
-                  <span class="grade-badge grade-f text-xs w-8 h-6">42 F</span>
-                </div>
-                <div class="progress-bar"><div class="progress-fill bg-[var(--grade-f)]" style="width: 42%"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between text-sm mb-1">
-                  <span class="text-[var(--fg-secondary)]">Stability</span>
-                  <span class="grade-badge grade-f text-xs w-8 h-6">32 F</span>
-                </div>
-                <div class="progress-bar"><div class="progress-fill bg-[var(--grade-f)]" style="width: 32%"></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process Section -->
-  <section id="process" class="relative py-24 md:py-32 bg-[var(--bg-secondary)]">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Methodology</p>
-        <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Scoring Algorithm</h2>
-        <p class="text-[var(--fg-secondary)] max-w-2xl mx-auto">The scoring system uses weighted penalties with strict enforcement for wasteful ordering patterns.</p>
-      </div>
-
-      <div class="dash-card p-8 mb-12 reveal">
-        <h3 class="font-display font-semibold text-xl mb-6">How Scores Are Calculated</h3>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h4 class="font-medium mb-4 text-[var(--accent-pink)]">Core Sizes (5x Weight)</h4>
-            <ul class="space-y-3 text-sm text-[var(--fg-secondary)]">
-              <li class="flex items-start gap-2">
-                <span class="text-[var(--accent-red)]">-5 pts</span>
-                <span>per percentage point understocked</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[var(--accent-gold)]">-1 pt</span>
-                <span>per percentage point overstocked</span>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 class="font-medium mb-4 text-[var(--fg-secondary)]">Non-Core Sizes (1x Weight)</h4>
-            <ul class="space-y-3 text-sm text-[var(--fg-secondary)]">
-              <li class="flex items-start gap-2">
-                <span class="text-[var(--accent-gold)]">-0.5 pts</span>
-                <span>per percentage point understocked</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-[var(--accent-red)]">-4 pts</span>
-                <span>per percentage point overstocked</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="mt-8 p-4 rounded-xl bg-[var(--accent-red)]/10 border border-[var(--accent-red)]/20">
-          <h4 class="font-medium mb-2 text-[var(--accent-red)]">Order Efficiency Penalty</h4>
-          <p class="text-sm text-[var(--fg-secondary)]">
-            Orders to non-core sizes while core is underserved receive a <strong>50% score penalty</strong>. 
-            This prevents "gaming" the system by ordering only edge sizes.
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="dash-card p-6 reveal">
+          <h3 class="font-display font-semibold text-xl mb-4">What the Score Means</h3>
+          <p class="text-[var(--fg-secondary)] text-sm leading-relaxed mb-4">
+            The distribution score measures how well your inventory aligns with expected demand. A score of 100 means perfect alignment - inventory percentages match demand percentages exactly.
           </p>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between"><span class="text-[var(--fg-secondary)]">90-100</span><span class="grade-badge grade-a text-xs">A</span><span class="text-[var(--fg-secondary)]">Excellent alignment</span></div>
+            <div class="flex justify-between"><span class="text-[var(--fg-secondary)]">80-89</span><span class="grade-badge grade-b text-xs">B</span><span class="text-[var(--fg-secondary)]">Good alignment</span></div>
+            <div class="flex justify-between"><span class="text-[var(--fg-secondary)]">70-79</span><span class="grade-badge grade-c text-xs">C</span><span class="text-[var(--fg-secondary)]">Needs improvement</span></div>
+            <div class="flex justify-between"><span class="text-[var(--fg-secondary)]">60-69</span><span class="grade-badge grade-d text-xs">D</span><span class="text-[var(--fg-secondary)]">Poor alignment</span></div>
+            <div class="flex justify-between"><span class="text-[var(--fg-secondary)]">0-59</span><span class="grade-badge grade-f text-xs">F</span><span class="text-[var(--fg-secondary)]">Critical gaps</span></div>
+          </div>
         </div>
+
+        <div class="dash-card p-6 reveal reveal-delay-1">
+          <h3 class="font-display font-semibold text-xl mb-4">Why Core Sizes Matter</h3>
+          <p class="text-[var(--fg-secondary)] text-sm leading-relaxed mb-4">
+            Core sizes (Women's 7.5-9.5, Men's 9.5-11.5) represent approximately 72% of total demand. These sizes are weighted 5x in the scoring calculation.
+          </p>
+          <div class="p-4 rounded-lg bg-[var(--accent-pink)]/10 border border-[var(--accent-pink)]/20">
+            <div class="text-sm font-medium mb-2">Weight System</div>
+            <div class="grid grid-cols-2 gap-4 text-xs">
+              <div>
+                <div class="text-[var(--accent-pink)] font-medium">Core Sizes: 5x</div>
+                <div class="text-[var(--fg-secondary)]">Higher impact on score</div>
+              </div>
+              <div>
+                <div class="text-[var(--fg-secondary)]">Non-Core: 1x</div>
+                <div class="text-[var(--fg-secondary)]">Lower impact</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-card p-6 mt-8 reveal">
+        <h3 class="font-display font-semibold text-xl mb-4">Order Efficiency</h3>
+        <p class="text-[var(--fg-secondary)] text-sm leading-relaxed">
+          Orders targeting underserved core sizes improve your score. Orders to already-well-stocked sizes (especially non-core) can <strong>decrease</strong> your score by creating further distribution imbalance. Use the "Auto-Fill Optimal" button to automatically distribute your order budget to the sizes that need it most.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="relative py-24 md:py-32">
+  <section id="about" class="relative py-24 md:py-32 bg-[var(--bg-secondary)]">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div class="reveal">
-          <div class="relative">
-            <div class="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-[var(--accent-pink)]/20 to-[var(--accent-pink-dark)]/20 border border-[var(--border)]">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="text-center">
-                  <div class="w-32 h-32 rounded-full bg-gradient-to-br from-[var(--accent-pink)] to-[var(--accent-pink-dark)] mx-auto mb-6 flex items-center justify-center">
-                    <span class="font-display font-bold text-4xl text-white">IB</span>
-                  </div>
-                  <p class="text-[var(--fg-secondary)]">Retail Analytics Professional</p>
-                </div>
+          <div class="aspect-square rounded-3xl bg-gradient-to-br from-[var(--accent-pink)]/20 to-[var(--accent-pink-dark)]/20 border border-[var(--border)] flex items-center justify-center">
+            <div class="text-center">
+              <div class="w-32 h-32 rounded-full bg-gradient-to-br from-[var(--accent-pink)] to-[var(--accent-pink-dark)] mx-auto mb-6 flex items-center justify-center">
+                <span class="font-display font-bold text-4xl text-white">IB</span>
               </div>
+              <p class="text-[var(--fg-secondary)]">Retail Analytics Professional</p>
             </div>
           </div>
         </div>
@@ -800,17 +692,18 @@
           <div class="reveal">
             <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">About</p>
           </div>
-          <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 reveal reveal-delay-1">Ielle Bermel</h2>
+          <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 reveal reveal-delay-1">ielle Bermel</h2>
           <p class="text-[var(--fg-secondary)] text-lg leading-relaxed mb-8 reveal reveal-delay-2">
-            Detail-oriented eCommerce and operations professional with experience supporting Shopify-based retail systems, product database management, and inventory accuracy.
+            Detail-oriented eCommerce and operations professional with experience in Shopify-based retail systems, product database management, and inventory optimization. Skilled in building spreadsheet-driven tools that translate sales data into actionable ordering strategies.
           </p>
-          <div class="reveal reveal-delay-3">
+          <div class="reveal reveal-delay-2">
             <h3 class="font-display font-semibold text-lg mb-4">Core Skills</h3>
             <div class="flex flex-wrap gap-2">
               <span class="skill-badge">Shopify POS</span>
               <span class="skill-badge">Inventory Management</span>
               <span class="skill-badge">Google Sheets</span>
               <span class="skill-badge">Data Analysis</span>
+              <span class="skill-badge">Process Documentation</span>
             </div>
           </div>
         </div>
@@ -819,18 +712,18 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="relative py-24 md:py-32 bg-[var(--bg-secondary)]">
+  <section id="contact" class="relative py-24 md:py-32">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <div class="reveal">
-        <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Get in Touch</p>
+        <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Contact</p>
       </div>
-      <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 reveal reveal-delay-1">Let's Work Together</h2>
-      <p class="text-[var(--fg-secondary)] text-lg max-w-2xl mx-auto mb-12 reveal reveal-delay-2">
+      <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 reveal reveal-delay-1">Let's Connect</h2>
+      <p class="text-[var(--fg-secondary)] text-lg mb-12 reveal reveal-delay-2">
         Interested in data-driven inventory solutions?
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
-        <a href="mailto:ielle.yell@gmail.com" class="btn-primary"><span>Send Email</span></a>
-        <a href="mailto:ielle.yell@gmail.com" class="btn-secondary">ielle.yell@gmail.com</a>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-2">
+        <a href="mailto:ielle.yell@gmail.com" class="btn-primary">Send Email</a>
+        <span class="btn-secondary">ielle.yell@gmail.com</span>
       </div>
     </div>
   </section>
@@ -838,134 +731,102 @@
   <!-- Footer -->
   <footer class="py-8 border-t border-[var(--border)]">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="font-display font-bold text-lg">
-        <span class="gradient-text">ielle bermel</span>
-      </div>
-      <p class="text-sm text-[var(--fg-secondary)]">Portfolio Project 2026</p>
+      <div class="font-display font-bold text-lg gradient-text">ielle bermel</div>
+      <p class="text-sm text-[var(--fg-secondary)]">Portfolio 2026</p>
     </div>
   </footer>
 
   <script>
-    // Model Data
+    // Model data
     const modelData = {
       adrenaline: {
         name: 'Brooks Adrenaline',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [2, 3, 4, 5, 6, 7, 6, 4, 3, 2, 1],
+          currentStock: [2, 3, 4, 5, 6, 7, 6, 4, 3, 2, 1],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [2, 3, 5, 7, 8, 9, 8, 6, 4, 2, 1],
+          currentStock: [2, 3, 5, 7, 8, 9, 8, 6, 4, 2, 1],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         }
       },
       ghost: {
         name: 'Brooks Ghost',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [1, 2, 3, 4, 5, 6, 5, 4, 2, 1, 0],
+          currentStock: [1, 2, 3, 4, 5, 6, 5, 4, 2, 1, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [2, 4, 5, 6, 7, 8, 7, 5, 3, 2, 1],
+          currentStock: [2, 4, 5, 6, 7, 8, 7, 5, 3, 2, 1],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         }
       },
       bondi: {
         name: 'HOKA Bondi',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [1, 1, 2, 2, 3, 3, 2, 2, 1, 0, 0],
+          currentStock: [1, 1, 2, 2, 3, 3, 2, 2, 1, 0, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [1, 1, 2, 2, 3, 4, 3, 2, 1, 0, 0],
+          currentStock: [1, 1, 2, 2, 3, 4, 3, 2, 1, 0, 0],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         }
       },
       clifton: {
         name: 'HOKA Clifton',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [1, 1, 1, 2, 2, 2, 1, 1, 0, 0, 0],
+          currentStock: [1, 1, 1, 2, 2, 2, 1, 1, 0, 0, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [2, 2, 3, 4, 4, 5, 4, 3, 2, 1, 1],
+          currentStock: [2, 2, 3, 4, 4, 5, 4, 3, 2, 1, 1],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         }
       },
       kayano: {
         name: 'ASICS Kayano',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [1, 1, 1, 1, 2, 2, 2, 1, 1, 0, 0],
+          currentStock: [1, 1, 1, 1, 2, 2, 2, 1, 1, 0, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [1, 2, 2, 3, 4, 5, 4, 3, 2, 1, 0],
+          currentStock: [1, 2, 2, 3, 4, 5, 4, 3, 2, 1, 0],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         }
       },
       nimbus: {
         name: 'ASICS Nimbus',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [0, 1, 1, 1, 1, 2, 1, 1, 0, 0, 0],
+          currentStock: [0, 1, 1, 1, 1, 2, 1, 1, 0, 0, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [1, 2, 2, 3, 3, 4, 3, 2, 2, 1, 0],
+          currentStock: [1, 2, 2, 3, 3, 4, 3, 2, 2, 1, 0],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          coreIndices: [3, 4, 5, 6, 7]
-        }
-      },
-      glycerin: {
-        name: 'Brooks Glycerin',
-        women: {
-          sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [1, 1, 1, 2, 2, 3, 2, 2, 1, 0, 0],
-          idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          coreIndices: [3, 4, 5, 6, 7]
-        },
-        men: {
-          sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [2, 2, 3, 4, 5, 6, 5, 4, 2, 1, 1],
-          idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          coreIndices: [3, 4, 5, 6, 7]
-        }
-      },
-      arahi: {
-        name: 'HOKA Arahi',
-        women: {
-          sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [1, 2, 2, 2, 3, 3, 3, 2, 1, 1, 0],
-          idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          coreIndices: [3, 4, 5, 6, 7]
-        },
-        men: {
-          sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [1, 2, 2, 3, 3, 4, 3, 2, 2, 1, 1],
-          idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          coreIndices: [3, 4, 5, 6, 7]
+          coreStart: 3, coreEnd: 7
         }
       }
     };
@@ -973,57 +834,36 @@
     // State
     let currentModel = 'adrenaline';
     let currentGender = 'women';
-    let currentWidth = 'medium';
-    let orderQuantities = {};
+    let orderBudget = 24;
+    let orders = {};
 
-    // DOM Elements
+    // DOM elements
     let modelSelect = null;
-    let curveCanvas = null;
-    let curveCtx = null;
-    let sizeGridSmall = null;
-    let sizeGridCore = null;
-    let sizeGridLarge = null;
-    let totalUnitsEl = null;
-    let currentScoreEl = null;
-    let projectedScoreEl = null;
-    let currentGradeEl = null;
-    let projectedGradeEl = null;
-    let urgencyGridEl = null;
-    let recommendationTextEl = null;
-    let orderEfficiencyBox = null;
-    let recommendationBox = null;
+    let sizeTable = null;
+    let budgetInput = null;
+    let chartCanvas = null;
+    let chartCtx = null;
 
     document.addEventListener('DOMContentLoaded', function() {
       modelSelect = document.getElementById('model-select');
-      curveCanvas = document.getElementById('curve-canvas');
-      if (curveCanvas) curveCtx = curveCanvas.getContext('2d');
-      sizeGridSmall = document.getElementById('row-small');
-      sizeGridCore = document.getElementById('row-core');
-      sizeGridLarge = document.getElementById('row-large');
-      totalUnitsEl = document.getElementById('total-units');
-      currentScoreEl = document.getElementById('current-score');
-      projectedScoreEl = document.getElementById('projected-score');
-      currentGradeEl = document.getElementById('current-grade');
-      projectedGradeEl = document.getElementById('projected-grade');
-      urgencyGridEl = document.getElementById('urgency-grid');
-      recommendationTextEl = document.getElementById('recommendation-text');
-      orderEfficiencyBox = document.getElementById('order-efficiency-box');
-      recommendationBox = document.getElementById('recommendation-box');
+      sizeTable = document.getElementById('size-table');
+      budgetInput = document.getElementById('order-budget');
+      chartCanvas = document.getElementById('chart-canvas');
+      if (chartCanvas) chartCtx = chartCanvas.getContext('2d');
 
       initTool();
       initNavigation();
       initScrollReveal();
-      initCounters();
       initParticles();
       initNetworkCanvas();
     });
 
     function initTool() {
       if (!modelSelect) return;
-      
+
       modelSelect.addEventListener('change', function() {
         currentModel = this.value;
-        resetOrderQuantities();
+        resetOrders();
         renderAll();
       });
 
@@ -1032,435 +872,177 @@
           document.querySelectorAll('.toggle-btn[data-gender]').forEach(function(b) { b.classList.remove('active'); });
           this.classList.add('active');
           currentGender = this.getAttribute('data-gender');
-          resetOrderQuantities();
+          resetOrders();
           renderAll();
         });
       });
 
-      document.querySelectorAll('.width-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          document.querySelectorAll('.width-btn').forEach(function(b) { b.classList.remove('active'); });
-          this.classList.add('active');
-          currentWidth = this.getAttribute('data-width');
+      if (budgetInput) {
+        budgetInput.addEventListener('input', function() {
+          orderBudget = Math.max(0, parseInt(this.value) || 0);
+          document.getElementById('budget-display').textContent = orderBudget;
           renderAll();
         });
-      });
+      }
 
-      document.getElementById('reset-btn').addEventListener('click', function() {
-        resetOrderQuantities();
+      document.getElementById('auto-fill-btn').addEventListener('click', autoFillOptimal);
+      document.getElementById('clear-btn').addEventListener('click', function() {
+        resetOrders();
         renderAll();
       });
 
-      resetOrderQuantities();
+      resetOrders();
       renderAll();
     }
 
-    function resetOrderQuantities() {
+    function resetOrders() {
+      const data = getCurrentData();
+      if (!data) return;
+      orders = {};
+      data.sizes.forEach(function(size) { orders[size] = 0; });
+    }
+
+    function getCurrentData() {
       const model = modelData[currentModel];
-      if (!model) return;
-      
-      const data = model[currentGender];
-      orderQuantities = {};
-      data.sizes.forEach(function(size) {
-        orderQuantities[size] = 0;
-      });
+      return model ? model[currentGender] : null;
     }
 
     function renderAll() {
-      renderSizeGrid();
-      renderUrgencyGrid();
-      drawCurve();
+      renderSizeTable();
       updateScores();
+      updateOrderQuality();
+      drawChart();
+      updateRecommendations();
       updateTotals();
-      updateOrderEfficiency();
-      updateRecommendation();
     }
 
-    function renderSizeGrid() {
-      if (!sizeGridSmall || !sizeGridCore || !sizeGridLarge) return;
+    function renderSizeTable() {
+      if (!sizeTable) return;
       
-      const model = modelData[currentModel];
-      if (!model) return;
-      
-      const data = model[currentGender];
-      const coreIndices = data.coreIndices;
-      const currentTotal = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
-      
-      sizeGridSmall.innerHTML = '';
-      sizeGridCore.innerHTML = '';
-      sizeGridLarge.innerHTML = '';
-      
+      const data = getCurrentData();
+      if (!data) return;
+
+      const total = data.currentStock.reduce(function(a, b) { return a + b; }, 0);
+      sizeTable.innerHTML = '';
+
       data.sizes.forEach(function(size, index) {
-        const isCore = coreIndices.indexOf(index) !== -1;
-        const currentPercent = currentTotal > 0 ? (data.currentInventory[index] / currentTotal) * 100 : 0;
+        const isCore = index >= data.coreStart && index <= data.coreEnd;
+        const current = data.currentStock[index];
         const ideal = data.idealPercent[index];
-        const gap = currentPercent - ideal;
-        const urgency = getUrgencyLevel(gap, isCore);
-        
-        const container = document.createElement('div');
-        container.className = 'flex flex-col items-center gap-1' + (isCore ? ' ring-2 ring-[var(--accent-pink)]/30 rounded-lg p-2' : '');
-        
-        const label = document.createElement('label');
-        label.className = 'text-xs ' + (isCore ? 'text-[var(--accent-pink)] font-medium' : 'text-[var(--fg-secondary)]');
-        label.textContent = size;
-        
-        const inputGroup = document.createElement('div');
-        inputGroup.className = 'flex items-center gap-1';
-        
-        const indicator = document.createElement('div');
-        indicator.className = 'urgency-indicator urgency-' + urgency;
-        
-        const input = document.createElement('input');
-        input.type = 'number';
-        input.min = '0';
-        input.max = '20';
-        input.value = orderQuantities[size] || 0;
-        input.className = 'size-input';
-        input.setAttribute('data-size', size);
-        input.setAttribute('aria-label', 'Order quantity for size ' + size);
-        
-        if (urgency === 'critical') input.classList.add('urgent');
-        else if (urgency === 'low') input.classList.add('good');
-        
-        input.addEventListener('input', function() {
-          const val = Math.max(0, Math.min(20, parseInt(this.value) || 0));
-          this.value = val;
-          orderQuantities[size] = val;
-          updateTotals();
-          drawCurve();
-          updateScores();
-          updateOrderEfficiency();
-          updateRecommendation();
-        });
-        
-        inputGroup.appendChild(indicator);
-        inputGroup.appendChild(input);
-        container.appendChild(label);
-        container.appendChild(inputGroup);
-        
-        if (!isCore && index < coreIndices[0]) {
-          sizeGridSmall.appendChild(container);
-        } else if (isCore) {
-          sizeGridCore.appendChild(container);
-        } else {
-          sizeGridLarge.appendChild(container);
-        }
-      });
-    }
+        const currentPercent = total > 0 ? ((current / total) * 100) : 0;
+        const orderQty = orders[size] || 0;
+        const projected = current + orderQty;
 
-    function getUrgencyLevel(gap, isCore) {
-      const threshold = isCore ? -3 : -5;
-      if (gap < threshold) return 'critical';
-      if (gap < 0) return 'high';
-      if (gap < 5) return 'moderate';
-      return 'low';
-    }
+        const row = document.createElement('div');
+        row.className = 'data-row' + (isCore ? ' core' : '');
 
-    function renderUrgencyGrid() {
-      if (!urgencyGridEl) return;
-      
-      const model = modelData[currentModel];
-      if (!model) return;
-      
-      const data = model[currentGender];
-      const coreIndices = data.coreIndices;
-      const currentTotal = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
-      
-      urgencyGridEl.innerHTML = '';
-      
-      const items = data.sizes.map(function(size, index) {
-        const currentPercent = currentTotal > 0 ? (data.currentInventory[index] / currentTotal) * 100 : 0;
-        const ideal = data.idealPercent[index];
+        // Determine status color
         const gap = currentPercent - ideal;
-        const isCore = coreIndices.indexOf(index) !== -1;
-        
-        return {
-          size: size,
-          gap: gap,
-          isCore: isCore,
-          urgency: getUrgencyLevel(gap, isCore),
-          current: data.currentInventory[index],
-          ideal: ideal
-        };
-      });
-      
-      items.sort(function(a, b) {
-        if (a.isCore !== b.isCore) return a.isCore ? -1 : 1;
-        return a.gap - b.gap;
-      });
-      
-      items.forEach(function(item) {
-        const card = document.createElement('div');
-        card.className = 'p-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]' + 
-          (item.isCore ? ' ring-1 ring-[var(--accent-pink)]/50' : '');
-        
-        const urgencyClass = 'urgency-' + item.urgency;
-        const urgencyLabel = item.urgency.charAt(0).toUpperCase() + item.urgency.slice(1);
-        
-        const gapClass = item.gap < -5 ? 'text-[var(--accent-red)]' : item.gap < 0 ? 'text-[var(--accent-orange)]' : 'text-[var(--accent-green)]';
-        
-        card.innerHTML = '\
-          <div class="flex items-center gap-2 mb-2">\
-            <div class="urgency-indicator ' + urgencyClass + '"></div>\
-            <span class="text-sm font-medium">' + item.size + (item.isCore ? ' (Core)' : '') + '</span>\
+        let statusClass = '';
+        if (gap < -3) statusClass = 'bad';
+        else if (gap < 0 || gap > 5) statusClass = 'warning';
+        else statusClass = 'good';
+
+        row.innerHTML = '\
+          <div class="font-medium text-sm">' + size + '</div>\
+          <div class="text-center text-sm">' + current + '</div>\
+          <div class="text-center text-sm text-[var(--fg-secondary)]">' + ideal + '%</div>\
+          <div class="text-center text-sm">' + currentPercent.toFixed(1) + '%</div>\
+          <div class="text-center">\
+            <input type="number" class="size-input ' + statusClass + '" value="' + orderQty + '" min="0" max="50" data-size="' + size + '">\
           </div>\
-          <div class="text-xs text-[var(--fg-secondary)]">Stock: ' + item.current + ' | Ideal: ' + item.ideal + '%</div>\
-          <div class="text-xs mt-1 ' + gapClass + '">Gap: ' + (item.gap > 0 ? '+' : '') + item.gap.toFixed(1) + '%</div>\
+          <div class="text-center text-sm font-medium">' + projected + '</div>\
         ';
-        
-        urgencyGridEl.appendChild(card);
+
+        const input = row.querySelector('input');
+        input.addEventListener('input', function() {
+          const val = Math.max(0, Math.min(50, parseInt(this.value) || 0));
+          this.value = val;
+          orders[size] = val;
+          renderAll();
+        });
+
+        sizeTable.appendChild(row);
       });
     }
 
     function updateTotals() {
-      if (!totalUnitsEl) return;
-      
-      const model = modelData[currentModel];
-      if (!model) return;
-      
-      const data = model[currentGender];
-      const orderTotal = Object.values(orderQuantities).reduce(function(a, b) { return a + b; }, 0);
-      totalUnitsEl.textContent = orderTotal;
-    }
+      const data = getCurrentData();
+      if (!data) return;
 
-    function drawCurve() {
-      if (!curveCanvas || !curveCtx) return;
-      
-      const model = modelData[currentModel];
-      if (!model) return;
-      
-      const data = model[currentGender];
-      
-      const rect = curveCanvas.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      curveCanvas.width = rect.width * dpr;
-      curveCanvas.height = rect.height * dpr;
-      curveCtx.scale(dpr, dpr);
-      
-      const width = rect.width;
-      const height = rect.height;
-      const padding = 50;
-      
-      curveCtx.clearRect(0, 0, width, height);
-      
-      // Grid
-      curveCtx.strokeStyle = 'rgba(233, 30, 140, 0.1)';
-      curveCtx.lineWidth = 1;
-      
-      for (let i = 0; i <= 4; i++) {
-        const y = padding + (height - 2 * padding) * i / 4;
-        curveCtx.beginPath();
-        curveCtx.moveTo(padding, y);
-        curveCtx.lineTo(width - padding, y);
-        curveCtx.stroke();
-      }
-      
-      const xStep = (width - 2 * padding) / Math.max(1, data.sizes.length - 1);
-      const maxUnits = Math.max(15, Math.max(...data.currentInventory.map(function(c, i) {
-        return c + (orderQuantities[data.sizes[i]] || 0);
-      })));
-      
-      // Ideal curve
-      curveCtx.beginPath();
-      curveCtx.strokeStyle = 'rgba(244, 196, 48, 0.5)';
-      curveCtx.lineWidth = 2;
-      curveCtx.setLineDash([5, 5]);
-      
-      const maxIdeal = Math.max(...data.idealPercent);
-      data.idealPercent.forEach(function(percent, index) {
-        const x = padding + index * xStep;
-        const y = height - padding - (percent / maxIdeal) * (height - 2 * padding);
-        if (index === 0) curveCtx.moveTo(x, y);
-        else curveCtx.lineTo(x, y);
-      });
-      curveCtx.stroke();
-      curveCtx.setLineDash([]);
-      
-      // Current inventory
-      curveCtx.beginPath();
-      curveCtx.strokeStyle = '#E91E8C';
-      curveCtx.lineWidth = 2;
-      
-      data.currentInventory.forEach(function(count, index) {
-        const x = padding + index * xStep;
-        const y = height - padding - (count / maxUnits) * (height - 2 * padding);
-        if (index === 0) curveCtx.moveTo(x, y);
-        else curveCtx.lineTo(x, y);
-      });
-      curveCtx.stroke();
-      
-      // After-order inventory
-      curveCtx.beginPath();
-      curveCtx.strokeStyle = '#2ECC71';
-      curveCtx.lineWidth = 2;
-      
-      data.sizes.forEach(function(size, index) {
-        const afterCount = data.currentInventory[index] + (orderQuantities[size] || 0);
-        const x = padding + index * xStep;
-        const y = height - padding - (afterCount / maxUnits) * (height - 2 * padding);
-        if (index === 0) curveCtx.moveTo(x, y);
-        else curveCtx.lineTo(x, y);
-      });
-      curveCtx.stroke();
-      
-      // Points and labels
-      data.sizes.forEach(function(size, index) {
-        const x = padding + index * xStep;
-        
-        const currentY = height - padding - (data.currentInventory[index] / maxUnits) * (height - 2 * padding);
-        curveCtx.beginPath();
-        curveCtx.arc(x, currentY, 4, 0, Math.PI * 2);
-        curveCtx.fillStyle = '#E91E8C';
-        curveCtx.fill();
-        
-        const afterCount = data.currentInventory[index] + (orderQuantities[size] || 0);
-        const afterY = height - padding - (afterCount / maxUnits) * (height - 2 * padding);
-        curveCtx.beginPath();
-        curveCtx.arc(x, afterY, 4, 0, Math.PI * 2);
-        curveCtx.fillStyle = '#2ECC71';
-        curveCtx.fill();
-        
-        curveCtx.fillStyle = '#A8A2A4';
-        curveCtx.font = '10px Space Grotesk';
-        curveCtx.textAlign = 'center';
-        curveCtx.fillText(size, x, height - 10);
-      });
-      
-      // Y-axis labels
-      curveCtx.fillStyle = '#A8A2A4';
-      curveCtx.font = '10px Space Grotesk';
-      curveCtx.textAlign = 'right';
-      for (let i = 0; i <= 4; i++) {
-        const val = Math.round((maxUnits * (4 - i)) / 4);
-        const y = padding + (height - 2 * padding) * i / 4;
-        curveCtx.fillText(val + ' units', padding - 5, y + 4);
-      }
+      const currentTotal = data.currentStock.reduce(function(a, b) { return a + b; }, 0);
+      const orderTotal = Object.values(orders).reduce(function(a, b) { return a + b; }, 0);
+      const projectedTotal = currentTotal + orderTotal;
+
+      document.getElementById('current-total').textContent = currentTotal;
+      document.getElementById('order-total').textContent = orderTotal;
+      document.getElementById('projected-total').textContent = projectedTotal;
     }
 
     function updateScores() {
-      if (!currentScoreEl || !projectedScoreEl) return;
+      const data = getCurrentData();
+      if (!data) return;
+
+      const currentScore = calculateScore(data, data.currentStock);
       
-      const model = modelData[currentModel];
-      if (!model) return;
-      
-      const data = model[currentGender];
-      const coreIndices = data.coreIndices;
-      
-      const currentScore = calculateWeightedScore(data, data.currentInventory, coreIndices, {});
-      
-      const afterInventory = data.sizes.map(function(size, index) {
-        return data.currentInventory[index] + (orderQuantities[size] || 0);
+      const projectedStock = data.sizes.map(function(size, i) {
+        return data.currentStock[i] + (orders[size] || 0);
       });
-      const projectedScore = calculateWeightedScore(data, afterInventory, coreIndices, orderQuantities);
-      
-      currentScoreEl.textContent = currentScore;
-      projectedScoreEl.textContent = projectedScore;
-      
+      const projectedScore = calculateScore(data, projectedStock);
+
+      document.getElementById('current-score').textContent = currentScore;
+      document.getElementById('projected-score').textContent = projectedScore;
+
       const currentGrade = getGrade(currentScore);
       const projectedGrade = getGrade(projectedScore);
-      
+
+      const currentGradeEl = document.getElementById('current-grade');
+      const projectedGradeEl = document.getElementById('projected-grade');
+
       currentGradeEl.textContent = currentGrade;
       currentGradeEl.className = 'grade-badge grade-' + currentGrade.toLowerCase() + ' text-xs';
-      
+
       projectedGradeEl.textContent = projectedGrade;
       projectedGradeEl.className = 'grade-badge grade-' + projectedGrade.toLowerCase() + ' text-xs';
+
+      const change = projectedScore - currentScore;
+      const changeEl = document.getElementById('score-change');
+      if (change > 0) {
+        changeEl.innerHTML = '<span class="text-[var(--accent-green)]">+' + change + ' points</span>';
+      } else if (change < 0) {
+        changeEl.innerHTML = '<span class="text-[var(--accent-red)]">' + change + ' points</span>';
+      } else {
+        changeEl.innerHTML = '<span class="text-[var(--fg-secondary)]">No change</span>';
+      }
     }
 
-    function calculateWeightedScore(data, inventory, coreIndices, orders) {
-      const total = inventory.reduce(function(a, b) { return a + b; }, 0);
+    function calculateScore(data, stock) {
+      const total = stock.reduce(function(a, b) { return a + b; }, 0);
       if (total === 0) return 0;
-      
-      let totalScore = 0;
+
+      let score = 0;
       let totalWeight = 0;
-      
-      // First pass: calculate base scores
-      inventory.forEach(function(count, index) {
+
+      stock.forEach(function(count, index) {
         const actualPercent = (count / total) * 100;
         const ideal = data.idealPercent[index];
-        const isCore = coreIndices.indexOf(index) !== -1;
+        const isCore = index >= data.coreStart && index <= data.coreEnd;
         const weight = isCore ? 5 : 1;
-        
-        const deviation = actualPercent - ideal;
-        
+
+        const deviation = Math.abs(actualPercent - ideal);
+        // Score decreases based on deviation, with steeper penalty for understock
         let sizeScore;
-        
-        if (isCore) {
-          // Core sizes: understock is critical
-          if (deviation < 0) {
-            sizeScore = Math.max(0, 100 - Math.abs(deviation) * 5);
-          } else {
-            sizeScore = Math.max(0, 100 - deviation);
-          }
+        if (actualPercent < ideal) {
+          sizeScore = Math.max(0, 100 - deviation * 3);
         } else {
-          // Non-core sizes
-          if (deviation < 0) {
-            sizeScore = Math.max(0, 100 - Math.abs(deviation) * 0.5);
-          } else {
-            // Overstock on non-core is wasteful
-            sizeScore = Math.max(0, 100 - deviation * 4);
-          }
+          sizeScore = Math.max(0, 100 - deviation * 1.5);
         }
-        
-        totalScore += sizeScore * weight;
+
+        score += sizeScore * weight;
         totalWeight += weight;
       });
-      
-      let score = Math.round(totalScore / Math.max(1, totalWeight));
-      
-      // Apply order efficiency penalty
-      const orderTotal = Object.values(orders).reduce(function(a, b) { return a + b; }, 0);
-      if (orderTotal > 0) {
-        const efficiency = calculateOrderEfficiency(data, inventory, coreIndices, orders);
-        
-        // If efficiency is low, apply severe penalty
-        if (efficiency < 0.3) {
-          score = Math.round(score * 0.5); // 50% penalty for wasteful orders
-        } else if (efficiency < 0.5) {
-          score = Math.round(score * 0.7); // 30% penalty
-        } else if (efficiency < 0.7) {
-          score = Math.round(score * 0.85); // 15% penalty
-        }
-      }
-      
-      return score;
-    }
 
-    function calculateOrderEfficiency(data, inventory, coreIndices, orders) {
-      const total = inventory.reduce(function(a, b) { return a + b; }, 0);
-      const orderTotal = Object.values(orders).reduce(function(a, b) { return a + b; }, 0);
-      
-      if (orderTotal === 0) return 1;
-      
-      let goodUnits = 0;
-      let badUnits = 0;
-      
-      data.sizes.forEach(function(size, index) {
-        const qty = orders[size] || 0;
-        if (qty === 0) return;
-        
-        const isCore = coreIndices.indexOf(index) !== -1;
-        const currentPercent = total > 0 ? (data.currentInventory[index] / total) * 100 : 0;
-        const ideal = data.idealPercent[index];
-        const gap = currentPercent - ideal;
-        
-        if (isCore && gap < 0) {
-          // Ordering to underserved core - excellent
-          goodUnits += qty;
-        } else if (!isCore && gap > 5) {
-          // Ordering to overstocked non-core - wasteful
-          badUnits += qty;
-        } else if (!isCore && gap > 0) {
-          // Slightly overstocked non-core - neutral/slight bad
-          badUnits += qty * 0.5;
-        } else {
-          // Neutral contribution
-          goodUnits += qty * 0.3;
-        }
-      });
-      
-      // Efficiency = good / total, penalized by bad
-      const efficiency = Math.max(0, (goodUnits - badUnits * 0.5) / orderTotal);
-      return Math.min(1, efficiency);
+      return Math.round(score / Math.max(1, totalWeight));
     }
 
     function getGrade(score) {
@@ -1471,125 +1053,260 @@
       return 'F';
     }
 
-    function updateOrderEfficiency() {
-      if (!orderEfficiencyBox) return;
-      
-      const model = modelData[currentModel];
-      if (!model) return;
-      
-      const data = model[currentGender];
-      const coreIndices = data.coreIndices;
-      const currentTotal = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
-      const orderTotal = Object.values(orderQuantities).reduce(function(a, b) { return a + b; }, 0);
-      
-      if (orderTotal === 0) {
-        orderEfficiencyBox.innerHTML = '';
-        return;
-      }
-      
-      const efficiency = calculateOrderEfficiency(data, data.currentInventory, coreIndices, orderQuantities);
-      
-      let boxClass = 'success';
-      let icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-      let title = 'Efficient Order';
-      let message = 'Your order targets core size gaps. This will improve your distribution score.';
-      
-      if (efficiency < 0.3) {
-        boxClass = '';
-        icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-red)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
-        title = 'Wasteful Order Detected';
-        message = 'You are ordering to non-core sizes while core sizes remain underserved. This order will NOT improve your score significantly. Focus on core sizes (highlighted in pink).';
-      } else if (efficiency < 0.5) {
-        boxClass = 'caution';
-        icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>';
-        title = 'Suboptimal Order';
-        message = 'Some of your order targets sizes that are already well-stocked. Consider reallocating to core sizes for better score improvement.';
-      } else if (efficiency < 0.7) {
-        boxClass = 'caution';
-        icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>';
-        title = 'Acceptable Order';
-        message = 'Your order partially addresses core size gaps. Better distribution would further improve your score.';
-      }
-      
-      orderEfficiencyBox.innerHTML = '\
-        <div class="warning-box ' + boxClass + '">\
-          <div class="flex items-start gap-3">\
-            <div class="shrink-0 mt-0.5">' + icon + '</div>\
-            <div>\
-              <div class="font-medium text-sm">' + title + '</div>\
-              <div class="text-xs text-[var(--fg-secondary)] mt-1">' + message + '</div>\
-            </div>\
-          </div>\
-        </div>\
-      ';
+    function autoFillOptimal() {
+      const data = getCurrentData();
+      if (!data) return;
+
+      resetOrders();
+
+      const total = data.currentStock.reduce(function(a, b) { return a + b; }, 0);
+      let remaining = orderBudget;
+
+      // Calculate gaps for each size
+      const gaps = data.sizes.map(function(size, index) {
+        const current = data.currentStock[index];
+        const ideal = data.idealPercent[index];
+        const currentPercent = total > 0 ? (current / total) * 100 : 0;
+        const gap = ideal - currentPercent; // Positive means understocked
+        return { size: size, index: index, gap: gap, isCore: index >= data.coreStart && index <= data.coreEnd };
+      });
+
+      // Sort by gap (largest gap first), core sizes prioritized
+      gaps.sort(function(a, b) {
+        if (a.isCore !== b.isCore) return a.isCore ? -1 : 1;
+        return b.gap - a.gap;
+      });
+
+      // Distribute budget to fill gaps
+      gaps.forEach(function(item) {
+        if (remaining <= 0 || item.gap <= 0) return;
+        
+        const ideal = data.idealPercent[item.index];
+        const projectedTotal = total + orderBudget;
+        const targetUnits = Math.round((ideal / 100) * projectedTotal);
+        const current = data.currentStock[item.index];
+        const needed = Math.max(0, targetUnits - current);
+        const toOrder = Math.min(needed, remaining);
+        
+        orders[item.size] = toOrder;
+        remaining -= toOrder;
+      });
+
+      renderAll();
     }
 
-    function updateRecommendation() {
-      if (!recommendationTextEl || !recommendationBox) return;
+    function updateOrderQuality() {
+      const box = document.getElementById('order-quality-box');
+      if (!box) return;
+
+      const data = getCurrentData();
+      if (!data) return;
+
+      const orderTotal = Object.values(orders).reduce(function(a, b) { return a + b; }, 0);
       
-      const model = modelData[currentModel];
-      if (!model) return;
-      
-      const data = model[currentGender];
-      const coreIndices = data.coreIndices;
-      const currentTotal = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
-      
-      const coreGaps = [];
+      if (orderTotal === 0) {
+        box.innerHTML = '\
+          <div class="info-box neutral">\
+            <div class="font-medium">Enter order quantities above</div>\
+            <div class="text-xs text-[var(--fg-secondary)] mt-1">Or use Auto-Fill to distribute optimally</div>\
+          </div>\
+        ';
+        return;
+      }
+
+      // Calculate order efficiency
+      let coreOrderUnits = 0;
+      let nonCoreOrderUnits = 0;
+      const total = data.currentStock.reduce(function(a, b) { return a + b; }, 0);
+
       data.sizes.forEach(function(size, index) {
-        if (coreIndices.indexOf(index) !== -1) {
-          const currentPercent = currentTotal > 0 ? (data.currentInventory[index] / currentTotal) * 100 : 0;
-          const ideal = data.idealPercent[index];
-          const gap = currentPercent - ideal;
-          
-          coreGaps.push({
-            size: size,
-            gap: gap,
-            ordered: orderQuantities[size] || 0
-          });
+        const orderQty = orders[size] || 0;
+        if (orderQty === 0) return;
+
+        const isCore = index >= data.coreStart && index <= data.coreEnd;
+        const currentPercent = total > 0 ? (data.currentStock[index] / total) * 100 : 0;
+        const ideal = data.idealPercent[index];
+        const gap = currentPercent - ideal;
+
+        if (isCore && gap < 0) {
+          coreOrderUnits += orderQty;
+        } else if (!isCore && gap > 0) {
+          nonCoreOrderUnits += orderQty;
         }
       });
-      
-      const criticalCore = coreGaps.filter(function(g) { return g.gap < -5 && g.ordered === 0; });
-      const addressedCore = coreGaps.filter(function(g) { return g.ordered > 0; });
-      
-      let text = '';
-      let boxClass = '';
-      
-      if (criticalCore.length > 0) {
-        text = 'Critical core sizes need attention: ' + criticalCore.slice(0, 3).map(function(g) { return g.size; }).join(', ') + '. These sizes represent the majority of demand. Orders to non-core sizes will NOT improve your score.';
-        boxClass = 'border-[var(--accent-pink)]/20';
-      } else if (addressedCore.length > 0) {
-        const sizesText = addressedCore.map(function(g) { return g.size + ' (+' + g.ordered + ')' ; }).join(', ');
-        text = 'Good: ordering to core sizes ' + sizesText + '. This approach will improve your distribution score.';
-        boxClass = 'border-[var(--accent-green)]/30';
+
+      const efficiency = coreOrderUnits / Math.max(1, orderTotal);
+
+      if (efficiency >= 0.7) {
+        box.innerHTML = '\
+          <div class="info-box success">\
+            <div class="font-medium text-[var(--accent-green)]">Efficient Order</div>\
+            <div class="text-xs text-[var(--fg-secondary)] mt-1">' + Math.round(efficiency * 100) + '% of order targets core size gaps. This will improve your distribution score.</div>\
+          </div>\
+        ';
+      } else if (efficiency >= 0.4) {
+        box.innerHTML = '\
+          <div class="info-box warning">\
+            <div class="font-medium text-[var(--accent-gold)]">Partially Efficient</div>\
+            <div class="text-xs text-[var(--fg-secondary)] mt-1">Consider reallocating some units to core sizes for better score improvement.</div>\
+          </div>\
+        ';
       } else {
-        text = 'This model has balanced inventory. Maintain focus on core sizes during replenishment.';
-        boxClass = 'border-[var(--accent-pink)]/20';
+        box.innerHTML = '\
+          <div class="info-box error">\
+            <div class="font-medium text-[var(--accent-red)]">Inefficient Order</div>\
+            <div class="text-xs text-[var(--fg-secondary)] mt-1">Most units target non-core or well-stocked sizes. This may decrease your score. Use Auto-Fill for optimal distribution.</div>\
+          </div>\
+        ';
+      }
+    }
+
+    function drawChart() {
+      if (!chartCanvas || !chartCtx) return;
+
+      const data = getCurrentData();
+      if (!data) return;
+
+      const rect = chartCanvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      chartCanvas.width = rect.width * dpr;
+      chartCanvas.height = rect.height * dpr;
+      chartCtx.scale(dpr, dpr);
+
+      const width = rect.width;
+      const height = rect.height;
+      const padding = 30;
+
+      chartCtx.clearRect(0, 0, width, height);
+
+      const xStep = (width - 2 * padding) / Math.max(1, data.sizes.length - 1);
+      const maxVal = Math.max(
+        Math.max(...data.currentStock),
+        Math.max(...data.sizes.map(function(s, i) { return data.currentStock[i] + (orders[s] || 0); })),
+        Math.max(...data.idealPercent)
+      );
+
+      // Draw ideal line
+      chartCtx.beginPath();
+      chartCtx.strokeStyle = 'rgba(244, 196, 48, 0.4)';
+      chartCtx.lineWidth = 2;
+      chartCtx.setLineDash([4, 4]);
+      
+      data.idealPercent.forEach(function(percent, index) {
+        const x = padding + index * xStep;
+        const y = height - padding - (percent / maxVal) * (height - 2 * padding);
+        if (index === 0) chartCtx.moveTo(x, y);
+        else chartCtx.lineTo(x, y);
+      });
+      chartCtx.stroke();
+      chartCtx.setLineDash([]);
+
+      // Draw current stock
+      chartCtx.beginPath();
+      chartCtx.strokeStyle = '#E91E8C';
+      chartCtx.lineWidth = 2;
+
+      data.currentStock.forEach(function(count, index) {
+        const x = padding + index * xStep;
+        const y = height - padding - (count / maxVal) * (height - 2 * padding);
+        if (index === 0) chartCtx.moveTo(x, y);
+        else chartCtx.lineTo(x, y);
+      });
+      chartCtx.stroke();
+
+      // Draw projected stock
+      chartCtx.beginPath();
+      chartCtx.strokeStyle = '#2ECC71';
+      chartCtx.lineWidth = 2;
+
+      data.sizes.forEach(function(size, index) {
+        const projected = data.currentStock[index] + (orders[size] || 0);
+        const x = padding + index * xStep;
+        const y = height - padding - (projected / maxVal) * (height - 2 * padding);
+        if (index === 0) chartCtx.moveTo(x, y);
+        else chartCtx.lineTo(x, y);
+      });
+      chartCtx.stroke();
+
+      // Draw points
+      data.sizes.forEach(function(size, index) {
+        const x = padding + index * xStep;
+        
+        // Current
+        const currentY = height - padding - (data.currentStock[index] / maxVal) * (height - 2 * padding);
+        chartCtx.beginPath();
+        chartCtx.arc(x, currentY, 3, 0, Math.PI * 2);
+        chartCtx.fillStyle = '#E91E8C';
+        chartCtx.fill();
+
+        // Projected
+        const projected = data.currentStock[index] + (orders[size] || 0);
+        const projectedY = height - padding - (projected / maxVal) * (height - 2 * padding);
+        chartCtx.beginPath();
+        chartCtx.arc(x, projectedY, 3, 0, Math.PI * 2);
+        chartCtx.fillStyle = '#2ECC71';
+        chartCtx.fill();
+
+        // Size label
+        chartCtx.fillStyle = '#A8A2A4';
+        chartCtx.font = '9px Space Grotesk';
+        chartCtx.textAlign = 'center';
+        chartCtx.fillText(size, x, height - 8);
+      });
+    }
+
+    function updateRecommendations() {
+      const section = document.getElementById('recommendations-section');
+      if (!section) return;
+
+      const data = getCurrentData();
+      if (!data) return;
+
+      const total = data.currentStock.reduce(function(a, b) { return a + b; }, 0);
+      const orderTotal = Object.values(orders).reduce(function(a, b) { return a + b; }, 0);
+
+      // Find critical gaps
+      const criticalGaps = [];
+      data.sizes.forEach(function(size, index) {
+        const currentPercent = total > 0 ? (data.currentStock[index] / total) * 100 : 0;
+        const ideal = data.idealPercent[index];
+        const gap = currentPercent - ideal;
+        const isCore = index >= data.coreStart && index <= data.coreEnd;
+        
+        if (gap < -3 && isCore) {
+          criticalGaps.push({ size: size, gap: gap.toFixed(1) });
+        }
+      });
+
+      let html = '<div class="p-5 rounded-xl bg-gradient-to-r from-[var(--accent-pink)]/10 to-transparent border border-[var(--border)]">';
+      html += '<h4 class="font-display font-semibold mb-3">Order Recommendations</h4>';
+      
+      if (orderTotal === 0) {
+        html += '<p class="text-sm text-[var(--fg-secondary)]">Set your order budget and enter quantities above. Focus on core sizes (highlighted row) for maximum score improvement.</p>';
+      } else if (criticalGaps.length > 0) {
+        html += '<p class="text-sm text-[var(--fg-secondary)] mb-2">Critical gaps remain in core sizes: ' + criticalGaps.map(function(g) { return g.size + ' (' + g.gap + '%)'; }).join(', ') + '. Address these for better alignment.</p>';
+      } else {
+        html += '<p class="text-sm text-[var(--fg-secondary)]">Core size distribution looks healthy. Maintain this balance during replenishment.</p>';
       }
       
-      recommendationTextEl.textContent = text;
-      recommendationBox.className = 'mt-8 p-6 rounded-xl bg-gradient-to-r from-[var(--accent-pink)]/10 to-transparent border ' + boxClass;
+      html += '</div>';
+      section.innerHTML = html;
     }
 
     function initNavigation() {
       const navbar = document.getElementById('navbar');
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
 
-      if (!navbar || !mobileMenuBtn || !mobileMenu) return;
+      if (!navbar || !menuBtn || !menu) return;
 
       window.addEventListener('scroll', function() {
         navbar.classList.toggle('scrolled', window.scrollY > 50);
       });
 
-      mobileMenuBtn.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-      });
-
-      mobileMenu.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-          mobileMenu.classList.add('hidden');
-        });
+      menuBtn.addEventListener('click', function() { menu.classList.toggle('hidden'); });
+      menu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() { menu.classList.add('hidden'); });
       });
     }
 
@@ -1598,108 +1315,70 @@
         entries.forEach(function(entry) {
           if (entry.isIntersecting) entry.target.classList.add('visible');
         });
-      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      }, { threshold: 0.1 });
 
-      document.querySelectorAll('.reveal').forEach(function(el) {
-        observer.observe(el);
-      });
-    }
-
-    function initCounters() {
-      const counters = document.querySelectorAll('.counter');
-      
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target, parseInt(entry.target.getAttribute('data-target')));
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-
-      counters.forEach(function(counter) { observer.observe(counter); });
-    }
-
-    function animateCounter(element, target) {
-      let current = 0;
-      const increment = target / 50;
-      const timer = setInterval(function() {
-        current += increment;
-        if (current >= target) {
-          element.textContent = target;
-          clearInterval(timer);
-        } else {
-          element.textContent = Math.floor(current);
-        }
-      }, 30);
+      document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
     }
 
     function initParticles() {
-      const particlesContainer = document.getElementById('particles-container');
-      if (!particlesContainer || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const container = document.getElementById('particles-container');
+      if (!container || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-        particlesContainer.appendChild(particle);
+      for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDelay = Math.random() * 15 + 's';
+        p.style.animationDuration = (15 + Math.random() * 10) + 's';
+        container.appendChild(p);
       }
     }
 
     function initNetworkCanvas() {
-      const networkCanvas = document.getElementById('network-canvas');
-      if (!networkCanvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const canvas = document.getElementById('network-canvas');
+      if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       
-      const ctx = networkCanvas.getContext('2d');
+      const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
-      let width = 0;
-      let height = 0;
       let nodes = [];
 
       function resize() {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        networkCanvas.width = width;
-        networkCanvas.height = height;
-        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         nodes = [];
-        const count = Math.floor((width * height) / 25000);
+        const count = Math.floor((canvas.width * canvas.height) / 30000);
         for (let i = 0; i < count; i++) {
           nodes.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 0.5,
-            vy: (Math.random() - 0.5) * 0.5,
-            radius: Math.max(1, Math.random() * 2 + 1)
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3
           });
         }
       }
 
       function animate() {
-        ctx.clearRect(0, 0, width, height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         nodes.forEach(function(node, i) {
           node.x += node.vx;
           node.y += node.vy;
-          
-          if (node.x < 0 || node.x > width) node.vx *= -1;
-          if (node.y < 0 || node.y > height) node.vy *= -1;
+          if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+          if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
           
           ctx.beginPath();
-          ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(233, 30, 140, 0.3)';
+          ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(233, 30, 140, 0.2)';
           ctx.fill();
           
           nodes.slice(i + 1).forEach(function(other) {
-            const dist = Math.sqrt(Math.pow(node.x - other.x, 2) + Math.pow(node.y - other.y, 2));
-            if (dist < 150) {
+            const d = Math.sqrt(Math.pow(node.x - other.x, 2) + Math.pow(node.y - other.y, 2));
+            if (d < 120) {
               ctx.beginPath();
               ctx.moveTo(node.x, node.y);
               ctx.lineTo(other.x, other.y);
-              ctx.strokeStyle = 'rgba(233, 30, 140, ' + Math.max(0.01, (1 - dist / 150) * 0.15) + ')';
+              ctx.strokeStyle = 'rgba(233, 30, 140, ' + (0.1 * (1 - d / 120)) + ')';
               ctx.stroke();
             }
           });
@@ -1713,6 +1392,7 @@
       animate();
     }
 
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
