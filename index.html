@@ -19,7 +19,6 @@
       --accent-pink-light: #FF6BB3;
       --accent-pink-dark: #B5156B;
       --accent-green: #2ECC71;
-      --accent-green-dark: #27AE60;
       --accent-red: #E74C3C;
       --accent-blue: #5DADE2;
       --accent-gold: #F4C430;
@@ -32,18 +31,11 @@
       --grade-f: #E74C3C;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
+      html { scroll-behavior: auto; }
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
@@ -58,9 +50,7 @@
       overflow-x: hidden;
     }
 
-    .font-display {
-      font-family: 'Syne', sans-serif;
-    }
+    .font-display { font-family: 'Syne', sans-serif; }
 
     .gradient-text {
       background: linear-gradient(135deg, var(--accent-pink-light) 0%, var(--accent-pink) 50%, var(--accent-pink-dark) 100%);
@@ -90,7 +80,6 @@
       background: linear-gradient(135deg, var(--accent-pink) 0%, transparent 70%);
       top: -200px;
       right: -200px;
-      animation-delay: 0s;
     }
 
     .blob-2 {
@@ -138,7 +127,7 @@
 
     .dash-card:hover {
       border-color: rgba(233, 30, 140, 0.3);
-      transform: translateY(-4px);
+      transform: translateY(-2px);
       box-shadow: 0 20px 40px -20px rgba(233, 30, 140, 0.25);
     }
 
@@ -177,9 +166,7 @@
       transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    nav {
-      transition: all 0.3s ease;
-    }
+    nav { transition: all 0.3s ease; }
 
     nav.scrolled {
       background: rgba(13, 10, 11, 0.95);
@@ -214,14 +201,8 @@
       box-shadow: 0 10px 30px -10px rgba(233, 30, 140, 0.5);
     }
 
-    .btn-primary:hover::before {
-      opacity: 1;
-    }
-
-    .btn-primary span {
-      position: relative;
-      z-index: 1;
-    }
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary span { position: relative; z-index: 1; }
 
     .btn-secondary {
       background: transparent;
@@ -255,60 +236,45 @@
     .reveal-delay-3 { transition-delay: 0.3s; }
     .reveal-delay-4 { transition-delay: 0.4s; }
 
-    .counter {
-      display: inline-block;
+    .counter { display: inline-block; }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 2px solid var(--accent-pink);
+      outline-offset: 2px;
     }
 
-    .chart-bar {
-      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-pink-dark); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-pink); }
+
+    #network-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.5;
     }
 
-    .data-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-    }
-
-    .data-table th {
-      text-align: left;
-      padding: 16px;
-      font-weight: 500;
-      color: var(--fg-secondary);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .data-table td {
-      padding: 16px;
-      border-bottom: 1px solid rgba(233, 30, 140, 0.05);
-      transition: background 0.3s ease;
-    }
-
-    .data-table tr:hover td {
-      background: rgba(233, 30, 140, 0.03);
-    }
-
-    .tab-btn {
-      padding: 12px 24px;
+    .grade-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      height: 36px;
+      padding: 0 8px;
       border-radius: 8px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      background: transparent;
-      color: var(--fg-secondary);
-      cursor: pointer;
-      border: none;
+      font-weight: 700;
+      font-size: 14px;
     }
 
-    .tab-btn:hover {
-      color: var(--fg-primary);
-    }
-
-    .tab-btn.active {
-      background: var(--accent-pink);
-      color: white;
-    }
+    .grade-a { background: rgba(46, 204, 113, 0.2); color: var(--grade-a); }
+    .grade-b { background: rgba(39, 174, 96, 0.2); color: var(--grade-b); }
+    .grade-c { background: rgba(244, 196, 48, 0.2); color: var(--grade-c); }
+    .grade-d { background: rgba(230, 126, 34, 0.2); color: var(--grade-d); }
+    .grade-f { background: rgba(231, 76, 60, 0.2); color: var(--grade-f); }
 
     .skill-badge {
       display: inline-flex;
@@ -327,37 +293,6 @@
       transform: translateY(-2px);
     }
 
-    .timeline-item {
-      position: relative;
-      padding-left: 40px;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent-pink);
-      box-shadow: 0 0 0 4px rgba(233, 30, 140, 0.2);
-    }
-
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      left: 5px;
-      top: 28px;
-      width: 2px;
-      height: calc(100% + 20px);
-      background: linear-gradient(to bottom, var(--accent-pink), transparent);
-    }
-
-    .timeline-item:last-child::after {
-      display: none;
-    }
-
     .particle {
       position: absolute;
       width: 4px;
@@ -369,128 +304,10 @@
     }
 
     @keyframes particle-float {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.3;
-      }
-      90% {
-        opacity: 0.3;
-      }
-      100% {
-        transform: translateY(-100vh) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible,
-    select:focus-visible {
-      outline: 2px solid var(--accent-pink);
-      outline-offset: 2px;
-    }
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg-primary);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent-pink-dark);
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--accent-pink);
-    }
-
-    #network-canvas {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      opacity: 0.5;
-    }
-
-    .grade-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 14px;
-    }
-
-    .grade-a { background: rgba(46, 204, 113, 0.2); color: var(--grade-a); }
-    .grade-b { background: rgba(39, 174, 96, 0.2); color: var(--grade-b); }
-    .grade-c { background: rgba(244, 196, 48, 0.2); color: var(--grade-c); }
-    .grade-d { background: rgba(230, 126, 34, 0.2); color: var(--grade-d); }
-    .grade-f { background: rgba(231, 76, 60, 0.2); color: var(--grade-f); }
-
-    .process-step {
-      position: relative;
-      padding-left: 80px;
-    }
-
-    .process-step::before {
-      content: attr(data-step);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 56px;
-      height: 56px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent-pink) 0%, var(--accent-pink-dark) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    .code-block {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-size: 13px;
-      overflow-x: auto;
-      color: var(--fg-secondary);
-    }
-
-    .code-block .keyword { color: var(--accent-pink-light); }
-    .code-block .function { color: var(--accent-blue); }
-    .code-block .number { color: var(--accent-gold); }
-    .code-block .comment { color: #666; }
-
-    .gauge-container {
-      position: relative;
-      width: 120px;
-      height: 120px;
-    }
-
-    .gauge-bg {
-      fill: none;
-      stroke: rgba(233, 30, 140, 0.1);
-      stroke-width: 10;
-    }
-
-    .gauge-fill {
-      fill: none;
-      stroke-width: 10;
-      stroke-linecap: round;
-      transform: rotate(-90deg);
-      transform-origin: center;
-      transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.3; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
     }
 
     /* Tool specific styles */
@@ -528,33 +345,14 @@
       animation: pulse 2s ease-in-out infinite;
     }
 
-    .urgency-critical {
-      background: var(--accent-red);
-      box-shadow: 0 0 10px var(--accent-red);
-    }
-
-    .urgency-high {
-      background: var(--accent-orange);
-      box-shadow: 0 0 10px var(--accent-orange);
-    }
-
-    .urgency-moderate {
-      background: var(--accent-gold);
-      box-shadow: 0 0 10px var(--accent-gold);
-    }
-
-    .urgency-low {
-      background: var(--accent-green);
-    }
+    .urgency-critical { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); }
+    .urgency-high { background: var(--accent-orange); box-shadow: 0 0 10px var(--accent-orange); }
+    .urgency-moderate { background: var(--accent-gold); box-shadow: 0 0 10px var(--accent-gold); }
+    .urgency-low { background: var(--accent-green); }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.7; transform: scale(1.2); }
-    }
-
-    .curve-chart {
-      width: 100%;
-      height: 200px;
     }
 
     .select-styled {
@@ -573,14 +371,8 @@
       transition: all 0.3s ease;
     }
 
-    .select-styled:focus {
-      border-color: var(--accent-pink);
-    }
-
-    .select-styled option {
-      background: var(--bg-secondary);
-      color: var(--fg-primary);
-    }
+    .select-styled:focus { border-color: var(--accent-pink); }
+    .select-styled option { background: var(--bg-secondary); color: var(--fg-primary); }
 
     .toggle-group {
       display: flex;
@@ -601,14 +393,45 @@
       border: none;
     }
 
-    .toggle-btn.active {
-      background: var(--accent-pink);
-      color: white;
+    .toggle-btn.active { background: var(--accent-pink); color: white; }
+    .toggle-btn:hover:not(.active) { color: var(--fg-primary); }
+
+    .gauge-container {
+      position: relative;
+      width: 120px;
+      height: 120px;
     }
 
-    .toggle-btn:hover:not(.active) {
-      color: var(--fg-primary);
+    .gauge-bg {
+      fill: none;
+      stroke: rgba(233, 30, 140, 0.1);
+      stroke-width: 10;
     }
+
+    .gauge-fill {
+      fill: none;
+      stroke-width: 10;
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: center;
+      transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Chart tooltip */
+    .chart-tooltip {
+      position: absolute;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 100;
+    }
+
+    .chart-tooltip.visible { opacity: 1; }
   </style>
 </head>
 <body class="min-h-screen">
@@ -619,10 +442,9 @@
         <span class="gradient-text">ielle</span>
       </a>
       <div class="hidden md:flex items-center gap-8">
-        <a href="#dashboard" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Dashboard</a>
         <a href="#tool" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Tool</a>
+        <a href="#dashboard" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Dashboard</a>
         <a href="#process" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Process</a>
-        <a href="#insights" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Insights</a>
         <a href="#about" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">About</a>
         <a href="#contact" class="btn-primary text-sm"><span>Contact</span></a>
       </div>
@@ -636,10 +458,9 @@
     </div>
     <div class="hidden md:hidden bg-[var(--bg-secondary)] border-t border-[var(--border)]" id="mobile-menu">
       <div class="px-6 py-4 flex flex-col gap-4">
-        <a href="#dashboard" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Dashboard</a>
         <a href="#tool" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Tool</a>
+        <a href="#dashboard" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Dashboard</a>
         <a href="#process" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Process</a>
-        <a href="#insights" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">Insights</a>
         <a href="#about" class="text-sm text-[var(--fg-secondary)] hover:text-[var(--fg-primary)] transition-colors">About</a>
         <a href="#contact" class="btn-primary text-sm text-center"><span>Contact</span></a>
       </div>
@@ -716,14 +537,13 @@
       <div class="text-center mb-12 reveal">
         <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Interactive Demo</p>
         <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Size Curve Simulator</h2>
-        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Simulate the impact of proposed orders on size distribution. See urgency rankings and get actionable recommendations.</p>
+        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Simulate the impact of proposed orders on size distribution. Scores prioritize core sizes where most demand exists.</p>
       </div>
 
       <!-- Tool Container -->
       <div class="dash-card p-6 md:p-8 reveal">
         <!-- Controls Row -->
         <div class="flex flex-col lg:flex-row gap-6 mb-8">
-          <!-- Model Selection -->
           <div class="flex-1">
             <label class="block text-sm font-medium mb-2">Select Model</label>
             <select id="model-select" class="select-styled w-full">
@@ -738,7 +558,6 @@
             </select>
           </div>
 
-          <!-- Gender Toggle -->
           <div>
             <label class="block text-sm font-medium mb-2">Gender</label>
             <div class="toggle-group">
@@ -747,7 +566,6 @@
             </div>
           </div>
 
-          <!-- Width Selection -->
           <div>
             <label class="block text-sm font-medium mb-2">Width</label>
             <div class="toggle-group">
@@ -766,21 +584,17 @@
               <button id="reset-btn" class="text-sm text-[var(--accent-pink)] hover:text-[var(--accent-pink-light)] transition-colors">Reset All</button>
             </div>
             
-            <!-- Size Grid - Three Rows -->
             <div class="space-y-4" id="size-grid">
-              <!-- Row 1 - Smallest sizes -->
               <div>
                 <p class="text-xs text-[var(--fg-secondary)] mb-2">Small Sizes</p>
                 <div class="flex flex-wrap gap-2" id="row-small"></div>
               </div>
               
-              <!-- Row 2 - Core sizes -->
               <div>
                 <p class="text-xs text-[var(--fg-secondary)] mb-2">Core Sizes (High Demand)</p>
                 <div class="flex flex-wrap gap-2" id="row-core"></div>
               </div>
               
-              <!-- Row 3 - Large sizes -->
               <div>
                 <p class="text-xs text-[var(--fg-secondary)] mb-2">Large Sizes</p>
                 <div class="flex flex-wrap gap-2" id="row-large"></div>
@@ -794,12 +608,31 @@
                 <span class="font-display font-bold text-2xl" id="total-units">0</span>
               </div>
             </div>
+
+            <!-- Inventory Summary -->
+            <div class="mt-4 p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
+              <h4 class="text-sm font-medium mb-3">Inventory Summary</h4>
+              <div class="grid grid-cols-3 gap-4 text-center">
+                <div>
+                  <div class="text-xs text-[var(--fg-secondary)]">Current Total</div>
+                  <div class="font-display font-bold text-lg" id="current-total">0</div>
+                </div>
+                <div>
+                  <div class="text-xs text-[var(--fg-secondary)]">After Order</div>
+                  <div class="font-display font-bold text-lg" id="after-total">0</div>
+                </div>
+                <div>
+                  <div class="text-xs text-[var(--fg-secondary)]">Ideal Total</div>
+                  <div class="font-display font-bold text-lg" id="ideal-total">0</div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Visualization -->
           <div>
             <div class="flex items-center justify-between mb-4">
-              <h3 class="font-display font-semibold text-lg">Size Distribution Impact</h3>
+              <h3 class="font-display font-semibold text-lg">Size Distribution Analysis</h3>
               <div class="flex items-center gap-4 text-xs">
                 <div class="flex items-center gap-2">
                   <div class="w-3 h-3 rounded-full bg-[var(--accent-pink)]"></div>
@@ -815,7 +648,18 @@
                 </div>
               </div>
             </div>
-            <canvas id="curve-canvas" class="w-full h-64 rounded-xl bg-[var(--bg-primary)]"></canvas>
+            
+            <!-- Chart Container -->
+            <div class="relative">
+              <canvas id="curve-canvas" class="w-full h-64 rounded-xl bg-[var(--bg-primary)]"></canvas>
+              <div class="chart-tooltip" id="chart-tooltip"></div>
+            </div>
+
+            <!-- Gap Analysis -->
+            <div class="mt-4 p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
+              <h4 class="text-sm font-medium mb-3">Gap Analysis (Units vs Ideal)</h4>
+              <div class="space-y-2 text-sm" id="gap-analysis"></div>
+            </div>
             
             <!-- Score Impact -->
             <div class="mt-4 grid grid-cols-2 gap-4">
@@ -840,7 +684,7 @@
         <!-- Urgency Rankings -->
         <div class="mt-8 pt-8 border-t border-[var(--border)]">
           <h3 class="font-display font-semibold text-lg mb-4">Urgency Rankings</h3>
-          <p class="text-sm text-[var(--fg-secondary)] mb-6">Sizes ranked by ordering priority. Critical sizes are severely understocked relative to demand.</p>
+          <p class="text-sm text-[var(--fg-secondary)] mb-6">Sizes ranked by gap from ideal. Core sizes (where demand is highest) are prioritized in scoring.</p>
           
           <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3" id="urgency-grid"></div>
         </div>
@@ -874,18 +718,14 @@
         <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Normalized scoring system (1-100) with letter grades. Understocking penalized more heavily to ensure category stability.</p>
       </div>
 
-      <!-- Overall Scores -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        <!-- Women's Overall -->
         <div class="dash-card p-6 md:p-8 reveal">
           <div class="flex items-start justify-between mb-6">
             <div>
               <h3 class="font-display font-semibold text-2xl">Women's Inventory Health</h3>
               <p class="text-sm text-[var(--fg-secondary)] mt-1">Category Coverage Score</p>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="grade-badge grade-d text-lg w-12 h-12">D</span>
-            </div>
+            <span class="grade-badge grade-d text-lg w-12 h-12">D</span>
           </div>
           <div class="flex items-center gap-8">
             <div class="gauge-container">
@@ -894,8 +734,7 @@
                 <circle class="gauge-fill" cx="60" cy="60" r="50" 
                   stroke="var(--grade-d)" 
                   stroke-dasharray="314.159"
-                  stroke-dashoffset="314.159"
-                  data-target="68"
+                  stroke-dashoffset="100.531"
                   id="gauge-women"></circle>
               </svg>
               <div class="absolute inset-0 flex items-center justify-center">
@@ -908,42 +747,26 @@
                   <span class="text-[var(--fg-secondary)]">Neutral Trainer</span>
                   <span class="grade-badge grade-f text-xs w-8 h-6">55 F</span>
                 </div>
-                <div class="progress-bar">
-                  <div class="progress-fill bg-[var(--grade-f)]" style="width: 55%"></div>
-                </div>
+                <div class="progress-bar"><div class="progress-fill bg-[var(--grade-f)]" style="width: 55%"></div></div>
               </div>
               <div>
                 <div class="flex justify-between text-sm mb-1">
                   <span class="text-[var(--fg-secondary)]">Stability</span>
                   <span class="grade-badge grade-f text-xs w-8 h-6">39 F</span>
                 </div>
-                <div class="progress-bar">
-                  <div class="progress-fill bg-[var(--grade-f)]" style="width: 39%"></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between text-sm mb-1">
-                  <span class="text-[var(--fg-secondary)]">Plated</span>
-                  <span class="grade-badge grade-f text-xs w-8 h-6">58 F</span>
-                </div>
-                <div class="progress-bar">
-                  <div class="progress-fill bg-[var(--grade-f)]" style="width: 58%"></div>
-                </div>
+                <div class="progress-bar"><div class="progress-fill bg-[var(--grade-f)]" style="width: 39%"></div></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Men's Overall -->
         <div class="dash-card p-6 md:p-8 reveal reveal-delay-1">
           <div class="flex items-start justify-between mb-6">
             <div>
               <h3 class="font-display font-semibold text-2xl">Men's Inventory Health</h3>
               <p class="text-sm text-[var(--fg-secondary)] mt-1">Category Coverage Score</p>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="grade-badge grade-b text-lg w-12 h-12">B</span>
-            </div>
+            <span class="grade-badge grade-b text-lg w-12 h-12">B</span>
           </div>
           <div class="flex items-center gap-8">
             <div class="gauge-container">
@@ -952,8 +775,7 @@
                 <circle class="gauge-fill" cx="60" cy="60" r="50" 
                   stroke="var(--grade-b)" 
                   stroke-dasharray="314.159"
-                  stroke-dashoffset="314.159"
-                  data-target="85"
+                  stroke-dashoffset="47.124"
                   id="gauge-men"></circle>
               </svg>
               <div class="absolute inset-0 flex items-center justify-center">
@@ -966,27 +788,14 @@
                   <span class="text-[var(--fg-secondary)]">Neutral Trainer</span>
                   <span class="grade-badge grade-f text-xs w-8 h-6">42 F</span>
                 </div>
-                <div class="progress-bar">
-                  <div class="progress-fill bg-[var(--grade-f)]" style="width: 42%"></div>
-                </div>
+                <div class="progress-bar"><div class="progress-fill bg-[var(--grade-f)]" style="width: 42%"></div></div>
               </div>
               <div>
                 <div class="flex justify-between text-sm mb-1">
                   <span class="text-[var(--fg-secondary)]">Stability</span>
                   <span class="grade-badge grade-f text-xs w-8 h-6">32 F</span>
                 </div>
-                <div class="progress-bar">
-                  <div class="progress-fill bg-[var(--grade-f)]" style="width: 32%"></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between text-sm mb-1">
-                  <span class="text-[var(--fg-secondary)]">Plated</span>
-                  <span class="grade-badge grade-f text-xs w-8 h-6">51 F</span>
-                </div>
-                <div class="progress-bar">
-                  <div class="progress-fill bg-[var(--grade-f)]" style="width: 51%"></div>
-                </div>
+                <div class="progress-bar"><div class="progress-fill bg-[var(--grade-f)]" style="width: 32%"></div></div>
               </div>
             </div>
           </div>
@@ -1001,10 +810,9 @@
       <div class="text-center mb-16 reveal">
         <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Methodology</p>
         <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">The Process</h2>
-        <p class="text-[var(--fg-secondary)] max-w-2xl mx-auto">A systematic approach to inventory health scoring, built entirely in Google Sheets using custom formulas and weighted scoring algorithms.</p>
+        <p class="text-[var(--fg-secondary)] max-w-2xl mx-auto">A systematic approach to inventory health scoring with weighted prioritization for core sizes where 72% of demand exists.</p>
       </div>
 
-      <!-- Philosophy -->
       <div class="dash-card p-8 mb-12 reveal">
         <div class="flex items-start gap-6">
           <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--accent-pink)] to-[var(--accent-pink-dark)] flex items-center justify-center shrink-0">
@@ -1013,173 +821,28 @@
             </svg>
           </div>
           <div>
-            <h3 class="font-display font-semibold text-xl mb-3">Design Philosophy: Asymmetric Penalty System</h3>
+            <h3 class="font-display font-semibold text-xl mb-3">Core Size Weighting</h3>
             <p class="text-[var(--fg-secondary)] leading-relaxed mb-4">
-              The core insight behind this scoring system is that <strong class="text-[var(--fg-primary)]">understocking is more damaging than overstocking</strong>. When a customer can't find their size, they leave empty-handed and may not return. Overstock creates markdown risk, but at least the sale opportunity exists.
+              The scoring system applies <strong class="text-[var(--fg-primary)]">triple weight to core sizes</strong> (Women's 7.5-9.5, Men's 9.5-11.5) because these sizes represent 72% of total demand. Simply adding inventory to edge sizes won't significantly improve your score - you must address the core size gaps to see meaningful improvement.
             </p>
-            <p class="text-[var(--fg-secondary)] leading-relaxed">
-              This system penalizes inventory gaps (understock) more heavily than excess inventory, ensuring scores reflect real business risk. A category with 20% understock will score significantly worse than one with 20% overstock.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Steps -->
-      <div class="space-y-12">
-        <div class="process-step reveal" data-step="1">
-          <div class="dash-card p-6">
-            <h3 class="font-display font-semibold text-xl mb-3">Data Aggregation and Normalization</h3>
-            <p class="text-[var(--fg-secondary)] mb-6">Raw sales and inventory data is aggregated from multiple sources, then normalized to comparable percentages for cross-category analysis.</p>
-            <div class="code-block">
-              <div class="text-[var(--fg-secondary)] text-xs mb-2 opacity-60">// Sales share calculation</div>
-              <div><span class="keyword">=</span> <span class="function">SUMIF</span>(Brand_Column, Brand_Name, Sales_Column) <span class="keyword">/</span> <span class="function">SUM</span>(Sales_Column)</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="process-step reveal reveal-delay-1" data-step="2">
-          <div class="dash-card p-6">
-            <h3 class="font-display font-semibold text-xl mb-3">Weighted Scoring Algorithm</h3>
-            <p class="text-[var(--fg-secondary)] mb-6">Each category receives a weighted score based on inventory vs sales alignment. The formula applies asymmetric penalties favoring overstock scenarios.</p>
-            <div class="code-block">
-              <div class="text-[var(--fg-secondary)] text-xs mb-2 opacity-60">// Alignment score with asymmetric penalty</div>
-              <div><span class="keyword">=</span> <span class="function">IF</span>(Inventory_Share <span class="keyword"><</span> Sales_Share,</div>
-              <div class="pl-4"><span class="comment">// Understock penalty (steeper curve)</span></div>
-              <div class="pl-4"><span class="number">100</span> <span class="keyword">-</span> <span class="function">ABS</span>(Deviation) <span class="keyword">*</span> <span class="number">1.5</span>,</div>
-              <div class="pl-4"><span class="comment">// Overstock penalty (gentler curve)</span></div>
-              <div class="pl-4"><span class="number">100</span> <span class="keyword">-</span> <span class="function">ABS</span>(Deviation) <span class="keyword">*</span> <span class="number">0.8</span>)</div>
-            </div>
-            <div class="mt-6 grid grid-cols-2 gap-4">
-              <div class="p-4 rounded-lg bg-[var(--accent-red)]/10 border border-[var(--accent-red)]/20">
-                <div class="text-sm font-medium text-[var(--accent-red)] mb-1">Understock Penalty</div>
-                <div class="text-2xl font-display font-bold">1.5x multiplier</div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-4 rounded-lg bg-[var(--accent-pink)]/10 border border-[var(--accent-pink)]/20">
+                <div class="text-sm font-medium text-[var(--accent-pink)] mb-1">Core Size Weight</div>
+                <div class="text-2xl font-display font-bold">3.0x</div>
               </div>
-              <div class="p-4 rounded-lg bg-[var(--accent-gold)]/10 border border-[var(--accent-gold)]/20">
-                <div class="text-sm font-medium text-[var(--accent-gold)] mb-1">Overstock Penalty</div>
-                <div class="text-2xl font-display font-bold">0.8x multiplier</div>
+              <div class="p-4 rounded-lg bg-[var(--fg-secondary)]/10 border border-[var(--fg-secondary)]/20">
+                <div class="text-sm font-medium text-[var(--fg-secondary)] mb-1">Non-Core Weight</div>
+                <div class="text-2xl font-display font-bold">1.0x</div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="process-step reveal reveal-delay-2" data-step="3">
-          <div class="dash-card p-6">
-            <h3 class="font-display font-semibold text-xl mb-3">Letter Grade Assignment</h3>
-            <p class="text-[var(--fg-secondary)] mb-6">Normalized scores (1-100) are converted to letter grades for quick assessment. This makes the data accessible to stakeholders at all levels.</p>
-            <div class="grid grid-cols-5 gap-4">
-              <div class="text-center p-4 rounded-lg bg-[var(--grade-a)]/10 border border-[var(--grade-a)]/20">
-                <div class="grade-badge grade-a w-12 h-12 mx-auto mb-2 text-lg">A</div>
-                <div class="text-xs text-[var(--fg-secondary)]">90-100</div>
-              </div>
-              <div class="text-center p-4 rounded-lg bg-[var(--grade-b)]/10 border border-[var(--grade-b)]/20">
-                <div class="grade-badge grade-b w-12 h-12 mx-auto mb-2 text-lg">B</div>
-                <div class="text-xs text-[var(--fg-secondary)]">80-89</div>
-              </div>
-              <div class="text-center p-4 rounded-lg bg-[var(--grade-c)]/10 border border-[var(--grade-c)]/20">
-                <div class="grade-badge grade-c w-12 h-12 mx-auto mb-2 text-lg">C</div>
-                <div class="text-xs text-[var(--fg-secondary)]">70-79</div>
-              </div>
-              <div class="text-center p-4 rounded-lg bg-[var(--grade-d)]/10 border border-[var(--grade-d)]/20">
-                <div class="grade-badge grade-d w-12 h-12 mx-auto mb-2 text-lg">D</div>
-                <div class="text-xs text-[var(--fg-secondary)]">60-69</div>
-              </div>
-              <div class="text-center p-4 rounded-lg bg-[var(--grade-f)]/10 border border-[var(--grade-f)]/20">
-                <div class="grade-badge grade-f w-12 h-12 mx-auto mb-2 text-lg">F</div>
-                <div class="text-xs text-[var(--fg-secondary)]">0-59</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tools Used -->
-      <div class="mt-16 reveal">
-        <h3 class="font-display font-semibold text-2xl mb-8 text-center">Tools and Functions Used</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="dash-card p-4 text-center">
-            <div class="text-sm font-medium mb-2">Google Sheets</div>
-            <div class="text-xs text-[var(--fg-secondary)]">Primary platform</div>
-          </div>
-          <div class="dash-card p-4 text-center">
-            <div class="text-sm font-medium mb-2">ARRAYFORMULA</div>
-            <div class="text-xs text-[var(--fg-secondary)]">Bulk calculations</div>
-          </div>
-          <div class="dash-card p-4 text-center">
-            <div class="text-sm font-medium mb-2">SUMIF / COUNTIF</div>
-            <div class="text-xs text-[var(--fg-secondary)]">Conditional aggregation</div>
-          </div>
-          <div class="dash-card p-4 text-center">
-            <div class="text-sm font-medium mb-2">Conditional Formatting</div>
-            <div class="text-xs text-[var(--fg-secondary)]">Visual scoring</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Insights Section -->
-  <section id="insights" class="relative py-24 md:py-32">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16 reveal">
-        <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Strategic Analysis</p>
-        <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Key Findings</h2>
-        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Critical insights uncovered through systematic data analysis and cross-referencing.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="dash-card p-6 reveal">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent-pink)] to-[var(--accent-pink-dark)] flex items-center justify-center mb-6">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="8" x2="12" y2="12"></line>
-              <line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg>
-          </div>
-          <h3 class="font-display font-semibold text-lg mb-3">Core Size Crisis</h3>
-          <p class="text-[var(--fg-secondary)] text-sm leading-relaxed">
-            Core sizes represent 72% of population demand but receive only 39-45% of inventory allocation. This systematic understocking of the most common sizes is the primary driver of lost sales.
-          </p>
-          <div class="mt-6 pt-6 border-t border-[var(--border)]">
-            <div class="flex items-center gap-4">
-              <span class="grade-badge grade-f">F</span>
-              <div>
-                <div class="text-sm font-medium">Size Distribution</div>
-                <div class="text-xs text-[var(--fg-secondary)]">Critical gap identified</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="dash-card p-6 reveal reveal-delay-1">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent-green)] to-[#1ABC9C] flex items-center justify-center mb-6">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-          </div>
-          <h3 class="font-display font-semibold text-lg mb-3">Top Sellers Perform Better</h3>
-          <p class="text-[var(--fg-secondary)] text-sm leading-relaxed">
-            Counterintuitively, the Top 10 sellers show better size distribution than overall inventory. High demand pressure triggers more frequent reorders, naturally improving distribution balance.
-          </p>
-        </div>
-
-        <div class="dash-card p-6 reveal reveal-delay-2">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent-gold)] to-[#F39C12] flex items-center justify-center mb-6">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-          </div>
-          <h3 class="font-display font-semibold text-lg mb-3">Men's Outperforms Women's</h3>
-          <p class="text-[var(--fg-secondary)] text-sm leading-relaxed">
-            Men's inventory scores significantly higher (85 B) compared to Women's (68 D). This suggests better demand forecasting or more stable purchasing patterns in Men's categories.
-          </p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="relative py-24 md:py-32 bg-[var(--bg-secondary)]">
+  <section id="about" class="relative py-24 md:py-32">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div class="reveal">
@@ -1197,10 +860,6 @@
             <div class="absolute -bottom-6 -right-6 dash-card p-4">
               <div class="text-sm text-[var(--fg-secondary)]">Experience</div>
               <div class="font-display font-bold text-2xl">4+ Years</div>
-            </div>
-            <div class="absolute -top-6 -left-6 dash-card p-4">
-              <div class="text-sm text-[var(--fg-secondary)]">Location</div>
-              <div class="font-display font-bold text-lg">Long Beach, CA</div>
             </div>
           </div>
         </div>
@@ -1221,7 +880,6 @@
               <span class="skill-badge">Google Sheets</span>
               <span class="skill-badge">Data Analysis</span>
               <span class="skill-badge">RICS</span>
-              <span class="skill-badge">Product Database</span>
             </div>
           </div>
         </div>
@@ -1230,14 +888,14 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="relative py-24 md:py-32">
+  <section id="contact" class="relative py-24 md:py-32 bg-[var(--bg-secondary)]">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <div class="reveal">
         <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Get in Touch</p>
       </div>
       <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 reveal reveal-delay-1">Let's Work Together</h2>
       <p class="text-[var(--fg-secondary)] text-lg max-w-2xl mx-auto mb-12 reveal reveal-delay-2">
-        Interested in data-driven inventory solutions or retail operations consulting? I'd love to hear from you.
+        Interested in data-driven inventory solutions or retail operations consulting?
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
         <a href="mailto:ielle.yell@gmail.com" class="btn-primary"><span>Send Email</span></a>
@@ -1257,126 +915,126 @@
   </footer>
 
   <script>
-    // Model Data
+    // Model Data with realistic inventory distributions
     const modelData = {
       adrenaline: {
         name: 'Brooks Adrenaline',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          currentInventory: [2, 3, 4, 5, 6, 7, 6, 4, 3, 2, 1],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          urgency: ['low', 'moderate', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'high', 'moderate', 'low']
+          coreIndices: [3, 4, 5, 6, 7] // 7.5, 8, 8.5, 9, 9.5
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [2, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1],
+          currentInventory: [2, 3, 5, 7, 8, 9, 8, 6, 4, 2, 1],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          urgency: ['low', 'moderate', 'high', 'critical', 'critical', 'critical', 'critical', 'high', 'moderate', 'low', 'low']
+          coreIndices: [3, 4, 5, 6, 7] // 9.5, 10, 10.5, 11, 11.5
         }
       },
       ghost: {
         name: 'Brooks Ghost',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [1, 1, 3, 2, 1, 2, 1, 3, 1, 1, 1],
+          currentInventory: [1, 2, 3, 4, 5, 6, 5, 4, 2, 1, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          urgency: ['low', 'moderate', 'high', 'critical', 'critical', 'critical', 'critical', 'high', 'moderate', 'low', 'low']
+          coreIndices: [3, 4, 5, 6, 7]
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [2, 4, 5, 6, 4, 4, 4, 3, 2, 3, 1],
+          currentInventory: [2, 4, 5, 6, 7, 8, 7, 5, 3, 2, 1],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          urgency: ['low', 'low', 'moderate', 'high', 'critical', 'critical', 'critical', 'high', 'moderate', 'moderate', 'low']
+          coreIndices: [3, 4, 5, 6, 7]
         }
       },
       bondi: {
         name: 'HOKA Bondi',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [1, 1, 1, 1, 1, 2, 1, 2, 1, 0, 0],
+          currentInventory: [1, 1, 2, 2, 3, 3, 2, 2, 1, 0, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          urgency: ['critical', 'critical', 'critical', 'critical', 'critical', 'high', 'critical', 'high', 'moderate', 'critical', 'critical']
+          coreIndices: [3, 4, 5, 6, 7]
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0],
+          currentInventory: [1, 1, 2, 2, 3, 4, 3, 2, 1, 0, 0],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          urgency: ['critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical']
+          coreIndices: [3, 4, 5, 6, 7]
         }
       },
       clifton: {
         name: 'HOKA Clifton',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+          currentInventory: [1, 1, 1, 2, 2, 2, 1, 1, 0, 0, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          urgency: ['moderate', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical']
+          coreIndices: [3, 4, 5, 6, 7]
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [3, 1, 1, 2, 2, 1, 2, 4, 1, 1, 1],
+          currentInventory: [2, 2, 3, 4, 4, 5, 4, 3, 2, 1, 1],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          urgency: ['low', 'critical', 'critical', 'critical', 'critical', 'critical', 'high', 'low', 'moderate', 'low', 'low']
+          coreIndices: [3, 4, 5, 6, 7]
         }
       },
       kayano: {
         name: 'ASICS Kayano',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+          currentInventory: [1, 1, 1, 1, 2, 2, 2, 1, 1, 0, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          urgency: ['moderate', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical']
+          coreIndices: [3, 4, 5, 6, 7]
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [2, 1, 1, 1, 3, 1, 1, 2, 1, 0, 0],
+          currentInventory: [1, 2, 2, 3, 4, 5, 4, 3, 2, 1, 0],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          urgency: ['low', 'critical', 'critical', 'critical', 'high', 'critical', 'critical', 'moderate', 'moderate', 'critical', 'critical']
+          coreIndices: [3, 4, 5, 6, 7]
         }
       },
       nimbus: {
         name: 'ASICS Nimbus',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+          currentInventory: [0, 1, 1, 1, 1, 2, 1, 1, 0, 0, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          urgency: ['critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical']
+          coreIndices: [3, 4, 5, 6, 7]
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [2, 1, 1, 1, 1, 1, 3, 1, 1, 0, 0],
+          currentInventory: [1, 2, 2, 3, 3, 4, 3, 2, 2, 1, 0],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          urgency: ['moderate', 'critical', 'critical', 'critical', 'critical', 'critical', 'moderate', 'moderate', 'moderate', 'critical', 'critical']
+          coreIndices: [3, 4, 5, 6, 7]
         }
       },
       glycerin: {
         name: 'Brooks Glycerin',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
+          currentInventory: [1, 1, 1, 2, 2, 3, 2, 2, 1, 0, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          urgency: ['critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical']
+          coreIndices: [3, 4, 5, 6, 7]
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [1, 3, 1, 1, 1, 2, 1, 2, 1, 1, 1],
+          currentInventory: [2, 2, 3, 4, 5, 6, 5, 4, 2, 1, 1],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          urgency: ['critical', 'low', 'critical', 'critical', 'critical', 'high', 'critical', 'moderate', 'moderate', 'low', 'low']
+          coreIndices: [3, 4, 5, 6, 7]
         }
       },
       arahi: {
         name: 'HOKA Arahi',
         women: {
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
-          currentInventory: [2, 2, 3, 1, 2, 1, 1, 1, 1, 0, 0],
+          currentInventory: [1, 2, 2, 2, 3, 3, 3, 2, 1, 1, 0],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          urgency: ['low', 'moderate', 'high', 'critical', 'high', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical']
+          coreIndices: [3, 4, 5, 6, 7]
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
-          currentInventory: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+          currentInventory: [1, 2, 2, 3, 3, 4, 3, 2, 2, 1, 1],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          urgency: ['critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'critical', 'low']
+          coreIndices: [3, 4, 5, 6, 7]
         }
       }
     };
@@ -1387,7 +1045,7 @@
     let currentWidth = 'medium';
     let orderQuantities = {};
 
-    // DOM Elements
+    // DOM Elements - initialized after DOM ready
     let modelSelect = null;
     let curveCanvas = null;
     let curveCtx = null;
@@ -1395,12 +1053,16 @@
     let sizeGridCore = null;
     let sizeGridLarge = null;
     let totalUnitsEl = null;
+    let currentTotalEl = null;
+    let afterTotalEl = null;
+    let idealTotalEl = null;
     let currentScoreEl = null;
     let projectedScoreEl = null;
     let currentGradeEl = null;
     let projectedGradeEl = null;
     let urgencyGridEl = null;
     let recommendationTextEl = null;
+    let gapAnalysisEl = null;
 
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize DOM references
@@ -1413,81 +1075,60 @@
       sizeGridCore = document.getElementById('row-core');
       sizeGridLarge = document.getElementById('row-large');
       totalUnitsEl = document.getElementById('total-units');
+      currentTotalEl = document.getElementById('current-total');
+      afterTotalEl = document.getElementById('after-total');
+      idealTotalEl = document.getElementById('ideal-total');
       currentScoreEl = document.getElementById('current-score');
       projectedScoreEl = document.getElementById('projected-score');
       currentGradeEl = document.getElementById('current-grade');
       projectedGradeEl = document.getElementById('projected-grade');
       urgencyGridEl = document.getElementById('urgency-grid');
       recommendationTextEl = document.getElementById('recommendation-text');
+      gapAnalysisEl = document.getElementById('gap-analysis');
 
-      // Initialize tool
       initTool();
-      
-      // Other initializations
       initNavigation();
       initScrollReveal();
       initCounters();
       initParticles();
       initNetworkCanvas();
-      initGauges();
     });
 
     function initTool() {
       if (!modelSelect) return;
       
-      // Model select change
       modelSelect.addEventListener('change', function() {
         currentModel = this.value;
         resetOrderQuantities();
-        renderSizeGrid();
-        renderUrgencyGrid();
-        drawCurve();
-        updateScores();
-        updateRecommendation();
+        renderAll();
       });
 
-      // Gender toggle
       document.querySelectorAll('.toggle-btn[data-gender]').forEach(function(btn) {
         btn.addEventListener('click', function() {
           document.querySelectorAll('.toggle-btn[data-gender]').forEach(function(b) { b.classList.remove('active'); });
           this.classList.add('active');
           currentGender = this.getAttribute('data-gender');
           resetOrderQuantities();
-          renderSizeGrid();
-          renderUrgencyGrid();
-          drawCurve();
-          updateScores();
-          updateRecommendation();
+          renderAll();
         });
       });
 
-      // Width toggle
       document.querySelectorAll('.width-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
           document.querySelectorAll('.width-btn').forEach(function(b) { b.classList.remove('active'); });
           this.classList.add('active');
           currentWidth = this.getAttribute('data-width');
-          renderSizeGrid();
-          drawCurve();
+          renderAll();
         });
       });
 
-      // Reset button
       document.getElementById('reset-btn').addEventListener('click', function() {
         resetOrderQuantities();
-        renderSizeGrid();
-        drawCurve();
-        updateScores();
-        updateRecommendation();
+        renderAll();
       });
 
-      // Initial render
       resetOrderQuantities();
-      renderSizeGrid();
-      renderUrgencyGrid();
-      drawCurve();
-      updateScores();
-      updateRecommendation();
+      renderAll();
     }
 
     function resetOrderQuantities() {
@@ -1501,6 +1142,16 @@
       });
     }
 
+    function renderAll() {
+      renderSizeGrid();
+      renderUrgencyGrid();
+      renderGapAnalysis();
+      drawCurve();
+      updateScores();
+      updateTotals();
+      updateRecommendation();
+    }
+
     function renderSizeGrid() {
       if (!sizeGridSmall || !sizeGridCore || !sizeGridLarge) return;
       
@@ -1508,32 +1159,23 @@
       if (!model) return;
       
       const data = model[currentGender];
+      const coreIndices = data.coreIndices;
       
-      // Clear grids
       sizeGridSmall.innerHTML = '';
       sizeGridCore.innerHTML = '';
       sizeGridLarge.innerHTML = '';
       
-      // Determine core size range based on gender
-      let coreStart, coreEnd;
-      if (currentGender === 'women') {
-        coreStart = data.sizes.indexOf('7.5');
-        coreEnd = data.sizes.indexOf('9.5');
-      } else {
-        coreStart = data.sizes.indexOf('9.5');
-        coreEnd = data.sizes.indexOf('11.5');
-      }
-      
       data.sizes.forEach(function(size, index) {
-        const urgency = data.urgency[index];
-        const currentValue = orderQuantities[size] || 0;
+        const isCore = coreIndices.indexOf(index) !== -1;
+        const gap = calculateGap(size, index, data);
+        const urgency = getUrgencyLevel(gap, isCore);
         
         const container = document.createElement('div');
-        container.className = 'flex flex-col items-center gap-1';
+        container.className = 'flex flex-col items-center gap-1' + (isCore ? ' ring-2 ring-[var(--accent-pink)]/30 rounded-lg p-2' : '');
         
         const label = document.createElement('label');
-        label.className = 'text-xs text-[var(--fg-secondary)]';
-        label.textContent = size;
+        label.className = 'text-xs ' + (isCore ? 'text-[var(--accent-pink)] font-medium' : 'text-[var(--fg-secondary)]');
+        label.textContent = size + (isCore ? ' (Core)' : '');
         
         const inputGroup = document.createElement('div');
         inputGroup.className = 'flex items-center gap-1';
@@ -1545,23 +1187,20 @@
         input.type = 'number';
         input.min = '0';
         input.max = '20';
-        input.value = currentValue;
+        input.value = orderQuantities[size] || 0;
         input.className = 'size-input';
         input.setAttribute('data-size', size);
         input.setAttribute('aria-label', 'Order quantity for size ' + size);
         
-        // Add urgency class
-        if (urgency === 'critical') {
-          input.classList.add('urgent');
-        } else if (urgency === 'low') {
-          input.classList.add('good');
-        }
+        if (urgency === 'critical') input.classList.add('urgent');
+        else if (urgency === 'low') input.classList.add('good');
         
         input.addEventListener('input', function() {
           const val = Math.max(0, Math.min(20, parseInt(this.value) || 0));
           this.value = val;
           orderQuantities[size] = val;
-          updateTotalUnits();
+          updateTotals();
+          renderGapAnalysis();
           drawCurve();
           updateScores();
           updateRecommendation();
@@ -1572,17 +1211,32 @@
         container.appendChild(label);
         container.appendChild(inputGroup);
         
-        // Add to appropriate row
-        if (index < coreStart) {
+        if (!isCore && index < coreIndices[0]) {
           sizeGridSmall.appendChild(container);
-        } else if (index <= coreEnd) {
+        } else if (isCore) {
           sizeGridCore.appendChild(container);
         } else {
           sizeGridLarge.appendChild(container);
         }
       });
+    }
+
+    function calculateGap(size, index, data) {
+      const total = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
+      const safeTotal = Math.max(1, total);
+      const currentPercent = (data.currentInventory[index] / safeTotal) * 100;
+      const ideal = data.idealPercent[index];
+      return currentPercent - ideal;
+    }
+
+    function getUrgencyLevel(gap, isCore) {
+      // More aggressive urgency for core sizes
+      const threshold = isCore ? -3 : -5;
       
-      updateTotalUnits();
+      if (gap < threshold) return 'critical';
+      if (gap < 0) return 'high';
+      if (gap < 5) return 'moderate';
+      return 'low';
     }
 
     function renderUrgencyGrid() {
@@ -1592,27 +1246,31 @@
       if (!model) return;
       
       const data = model[currentGender];
+      const coreIndices = data.coreIndices;
       urgencyGridEl.innerHTML = '';
       
-      // Create urgency items with indices
-      const urgencyItems = data.sizes.map(function(size, index) {
+      const items = data.sizes.map(function(size, index) {
+        const gap = calculateGap(size, index, data);
+        const isCore = coreIndices.indexOf(index) !== -1;
         return {
           size: size,
-          urgency: data.urgency[index],
-          ideal: data.idealPercent[index],
+          gap: gap,
+          isCore: isCore,
+          urgency: getUrgencyLevel(gap, isCore),
           current: data.currentInventory[index]
         };
       });
       
-      // Sort by urgency (critical first)
-      const urgencyOrder = { critical: 0, high: 1, moderate: 2, low: 3 };
-      urgencyItems.sort(function(a, b) {
-        return urgencyOrder[a.urgency] - urgencyOrder[b.urgency];
+      // Sort: core sizes first, then by gap (most negative first)
+      items.sort(function(a, b) {
+        if (a.isCore !== b.isCore) return a.isCore ? -1 : 1;
+        return a.gap - b.gap;
       });
       
-      urgencyItems.forEach(function(item) {
+      items.forEach(function(item) {
         const card = document.createElement('div');
-        card.className = 'p-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]';
+        card.className = 'p-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]' + 
+          (item.isCore ? ' ring-1 ring-[var(--accent-pink)]/50' : '');
         
         const urgencyClass = 'urgency-' + item.urgency;
         const urgencyLabel = item.urgency.charAt(0).toUpperCase() + item.urgency.slice(1);
@@ -1620,24 +1278,122 @@
         card.innerHTML = '\
           <div class="flex items-center gap-2 mb-2">\
             <div class="urgency-indicator ' + urgencyClass + '"></div>\
-            <span class="text-sm font-medium">Size ' + item.size + '</span>\
+            <span class="text-sm font-medium">' + item.size + (item.isCore ? ' (Core)' : '') + '</span>\
           </div>\
           <div class="text-xs text-[var(--fg-secondary)]">' + urgencyLabel + ' Priority</div>\
           <div class="text-xs text-[var(--fg-secondary)] mt-1">In stock: ' + item.current + '</div>\
+          <div class="text-xs mt-1 ' + (item.gap < 0 ? 'text-[var(--accent-red)]' : 'text-[var(--accent-green)]') + '">\
+            Gap: ' + (item.gap > 0 ? '+' : '') + item.gap.toFixed(1) + '%\
+          </div>\
         ';
         
         urgencyGridEl.appendChild(card);
       });
     }
 
-    function updateTotalUnits() {
+    function renderGapAnalysis() {
+      if (!gapAnalysisEl) return;
+      
+      const model = modelData[currentModel];
+      if (!model) return;
+      
+      const data = model[currentGender];
+      const coreIndices = data.coreIndices;
+      
+      const total = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
+      const orderTotal = Object.values(orderQuantities).reduce(function(a, b) { return a + b; }, 0);
+      const afterTotal = total + orderTotal;
+      
+      gapAnalysisEl.innerHTML = '';
+      
+      // Show gap analysis for each size
+      const coreGaps = [];
+      const nonCoreGaps = [];
+      
+      data.sizes.forEach(function(size, index) {
+        const isCore = coreIndices.indexOf(index) !== -1;
+        const afterCount = data.currentInventory[index] + (orderQuantities[size] || 0);
+        const currentPercent = total > 0 ? (data.currentInventory[index] / total) * 100 : 0;
+        const afterPercent = afterTotal > 0 ? (afterCount / afterTotal) * 100 : 0;
+        const ideal = data.idealPercent[index];
+        
+        const gapInfo = {
+          size: size,
+          current: data.currentInventory[index],
+          ordered: orderQuantities[size] || 0,
+          after: afterCount,
+          currentPercent: currentPercent,
+          afterPercent: afterPercent,
+          ideal: ideal,
+          gap: afterPercent - ideal,
+          isCore: isCore
+        };
+        
+        if (isCore) {
+          coreGaps.push(gapInfo);
+        } else {
+          nonCoreGaps.push(gapInfo);
+        }
+      });
+      
+      // Render core gaps first
+      const coreHeader = document.createElement('div');
+      coreHeader.className = 'font-medium text-[var(--accent-pink)] mb-2';
+      coreHeader.textContent = 'Core Sizes (72% of demand)';
+      gapAnalysisEl.appendChild(coreHeader);
+      
+      coreGaps.forEach(function(g) {
+        const row = document.createElement('div');
+        row.className = 'flex justify-between items-center text-xs py-1';
+        row.innerHTML = '\
+          <span>' + g.size + '</span>\
+          <span>' + g.current + ' → ' + g.after + ' units</span>\
+          <span class="' + (g.gap < -5 ? 'text-[var(--accent-red)]' : g.gap < 0 ? 'text-[var(--accent-orange)]' : 'text-[var(--accent-green)]') + '">\
+            ' + (g.gap > 0 ? '+' : '') + g.gap.toFixed(1) + '% vs ideal\
+          </span>\
+        ';
+        gapAnalysisEl.appendChild(row);
+      });
+      
+      const divider = document.createElement('div');
+      divider.className = 'border-t border-[var(--border)] my-2';
+      gapAnalysisEl.appendChild(divider);
+      
+      const nonCoreHeader = document.createElement('div');
+      nonCoreHeader.className = 'font-medium text-[var(--fg-secondary)] mb-2 text-xs';
+      nonCoreHeader.textContent = 'Non-Core Sizes';
+      gapAnalysisEl.appendChild(nonCoreHeader);
+      
+      nonCoreGaps.slice(0, 3).forEach(function(g) {
+        const row = document.createElement('div');
+        row.className = 'flex justify-between items-center text-xs py-1 text-[var(--fg-secondary)]';
+        row.innerHTML = '\
+          <span>' + g.size + '</span>\
+          <span>' + g.current + ' → ' + g.after + ' units</span>\
+          <span>' + (g.gap > 0 ? '+' : '') + g.gap.toFixed(1) + '%</span>\
+        ';
+        gapAnalysisEl.appendChild(row);
+      });
+    }
+
+    function updateTotals() {
       if (!totalUnitsEl) return;
       
-      let total = 0;
-      Object.values(orderQuantities).forEach(function(val) {
-        total += val;
-      });
-      totalUnitsEl.textContent = total;
+      const model = modelData[currentModel];
+      if (!model) return;
+      
+      const data = model[currentGender];
+      const currentTotal = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
+      const orderTotal = Object.values(orderQuantities).reduce(function(a, b) { return a + b; }, 0);
+      const afterTotal = currentTotal + orderTotal;
+      
+      // Calculate ideal total based on max percentage
+      const idealTotal = Math.round((currentTotal + orderTotal) / 0.19); // 19% is peak of ideal curve
+      
+      totalUnitsEl.textContent = orderTotal;
+      if (currentTotalEl) currentTotalEl.textContent = currentTotal;
+      if (afterTotalEl) afterTotalEl.textContent = afterTotal;
+      if (idealTotalEl) idealTotalEl.textContent = idealTotal;
     }
 
     function drawCurve() {
@@ -1648,24 +1404,22 @@
       
       const data = model[currentGender];
       
-      // Set canvas size
       const rect = curveCanvas.getBoundingClientRect();
-      curveCanvas.width = rect.width * window.devicePixelRatio;
-      curveCanvas.height = rect.height * window.devicePixelRatio;
-      curveCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      const dpr = window.devicePixelRatio || 1;
+      curveCanvas.width = rect.width * dpr;
+      curveCanvas.height = rect.height * dpr;
+      curveCtx.scale(dpr, dpr);
       
       const width = rect.width;
       const height = rect.height;
-      const padding = 40;
+      const padding = 50;
       
-      // Clear
       curveCtx.clearRect(0, 0, width, height);
       
       // Draw grid
       curveCtx.strokeStyle = 'rgba(233, 30, 140, 0.1)';
       curveCtx.lineWidth = 1;
       
-      // Horizontal grid lines
       for (let i = 0; i <= 4; i++) {
         const y = padding + (height - 2 * padding) * i / 4;
         curveCtx.beginPath();
@@ -1674,17 +1428,9 @@
         curveCtx.stroke();
       }
       
-      // Calculate totals for percentage
-      const totalCurrent = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
-      const orderValues = data.sizes.map(function(s) { return orderQuantities[s] || 0; });
-      const totalAfter = totalCurrent + orderValues.reduce(function(a, b) { return a + b; }, 0);
-      
-      // Ensure minimum for percentage calculation
-      const safeTotalCurrent = Math.max(1, totalCurrent);
-      const safeTotalAfter = Math.max(1, totalAfter);
-      
-      const xStep = (width - 2 * padding) / (data.sizes.length - 1);
-      const maxPercent = 25;
+      // Fixed Y-axis scale (0-20%) based on ideal curve peak
+      const maxPercent = 20;
+      const xStep = (width - 2 * padding) / Math.max(1, data.sizes.length - 1);
       
       // Draw ideal curve
       curveCtx.beginPath();
@@ -1695,70 +1441,62 @@
       data.idealPercent.forEach(function(percent, index) {
         const x = padding + index * xStep;
         const y = height - padding - (percent / maxPercent) * (height - 2 * padding);
-        if (index === 0) {
-          curveCtx.moveTo(x, y);
-        } else {
-          curveCtx.lineTo(x, y);
-        }
+        if (index === 0) curveCtx.moveTo(x, y);
+        else curveCtx.lineTo(x, y);
       });
       curveCtx.stroke();
       curveCtx.setLineDash([]);
       
-      // Draw current curve
+      // Calculate after-order inventory
+      const totalCurrent = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
+      const orderValues = data.sizes.map(function(s) { return orderQuantities[s] || 0; });
+      const totalAfter = totalCurrent + orderValues.reduce(function(a, b) { return a + b; }, 0);
+      
+      // Draw current inventory (absolute units scaled)
       curveCtx.beginPath();
       curveCtx.strokeStyle = '#E91E8C';
       curveCtx.lineWidth = 2;
       
+      const maxUnits = Math.max(15, Math.max(...data.currentInventory));
+      
       data.currentInventory.forEach(function(count, index) {
         const x = padding + index * xStep;
-        const percent = (count / safeTotalCurrent) * 100;
-        const y = height - padding - (percent / maxPercent) * (height - 2 * padding);
-        if (index === 0) {
-          curveCtx.moveTo(x, y);
-        } else {
-          curveCtx.lineTo(x, y);
-        }
+        const y = height - padding - (count / maxUnits) * (height - 2 * padding);
+        if (index === 0) curveCtx.moveTo(x, y);
+        else curveCtx.lineTo(x, y);
       });
       curveCtx.stroke();
       
-      // Draw projected curve
+      // Draw after-order inventory
       curveCtx.beginPath();
       curveCtx.strokeStyle = '#2ECC71';
       curveCtx.lineWidth = 2;
       
       data.sizes.forEach(function(size, index) {
-        const x = padding + index * xStep;
         const afterCount = data.currentInventory[index] + (orderQuantities[size] || 0);
-        const percent = (afterCount / safeTotalAfter) * 100;
-        const y = height - padding - (percent / maxPercent) * (height - 2 * padding);
-        if (index === 0) {
-          curveCtx.moveTo(x, y);
-        } else {
-          curveCtx.lineTo(x, y);
-        }
+        const x = padding + index * xStep;
+        const y = height - padding - (afterCount / maxUnits) * (height - 2 * padding);
+        if (index === 0) curveCtx.moveTo(x, y);
+        else curveCtx.lineTo(x, y);
       });
       curveCtx.stroke();
       
-      // Draw points
+      // Draw points and labels
       data.sizes.forEach(function(size, index) {
         const x = padding + index * xStep;
         
         // Current point
-        const currentPercent = (data.currentInventory[index] / safeTotalCurrent) * 100;
-        const yCurrent = height - padding - (currentPercent / maxPercent) * (height - 2 * padding);
-        
+        const currentY = height - padding - (data.currentInventory[index] / maxUnits) * (height - 2 * padding);
         curveCtx.beginPath();
-        curveCtx.arc(x, yCurrent, 4, 0, Math.PI * 2);
+        curveCtx.arc(x, currentY, 4, 0, Math.PI * 2);
         curveCtx.fillStyle = '#E91E8C';
         curveCtx.fill();
         
-        // Projected point
+        // After point
         const afterCount = data.currentInventory[index] + (orderQuantities[size] || 0);
-        const afterPercent = (afterCount / safeTotalAfter) * 100;
-        const yAfter = height - padding - (afterPercent / maxPercent) * (height - 2 * padding);
-        
+        const afterY = height - padding - (afterCount / maxUnits) * (height - 2 * padding);
         curveCtx.beginPath();
-        curveCtx.arc(x, yAfter, 4, 0, Math.PI * 2);
+        curveCtx.arc(x, afterY, 4, 0, Math.PI * 2);
         curveCtx.fillStyle = '#2ECC71';
         curveCtx.fill();
         
@@ -1768,6 +1506,16 @@
         curveCtx.textAlign = 'center';
         curveCtx.fillText(size, x, height - 10);
       });
+      
+      // Y-axis labels
+      curveCtx.fillStyle = '#A8A2A4';
+      curveCtx.font = '10px Space Grotesk';
+      curveCtx.textAlign = 'right';
+      for (let i = 0; i <= 4; i++) {
+        const val = Math.round((maxUnits * (4 - i)) / 4);
+        const y = padding + (height - 2 * padding) * i / 4;
+        curveCtx.fillText(val + ' units', padding - 5, y + 4);
+      }
     }
 
     function updateScores() {
@@ -1777,54 +1525,60 @@
       if (!model) return;
       
       const data = model[currentGender];
+      const coreIndices = data.coreIndices;
       
-      // Calculate current distribution score
-      const totalCurrent = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
-      const safeTotalCurrent = Math.max(1, totalCurrent);
-      
-      let currentScore = 0;
-      data.sizes.forEach(function(size, index) {
-        const currentPercent = (data.currentInventory[index] / safeTotalCurrent) * 100;
-        const ideal = data.idealPercent[index];
-        const deviation = Math.abs(currentPercent - ideal);
-        
-        if (currentPercent < ideal) {
-          currentScore += Math.max(0, 100 - deviation * 1.5);
-        } else {
-          currentScore += Math.max(0, 100 - deviation * 0.8);
-        }
-      });
-      currentScore = Math.round(currentScore / data.sizes.length);
+      // Calculate current score
+      const currentScore = calculateWeightedScore(data, data.currentInventory, coreIndices);
       
       // Calculate projected score
-      const orderValues = data.sizes.map(function(s) { return orderQuantities[s] || 0; });
-      const totalAfter = totalCurrent + orderValues.reduce(function(a, b) { return a + b; }, 0);
-      const safeTotalAfter = Math.max(1, totalAfter);
-      
-      let projectedScore = 0;
-      data.sizes.forEach(function(size, index) {
-        const afterCount = data.currentInventory[index] + orderQuantities[size];
-        const afterPercent = (afterCount / safeTotalAfter) * 100;
-        const ideal = data.idealPercent[index];
-        const deviation = Math.abs(afterPercent - ideal);
-        
-        if (afterPercent < ideal) {
-          projectedScore += Math.max(0, 100 - deviation * 1.5);
-        } else {
-          projectedScore += Math.max(0, 100 - deviation * 0.8);
-        }
+      const afterInventory = data.sizes.map(function(size, index) {
+        return data.currentInventory[index] + (orderQuantities[size] || 0);
       });
-      projectedScore = Math.round(projectedScore / data.sizes.length);
+      const projectedScore = calculateWeightedScore(data, afterInventory, coreIndices);
       
       currentScoreEl.textContent = currentScore;
       projectedScoreEl.textContent = projectedScore;
       
-      // Update grades
-      currentGradeEl.textContent = getGrade(currentScore);
-      currentGradeEl.className = 'grade-badge grade-' + getGrade(currentScore).toLowerCase() + ' text-xs';
+      const currentGrade = getGrade(currentScore);
+      const projectedGrade = getGrade(projectedScore);
       
-      projectedGradeEl.textContent = getGrade(projectedScore);
-      projectedGradeEl.className = 'grade-badge grade-' + getGrade(projectedScore).toLowerCase() + ' text-xs';
+      currentGradeEl.textContent = currentGrade;
+      currentGradeEl.className = 'grade-badge grade-' + currentGrade.toLowerCase() + ' text-xs';
+      
+      projectedGradeEl.textContent = projectedGrade;
+      projectedGradeEl.className = 'grade-badge grade-' + projectedGrade.toLowerCase() + ' text-xs';
+    }
+
+    function calculateWeightedScore(data, inventory, coreIndices) {
+      const total = inventory.reduce(function(a, b) { return a + b; }, 0);
+      if (total === 0) return 0;
+      
+      let totalScore = 0;
+      let totalWeight = 0;
+      
+      inventory.forEach(function(count, index) {
+        const actualPercent = (count / total) * 100;
+        const ideal = data.idealPercent[index];
+        const isCore = coreIndices.indexOf(index) !== -1;
+        const weight = isCore ? 3 : 1;
+        
+        const deviation = Math.abs(actualPercent - ideal);
+        
+        let sizeScore;
+        if (actualPercent < ideal) {
+          // Understock penalty (steeper)
+          sizeScore = Math.max(0, 100 - deviation * 1.5);
+        } else {
+          // Overstock penalty (gentler)
+          sizeScore = Math.max(0, 100 - deviation * 0.8);
+        }
+        
+        // Apply core weighting
+        totalScore += sizeScore * weight;
+        totalWeight += weight;
+      });
+      
+      return Math.round(totalScore / Math.max(1, totalWeight));
     }
 
     function getGrade(score) {
@@ -1842,40 +1596,46 @@
       if (!model) return;
       
       const data = model[currentGender];
+      const coreIndices = data.coreIndices;
       
-      // Get critical sizes
-      const criticalSizes = [];
+      // Analyze core size gaps
+      const coreGaps = [];
       data.sizes.forEach(function(size, index) {
-        if (data.urgency[index] === 'critical' && (!orderQuantities[size] || orderQuantities[size] === 0)) {
-          criticalSizes.push(size);
+        if (coreIndices.indexOf(index) !== -1) {
+          const total = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
+          const afterCount = data.currentInventory[index] + (orderQuantities[size] || 0);
+          const orderTotal = Object.values(orderQuantities).reduce(function(a, b) { return a + b; }, 0);
+          const afterTotal = total + orderTotal;
+          const afterPercent = afterTotal > 0 ? (afterCount / afterTotal) * 100 : 0;
+          const ideal = data.idealPercent[index];
+          
+          coreGaps.push({
+            size: size,
+            gap: afterPercent - ideal,
+            ordered: orderQuantities[size] || 0
+          });
         }
       });
       
-      // Get sizes with orders
-      const orderedSizes = [];
-      data.sizes.forEach(function(size) {
-        if (orderQuantities[size] > 0) {
-          orderedSizes.push({ size: size, qty: orderQuantities[size] });
-        }
-      });
+      const criticalCore = coreGaps.filter(function(g) { return g.gap < -5 && g.ordered === 0; });
+      const addressedCore = coreGaps.filter(function(g) { return g.ordered > 0; });
       
       let text = '';
-      if (orderedSizes.length === 0 && criticalSizes.length > 0) {
-        text = 'Critical sizes ' + criticalSizes.slice(0, 4).join(', ') + ' need immediate attention. These sizes are severely understocked relative to demand. Focus orders on core sizes first.';
-      } else if (orderedSizes.length > 0) {
-        const total = orderedSizes.reduce(function(a, b) { return a + b.qty; }, 0);
-        text = 'You are ordering ' + total + ' units across ' + orderedSizes.length + ' sizes. ';
+      
+      if (criticalCore.length > 0) {
+        text = 'Core sizes ' + criticalCore.slice(0, 3).map(function(g) { return g.size; }).join(', ') + ' are still critically understocked. These sizes represent the majority of demand - focus your orders here for maximum score improvement.';
+      } else if (addressedCore.length > 0) {
+        const sizesText = addressedCore.map(function(g) { return g.size + ' (+' + g.ordered + ')' ; }).join(', ');
+        text = 'Good progress on core sizes: ' + sizesText + '. ';
         
-        const criticalOrdered = criticalSizes.filter(function(s) { return orderQuantities[s] > 0; });
-        if (criticalOrdered.length > 0) {
-          text += 'Good job addressing critical sizes: ' + criticalOrdered.join(', ') + '. ';
-        }
-        
-        if (criticalSizes.length > criticalOrdered.length) {
-          text += 'Consider adding orders for remaining critical sizes: ' + criticalSizes.filter(function(s) { return !orderQuantities[s]; }).slice(0, 3).join(', ') + '.';
+        const remainingGaps = coreGaps.filter(function(g) { return g.gap < -3; });
+        if (remainingGaps.length > 0) {
+          text += 'Consider adding more to: ' + remainingGaps.slice(0, 2).map(function(g) { return g.size; }).join(', ') + '.';
+        } else {
+          text += 'Core size distribution is looking healthy!';
         }
       } else {
-        text = 'This model shows better inventory distribution. Focus on maintaining stock levels in core sizes. Monitor reorder points closely.';
+        text = 'This model has a well-balanced inventory distribution. Maintain focus on core sizes during replenishment to preserve alignment.';
       }
       
       recommendationTextEl.textContent = text;
@@ -2049,24 +1809,6 @@
       resize();
       window.addEventListener('resize', resize);
       animate();
-    }
-
-    // Gauges
-    function initGauges() {
-      const gaugeWomen = document.getElementById('gauge-women');
-      const gaugeMen = document.getElementById('gauge-men');
-      
-      if (gaugeWomen) {
-        const targetWomen = parseInt(gaugeWomen.getAttribute('data-target'));
-        const offsetWomen = 314.159 - (314.159 * targetWomen / 100);
-        gaugeWomen.style.strokeDashoffset = offsetWomen;
-      }
-      
-      if (gaugeMen) {
-        const targetMen = parseInt(gaugeMen.getAttribute('data-target'));
-        const offsetMen = 314.159 - (314.159 * targetMen / 100);
-        gaugeMen.style.strokeDashoffset = offsetMen;
-      }
     }
 
     // Smooth scroll
