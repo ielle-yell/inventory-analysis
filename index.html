@@ -131,28 +131,6 @@
       box-shadow: 0 20px 40px -20px rgba(233, 30, 140, 0.25);
     }
 
-    .stat-card {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-pink), var(--accent-pink-light));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.6s ease;
-    }
-
-    .stat-card.visible::before {
-      transform: scaleX(1);
-    }
-
     .progress-bar {
       height: 8px;
       background: rgba(233, 30, 140, 0.1);
@@ -417,21 +395,23 @@
       transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Chart tooltip */
-    .chart-tooltip {
-      position: absolute;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 8px 12px;
-      font-size: 12px;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.2s;
-      z-index: 100;
+    /* Warning box */
+    .warning-box {
+      background: rgba(231, 76, 60, 0.1);
+      border: 1px solid rgba(231, 76, 60, 0.3);
+      border-radius: 12px;
+      padding: 16px;
     }
 
-    .chart-tooltip.visible { opacity: 1; }
+    .warning-box.success {
+      background: rgba(46, 204, 113, 0.1);
+      border-color: rgba(46, 204, 113, 0.3);
+    }
+
+    .warning-box.caution {
+      background: rgba(244, 196, 48, 0.1);
+      border-color: rgba(244, 196, 48, 0.3);
+    }
   </style>
 </head>
 <body class="min-h-screen">
@@ -494,40 +474,6 @@
         <a href="#tool" class="btn-primary"><span>Try the Tool</span></a>
         <a href="#process" class="btn-secondary">See Methodology</a>
       </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-20 reveal reveal-delay-4">
-        <div class="text-center">
-          <div class="inline-flex items-center gap-2">
-            <span class="grade-badge grade-d">D</span>
-            <span class="font-display font-bold text-2xl text-[var(--fg-primary)]">68</span>
-          </div>
-          <p class="text-xs md:text-sm text-[var(--fg-secondary)] mt-2">Women's Health Score</p>
-        </div>
-        <div class="text-center">
-          <div class="inline-flex items-center gap-2">
-            <span class="grade-badge grade-b">B</span>
-            <span class="font-display font-bold text-2xl text-[var(--fg-primary)]">85</span>
-          </div>
-          <p class="text-xs md:text-sm text-[var(--fg-secondary)] mt-2">Men's Health Score</p>
-        </div>
-        <div class="text-center">
-          <div class="font-display font-bold text-3xl md:text-4xl text-[var(--fg-primary)]">
-            <span class="counter" data-target="1807">0</span>
-          </div>
-          <p class="text-xs md:text-sm text-[var(--fg-secondary)] mt-1">Units Analyzed</p>
-        </div>
-        <div class="text-center">
-          <div class="font-display font-bold text-3xl md:text-4xl text-[var(--fg-primary)]">
-            <span class="counter" data-target="55">0</span>+
-          </div>
-          <p class="text-xs md:text-sm text-[var(--fg-secondary)] mt-1">Models Tracked</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal reveal-delay-4">
-      <span class="text-xs text-[var(--fg-secondary)] tracking-widest uppercase">Scroll</span>
-      <div class="w-px h-12 bg-gradient-to-b from-[var(--accent-pink)] to-transparent"></div>
     </div>
   </section>
 
@@ -537,7 +483,7 @@
       <div class="text-center mb-12 reveal">
         <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Interactive Demo</p>
         <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Size Curve Simulator</h2>
-        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Simulate the impact of proposed orders on size distribution. Scores prioritize core sizes where most demand exists.</p>
+        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Simulate order impact on size distribution. Only orders that address core size gaps will improve your score.</p>
       </div>
 
       <!-- Tool Container -->
@@ -591,7 +537,7 @@
               </div>
               
               <div>
-                <p class="text-xs text-[var(--fg-secondary)] mb-2">Core Sizes (High Demand)</p>
+                <p class="text-xs text-[var(--accent-pink)] font-medium mb-2">Core Sizes (72% of demand)</p>
                 <div class="flex flex-wrap gap-2" id="row-core"></div>
               </div>
               
@@ -606,25 +552,6 @@
               <div class="flex justify-between items-center">
                 <span class="text-sm text-[var(--fg-secondary)]">Total Units to Order</span>
                 <span class="font-display font-bold text-2xl" id="total-units">0</span>
-              </div>
-            </div>
-
-            <!-- Inventory Summary -->
-            <div class="mt-4 p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
-              <h4 class="text-sm font-medium mb-3">Inventory Summary</h4>
-              <div class="grid grid-cols-3 gap-4 text-center">
-                <div>
-                  <div class="text-xs text-[var(--fg-secondary)]">Current Total</div>
-                  <div class="font-display font-bold text-lg" id="current-total">0</div>
-                </div>
-                <div>
-                  <div class="text-xs text-[var(--fg-secondary)]">After Order</div>
-                  <div class="font-display font-bold text-lg" id="after-total">0</div>
-                </div>
-                <div>
-                  <div class="text-xs text-[var(--fg-secondary)]">Ideal Total</div>
-                  <div class="font-display font-bold text-lg" id="ideal-total">0</div>
-                </div>
               </div>
             </div>
           </div>
@@ -649,22 +576,17 @@
               </div>
             </div>
             
-            <!-- Chart Container -->
-            <div class="relative">
-              <canvas id="curve-canvas" class="w-full h-64 rounded-xl bg-[var(--bg-primary)]"></canvas>
-              <div class="chart-tooltip" id="chart-tooltip"></div>
-            </div>
+            <canvas id="curve-canvas" class="w-full h-64 rounded-xl bg-[var(--bg-primary)]"></canvas>
 
-            <!-- Gap Analysis -->
-            <div class="mt-4 p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
-              <h4 class="text-sm font-medium mb-3">Gap Analysis (Units vs Ideal)</h4>
-              <div class="space-y-2 text-sm" id="gap-analysis"></div>
+            <!-- Order Efficiency Warning -->
+            <div class="mt-4" id="order-efficiency-box">
+              <!-- Dynamic content -->
             </div>
             
             <!-- Score Impact -->
             <div class="mt-4 grid grid-cols-2 gap-4">
               <div class="p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
-                <div class="text-xs text-[var(--fg-secondary)] mb-1">Current Distribution Score</div>
+                <div class="text-xs text-[var(--fg-secondary)] mb-1">Current Score</div>
                 <div class="flex items-center gap-2">
                   <span class="font-display font-bold text-2xl" id="current-score">42</span>
                   <span class="grade-badge grade-f text-xs" id="current-grade">F</span>
@@ -683,14 +605,14 @@
 
         <!-- Urgency Rankings -->
         <div class="mt-8 pt-8 border-t border-[var(--border)]">
-          <h3 class="font-display font-semibold text-lg mb-4">Urgency Rankings</h3>
-          <p class="text-sm text-[var(--fg-secondary)] mb-6">Sizes ranked by gap from ideal. Core sizes (where demand is highest) are prioritized in scoring.</p>
+          <h3 class="font-display font-semibold text-lg mb-4">Size Gap Analysis</h3>
+          <p class="text-sm text-[var(--fg-secondary)] mb-6">Core sizes account for 72% of demand but often receive disproportionate inventory. Address these gaps first.</p>
           
           <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3" id="urgency-grid"></div>
         </div>
 
         <!-- Recommendations -->
-        <div class="mt-8 p-6 rounded-xl bg-gradient-to-r from-[var(--accent-pink)]/10 to-transparent border border-[var(--accent-pink)]/20">
+        <div class="mt-8 p-6 rounded-xl bg-gradient-to-r from-[var(--accent-pink)]/10 to-transparent border border-[var(--accent-pink)]/20" id="recommendation-box">
           <div class="flex items-start gap-4">
             <div class="w-10 h-10 rounded-lg bg-[var(--accent-pink)]/20 flex items-center justify-center shrink-0">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="2">
@@ -698,9 +620,9 @@
               </svg>
             </div>
             <div>
-              <h4 class="font-display font-semibold mb-2">Smart Recommendations</h4>
+              <h4 class="font-display font-semibold mb-2">Order Strategy</h4>
               <p class="text-sm text-[var(--fg-secondary)]" id="recommendation-text">
-                Select a model and enter order quantities to see personalized recommendations based on current inventory levels and demand patterns.
+                Select a model and enter order quantities to see personalized recommendations.
               </p>
             </div>
           </div>
@@ -715,7 +637,7 @@
       <div class="text-center mb-16 reveal">
         <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Live Analysis</p>
         <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Category Health Dashboard</h2>
-        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Normalized scoring system (1-100) with letter grades. Understocking penalized more heavily to ensure category stability.</p>
+        <p class="text-[var(--fg-secondary)] max-w-xl mx-auto">Normalized scoring system with letter grades. Only properly distributed orders will achieve good scores.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -734,8 +656,7 @@
                 <circle class="gauge-fill" cx="60" cy="60" r="50" 
                   stroke="var(--grade-d)" 
                   stroke-dasharray="314.159"
-                  stroke-dashoffset="100.531"
-                  id="gauge-women"></circle>
+                  stroke-dashoffset="100.531"></circle>
               </svg>
               <div class="absolute inset-0 flex items-center justify-center">
                 <span class="font-display font-bold text-2xl">68</span>
@@ -775,8 +696,7 @@
                 <circle class="gauge-fill" cx="60" cy="60" r="50" 
                   stroke="var(--grade-b)" 
                   stroke-dasharray="314.159"
-                  stroke-dashoffset="47.124"
-                  id="gauge-men"></circle>
+                  stroke-dashoffset="47.124"></circle>
               </svg>
               <div class="absolute inset-0 flex items-center justify-center">
                 <span class="font-display font-bold text-2xl">85</span>
@@ -809,33 +729,49 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16 reveal">
         <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Methodology</p>
-        <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">The Process</h2>
-        <p class="text-[var(--fg-secondary)] max-w-2xl mx-auto">A systematic approach to inventory health scoring with weighted prioritization for core sizes where 72% of demand exists.</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Scoring Algorithm</h2>
+        <p class="text-[var(--fg-secondary)] max-w-2xl mx-auto">The scoring system uses weighted penalties with strict enforcement for wasteful ordering patterns.</p>
       </div>
 
       <div class="dash-card p-8 mb-12 reveal">
-        <div class="flex items-start gap-6">
-          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--accent-pink)] to-[var(--accent-pink-dark)] flex items-center justify-center shrink-0">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-            </svg>
-          </div>
+        <h3 class="font-display font-semibold text-xl mb-6">How Scores Are Calculated</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h3 class="font-display font-semibold text-xl mb-3">Core Size Weighting</h3>
-            <p class="text-[var(--fg-secondary)] leading-relaxed mb-4">
-              The scoring system applies <strong class="text-[var(--fg-primary)]">triple weight to core sizes</strong> (Women's 7.5-9.5, Men's 9.5-11.5) because these sizes represent 72% of total demand. Simply adding inventory to edge sizes won't significantly improve your score - you must address the core size gaps to see meaningful improvement.
-            </p>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="p-4 rounded-lg bg-[var(--accent-pink)]/10 border border-[var(--accent-pink)]/20">
-                <div class="text-sm font-medium text-[var(--accent-pink)] mb-1">Core Size Weight</div>
-                <div class="text-2xl font-display font-bold">3.0x</div>
-              </div>
-              <div class="p-4 rounded-lg bg-[var(--fg-secondary)]/10 border border-[var(--fg-secondary)]/20">
-                <div class="text-sm font-medium text-[var(--fg-secondary)] mb-1">Non-Core Weight</div>
-                <div class="text-2xl font-display font-bold">1.0x</div>
-              </div>
-            </div>
+            <h4 class="font-medium mb-4 text-[var(--accent-pink)]">Core Sizes (5x Weight)</h4>
+            <ul class="space-y-3 text-sm text-[var(--fg-secondary)]">
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--accent-red)]">-5 pts</span>
+                <span>per percentage point understocked</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--accent-gold)]">-1 pt</span>
+                <span>per percentage point overstocked</span>
+              </li>
+            </ul>
           </div>
+          
+          <div>
+            <h4 class="font-medium mb-4 text-[var(--fg-secondary)]">Non-Core Sizes (1x Weight)</h4>
+            <ul class="space-y-3 text-sm text-[var(--fg-secondary)]">
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--accent-gold)]">-0.5 pts</span>
+                <span>per percentage point understocked</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[var(--accent-red)]">-4 pts</span>
+                <span>per percentage point overstocked</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-8 p-4 rounded-xl bg-[var(--accent-red)]/10 border border-[var(--accent-red)]/20">
+          <h4 class="font-medium mb-2 text-[var(--accent-red)]">Order Efficiency Penalty</h4>
+          <p class="text-sm text-[var(--fg-secondary)]">
+            Orders to non-core sizes while core is underserved receive a <strong>50% score penalty</strong>. 
+            This prevents "gaming" the system by ordering only edge sizes.
+          </p>
         </div>
       </div>
     </div>
@@ -857,10 +793,6 @@
                 </div>
               </div>
             </div>
-            <div class="absolute -bottom-6 -right-6 dash-card p-4">
-              <div class="text-sm text-[var(--fg-secondary)]">Experience</div>
-              <div class="font-display font-bold text-2xl">4+ Years</div>
-            </div>
           </div>
         </div>
 
@@ -870,7 +802,7 @@
           </div>
           <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 reveal reveal-delay-1">Ielle Bermel</h2>
           <p class="text-[var(--fg-secondary)] text-lg leading-relaxed mb-8 reveal reveal-delay-2">
-            Detail-oriented eCommerce and operations professional with experience supporting Shopify-based retail systems, product database management, inventory accuracy, and process documentation.
+            Detail-oriented eCommerce and operations professional with experience supporting Shopify-based retail systems, product database management, and inventory accuracy.
           </p>
           <div class="reveal reveal-delay-3">
             <h3 class="font-display font-semibold text-lg mb-4">Core Skills</h3>
@@ -879,7 +811,6 @@
               <span class="skill-badge">Inventory Management</span>
               <span class="skill-badge">Google Sheets</span>
               <span class="skill-badge">Data Analysis</span>
-              <span class="skill-badge">RICS</span>
             </div>
           </div>
         </div>
@@ -895,7 +826,7 @@
       </div>
       <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 reveal reveal-delay-1">Let's Work Together</h2>
       <p class="text-[var(--fg-secondary)] text-lg max-w-2xl mx-auto mb-12 reveal reveal-delay-2">
-        Interested in data-driven inventory solutions or retail operations consulting?
+        Interested in data-driven inventory solutions?
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
         <a href="mailto:ielle.yell@gmail.com" class="btn-primary"><span>Send Email</span></a>
@@ -910,12 +841,12 @@
       <div class="font-display font-bold text-lg">
         <span class="gradient-text">ielle bermel</span>
       </div>
-      <p class="text-sm text-[var(--fg-secondary)]">Portfolio Project 2026. Inventory Health Scoring System.</p>
+      <p class="text-sm text-[var(--fg-secondary)]">Portfolio Project 2026</p>
     </div>
   </footer>
 
   <script>
-    // Model Data with realistic inventory distributions
+    // Model Data
     const modelData = {
       adrenaline: {
         name: 'Brooks Adrenaline',
@@ -923,13 +854,13 @@
           sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
           currentInventory: [2, 3, 4, 5, 6, 7, 6, 4, 3, 2, 1],
           idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-          coreIndices: [3, 4, 5, 6, 7] // 7.5, 8, 8.5, 9, 9.5
+          coreIndices: [3, 4, 5, 6, 7]
         },
         men: {
           sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
           currentInventory: [2, 3, 5, 7, 8, 9, 8, 6, 4, 2, 1],
           idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-          coreIndices: [3, 4, 5, 6, 7] // 9.5, 10, 10.5, 11, 11.5
+          coreIndices: [3, 4, 5, 6, 7]
         }
       },
       ghost: {
@@ -1045,7 +976,7 @@
     let currentWidth = 'medium';
     let orderQuantities = {};
 
-    // DOM Elements - initialized after DOM ready
+    // DOM Elements
     let modelSelect = null;
     let curveCanvas = null;
     let curveCtx = null;
@@ -1053,38 +984,31 @@
     let sizeGridCore = null;
     let sizeGridLarge = null;
     let totalUnitsEl = null;
-    let currentTotalEl = null;
-    let afterTotalEl = null;
-    let idealTotalEl = null;
     let currentScoreEl = null;
     let projectedScoreEl = null;
     let currentGradeEl = null;
     let projectedGradeEl = null;
     let urgencyGridEl = null;
     let recommendationTextEl = null;
-    let gapAnalysisEl = null;
+    let orderEfficiencyBox = null;
+    let recommendationBox = null;
 
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize DOM references
       modelSelect = document.getElementById('model-select');
       curveCanvas = document.getElementById('curve-canvas');
-      if (curveCanvas) {
-        curveCtx = curveCanvas.getContext('2d');
-      }
+      if (curveCanvas) curveCtx = curveCanvas.getContext('2d');
       sizeGridSmall = document.getElementById('row-small');
       sizeGridCore = document.getElementById('row-core');
       sizeGridLarge = document.getElementById('row-large');
       totalUnitsEl = document.getElementById('total-units');
-      currentTotalEl = document.getElementById('current-total');
-      afterTotalEl = document.getElementById('after-total');
-      idealTotalEl = document.getElementById('ideal-total');
       currentScoreEl = document.getElementById('current-score');
       projectedScoreEl = document.getElementById('projected-score');
       currentGradeEl = document.getElementById('current-grade');
       projectedGradeEl = document.getElementById('projected-grade');
       urgencyGridEl = document.getElementById('urgency-grid');
       recommendationTextEl = document.getElementById('recommendation-text');
-      gapAnalysisEl = document.getElementById('gap-analysis');
+      orderEfficiencyBox = document.getElementById('order-efficiency-box');
+      recommendationBox = document.getElementById('recommendation-box');
 
       initTool();
       initNavigation();
@@ -1145,10 +1069,10 @@
     function renderAll() {
       renderSizeGrid();
       renderUrgencyGrid();
-      renderGapAnalysis();
       drawCurve();
       updateScores();
       updateTotals();
+      updateOrderEfficiency();
       updateRecommendation();
     }
 
@@ -1160,6 +1084,7 @@
       
       const data = model[currentGender];
       const coreIndices = data.coreIndices;
+      const currentTotal = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
       
       sizeGridSmall.innerHTML = '';
       sizeGridCore.innerHTML = '';
@@ -1167,7 +1092,9 @@
       
       data.sizes.forEach(function(size, index) {
         const isCore = coreIndices.indexOf(index) !== -1;
-        const gap = calculateGap(size, index, data);
+        const currentPercent = currentTotal > 0 ? (data.currentInventory[index] / currentTotal) * 100 : 0;
+        const ideal = data.idealPercent[index];
+        const gap = currentPercent - ideal;
         const urgency = getUrgencyLevel(gap, isCore);
         
         const container = document.createElement('div');
@@ -1175,7 +1102,7 @@
         
         const label = document.createElement('label');
         label.className = 'text-xs ' + (isCore ? 'text-[var(--accent-pink)] font-medium' : 'text-[var(--fg-secondary)]');
-        label.textContent = size + (isCore ? ' (Core)' : '');
+        label.textContent = size;
         
         const inputGroup = document.createElement('div');
         inputGroup.className = 'flex items-center gap-1';
@@ -1200,9 +1127,9 @@
           this.value = val;
           orderQuantities[size] = val;
           updateTotals();
-          renderGapAnalysis();
           drawCurve();
           updateScores();
+          updateOrderEfficiency();
           updateRecommendation();
         });
         
@@ -1221,18 +1148,8 @@
       });
     }
 
-    function calculateGap(size, index, data) {
-      const total = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
-      const safeTotal = Math.max(1, total);
-      const currentPercent = (data.currentInventory[index] / safeTotal) * 100;
-      const ideal = data.idealPercent[index];
-      return currentPercent - ideal;
-    }
-
     function getUrgencyLevel(gap, isCore) {
-      // More aggressive urgency for core sizes
       const threshold = isCore ? -3 : -5;
-      
       if (gap < threshold) return 'critical';
       if (gap < 0) return 'high';
       if (gap < 5) return 'moderate';
@@ -1247,21 +1164,26 @@
       
       const data = model[currentGender];
       const coreIndices = data.coreIndices;
+      const currentTotal = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
+      
       urgencyGridEl.innerHTML = '';
       
       const items = data.sizes.map(function(size, index) {
-        const gap = calculateGap(size, index, data);
+        const currentPercent = currentTotal > 0 ? (data.currentInventory[index] / currentTotal) * 100 : 0;
+        const ideal = data.idealPercent[index];
+        const gap = currentPercent - ideal;
         const isCore = coreIndices.indexOf(index) !== -1;
+        
         return {
           size: size,
           gap: gap,
           isCore: isCore,
           urgency: getUrgencyLevel(gap, isCore),
-          current: data.currentInventory[index]
+          current: data.currentInventory[index],
+          ideal: ideal
         };
       });
       
-      // Sort: core sizes first, then by gap (most negative first)
       items.sort(function(a, b) {
         if (a.isCore !== b.isCore) return a.isCore ? -1 : 1;
         return a.gap - b.gap;
@@ -1275,104 +1197,18 @@
         const urgencyClass = 'urgency-' + item.urgency;
         const urgencyLabel = item.urgency.charAt(0).toUpperCase() + item.urgency.slice(1);
         
+        const gapClass = item.gap < -5 ? 'text-[var(--accent-red)]' : item.gap < 0 ? 'text-[var(--accent-orange)]' : 'text-[var(--accent-green)]';
+        
         card.innerHTML = '\
           <div class="flex items-center gap-2 mb-2">\
             <div class="urgency-indicator ' + urgencyClass + '"></div>\
             <span class="text-sm font-medium">' + item.size + (item.isCore ? ' (Core)' : '') + '</span>\
           </div>\
-          <div class="text-xs text-[var(--fg-secondary)]">' + urgencyLabel + ' Priority</div>\
-          <div class="text-xs text-[var(--fg-secondary)] mt-1">In stock: ' + item.current + '</div>\
-          <div class="text-xs mt-1 ' + (item.gap < 0 ? 'text-[var(--accent-red)]' : 'text-[var(--accent-green)]') + '">\
-            Gap: ' + (item.gap > 0 ? '+' : '') + item.gap.toFixed(1) + '%\
-          </div>\
+          <div class="text-xs text-[var(--fg-secondary)]">Stock: ' + item.current + ' | Ideal: ' + item.ideal + '%</div>\
+          <div class="text-xs mt-1 ' + gapClass + '">Gap: ' + (item.gap > 0 ? '+' : '') + item.gap.toFixed(1) + '%</div>\
         ';
         
         urgencyGridEl.appendChild(card);
-      });
-    }
-
-    function renderGapAnalysis() {
-      if (!gapAnalysisEl) return;
-      
-      const model = modelData[currentModel];
-      if (!model) return;
-      
-      const data = model[currentGender];
-      const coreIndices = data.coreIndices;
-      
-      const total = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
-      const orderTotal = Object.values(orderQuantities).reduce(function(a, b) { return a + b; }, 0);
-      const afterTotal = total + orderTotal;
-      
-      gapAnalysisEl.innerHTML = '';
-      
-      // Show gap analysis for each size
-      const coreGaps = [];
-      const nonCoreGaps = [];
-      
-      data.sizes.forEach(function(size, index) {
-        const isCore = coreIndices.indexOf(index) !== -1;
-        const afterCount = data.currentInventory[index] + (orderQuantities[size] || 0);
-        const currentPercent = total > 0 ? (data.currentInventory[index] / total) * 100 : 0;
-        const afterPercent = afterTotal > 0 ? (afterCount / afterTotal) * 100 : 0;
-        const ideal = data.idealPercent[index];
-        
-        const gapInfo = {
-          size: size,
-          current: data.currentInventory[index],
-          ordered: orderQuantities[size] || 0,
-          after: afterCount,
-          currentPercent: currentPercent,
-          afterPercent: afterPercent,
-          ideal: ideal,
-          gap: afterPercent - ideal,
-          isCore: isCore
-        };
-        
-        if (isCore) {
-          coreGaps.push(gapInfo);
-        } else {
-          nonCoreGaps.push(gapInfo);
-        }
-      });
-      
-      // Render core gaps first
-      const coreHeader = document.createElement('div');
-      coreHeader.className = 'font-medium text-[var(--accent-pink)] mb-2';
-      coreHeader.textContent = 'Core Sizes (72% of demand)';
-      gapAnalysisEl.appendChild(coreHeader);
-      
-      coreGaps.forEach(function(g) {
-        const row = document.createElement('div');
-        row.className = 'flex justify-between items-center text-xs py-1';
-        row.innerHTML = '\
-          <span>' + g.size + '</span>\
-          <span>' + g.current + ' → ' + g.after + ' units</span>\
-          <span class="' + (g.gap < -5 ? 'text-[var(--accent-red)]' : g.gap < 0 ? 'text-[var(--accent-orange)]' : 'text-[var(--accent-green)]') + '">\
-            ' + (g.gap > 0 ? '+' : '') + g.gap.toFixed(1) + '% vs ideal\
-          </span>\
-        ';
-        gapAnalysisEl.appendChild(row);
-      });
-      
-      const divider = document.createElement('div');
-      divider.className = 'border-t border-[var(--border)] my-2';
-      gapAnalysisEl.appendChild(divider);
-      
-      const nonCoreHeader = document.createElement('div');
-      nonCoreHeader.className = 'font-medium text-[var(--fg-secondary)] mb-2 text-xs';
-      nonCoreHeader.textContent = 'Non-Core Sizes';
-      gapAnalysisEl.appendChild(nonCoreHeader);
-      
-      nonCoreGaps.slice(0, 3).forEach(function(g) {
-        const row = document.createElement('div');
-        row.className = 'flex justify-between items-center text-xs py-1 text-[var(--fg-secondary)]';
-        row.innerHTML = '\
-          <span>' + g.size + '</span>\
-          <span>' + g.current + ' → ' + g.after + ' units</span>\
-          <span>' + (g.gap > 0 ? '+' : '') + g.gap.toFixed(1) + '%</span>\
-        ';
-        gapAnalysisEl.appendChild(row);
       });
     }
 
@@ -1383,17 +1219,8 @@
       if (!model) return;
       
       const data = model[currentGender];
-      const currentTotal = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
       const orderTotal = Object.values(orderQuantities).reduce(function(a, b) { return a + b; }, 0);
-      const afterTotal = currentTotal + orderTotal;
-      
-      // Calculate ideal total based on max percentage
-      const idealTotal = Math.round((currentTotal + orderTotal) / 0.19); // 19% is peak of ideal curve
-      
       totalUnitsEl.textContent = orderTotal;
-      if (currentTotalEl) currentTotalEl.textContent = currentTotal;
-      if (afterTotalEl) afterTotalEl.textContent = afterTotal;
-      if (idealTotalEl) idealTotalEl.textContent = idealTotal;
     }
 
     function drawCurve() {
@@ -1416,7 +1243,7 @@
       
       curveCtx.clearRect(0, 0, width, height);
       
-      // Draw grid
+      // Grid
       curveCtx.strokeStyle = 'rgba(233, 30, 140, 0.1)';
       curveCtx.lineWidth = 1;
       
@@ -1428,36 +1255,31 @@
         curveCtx.stroke();
       }
       
-      // Fixed Y-axis scale (0-20%) based on ideal curve peak
-      const maxPercent = 20;
       const xStep = (width - 2 * padding) / Math.max(1, data.sizes.length - 1);
+      const maxUnits = Math.max(15, Math.max(...data.currentInventory.map(function(c, i) {
+        return c + (orderQuantities[data.sizes[i]] || 0);
+      })));
       
-      // Draw ideal curve
+      // Ideal curve
       curveCtx.beginPath();
       curveCtx.strokeStyle = 'rgba(244, 196, 48, 0.5)';
       curveCtx.lineWidth = 2;
       curveCtx.setLineDash([5, 5]);
       
+      const maxIdeal = Math.max(...data.idealPercent);
       data.idealPercent.forEach(function(percent, index) {
         const x = padding + index * xStep;
-        const y = height - padding - (percent / maxPercent) * (height - 2 * padding);
+        const y = height - padding - (percent / maxIdeal) * (height - 2 * padding);
         if (index === 0) curveCtx.moveTo(x, y);
         else curveCtx.lineTo(x, y);
       });
       curveCtx.stroke();
       curveCtx.setLineDash([]);
       
-      // Calculate after-order inventory
-      const totalCurrent = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
-      const orderValues = data.sizes.map(function(s) { return orderQuantities[s] || 0; });
-      const totalAfter = totalCurrent + orderValues.reduce(function(a, b) { return a + b; }, 0);
-      
-      // Draw current inventory (absolute units scaled)
+      // Current inventory
       curveCtx.beginPath();
       curveCtx.strokeStyle = '#E91E8C';
       curveCtx.lineWidth = 2;
-      
-      const maxUnits = Math.max(15, Math.max(...data.currentInventory));
       
       data.currentInventory.forEach(function(count, index) {
         const x = padding + index * xStep;
@@ -1467,7 +1289,7 @@
       });
       curveCtx.stroke();
       
-      // Draw after-order inventory
+      // After-order inventory
       curveCtx.beginPath();
       curveCtx.strokeStyle = '#2ECC71';
       curveCtx.lineWidth = 2;
@@ -1481,18 +1303,16 @@
       });
       curveCtx.stroke();
       
-      // Draw points and labels
+      // Points and labels
       data.sizes.forEach(function(size, index) {
         const x = padding + index * xStep;
         
-        // Current point
         const currentY = height - padding - (data.currentInventory[index] / maxUnits) * (height - 2 * padding);
         curveCtx.beginPath();
         curveCtx.arc(x, currentY, 4, 0, Math.PI * 2);
         curveCtx.fillStyle = '#E91E8C';
         curveCtx.fill();
         
-        // After point
         const afterCount = data.currentInventory[index] + (orderQuantities[size] || 0);
         const afterY = height - padding - (afterCount / maxUnits) * (height - 2 * padding);
         curveCtx.beginPath();
@@ -1500,7 +1320,6 @@
         curveCtx.fillStyle = '#2ECC71';
         curveCtx.fill();
         
-        // Size label
         curveCtx.fillStyle = '#A8A2A4';
         curveCtx.font = '10px Space Grotesk';
         curveCtx.textAlign = 'center';
@@ -1527,14 +1346,12 @@
       const data = model[currentGender];
       const coreIndices = data.coreIndices;
       
-      // Calculate current score
-      const currentScore = calculateWeightedScore(data, data.currentInventory, coreIndices);
+      const currentScore = calculateWeightedScore(data, data.currentInventory, coreIndices, {});
       
-      // Calculate projected score
       const afterInventory = data.sizes.map(function(size, index) {
         return data.currentInventory[index] + (orderQuantities[size] || 0);
       });
-      const projectedScore = calculateWeightedScore(data, afterInventory, coreIndices);
+      const projectedScore = calculateWeightedScore(data, afterInventory, coreIndices, orderQuantities);
       
       currentScoreEl.textContent = currentScore;
       projectedScoreEl.textContent = projectedScore;
@@ -1549,36 +1366,101 @@
       projectedGradeEl.className = 'grade-badge grade-' + projectedGrade.toLowerCase() + ' text-xs';
     }
 
-    function calculateWeightedScore(data, inventory, coreIndices) {
+    function calculateWeightedScore(data, inventory, coreIndices, orders) {
       const total = inventory.reduce(function(a, b) { return a + b; }, 0);
       if (total === 0) return 0;
       
       let totalScore = 0;
       let totalWeight = 0;
       
+      // First pass: calculate base scores
       inventory.forEach(function(count, index) {
         const actualPercent = (count / total) * 100;
         const ideal = data.idealPercent[index];
         const isCore = coreIndices.indexOf(index) !== -1;
-        const weight = isCore ? 3 : 1;
+        const weight = isCore ? 5 : 1;
         
-        const deviation = Math.abs(actualPercent - ideal);
+        const deviation = actualPercent - ideal;
         
         let sizeScore;
-        if (actualPercent < ideal) {
-          // Understock penalty (steeper)
-          sizeScore = Math.max(0, 100 - deviation * 1.5);
+        
+        if (isCore) {
+          // Core sizes: understock is critical
+          if (deviation < 0) {
+            sizeScore = Math.max(0, 100 - Math.abs(deviation) * 5);
+          } else {
+            sizeScore = Math.max(0, 100 - deviation);
+          }
         } else {
-          // Overstock penalty (gentler)
-          sizeScore = Math.max(0, 100 - deviation * 0.8);
+          // Non-core sizes
+          if (deviation < 0) {
+            sizeScore = Math.max(0, 100 - Math.abs(deviation) * 0.5);
+          } else {
+            // Overstock on non-core is wasteful
+            sizeScore = Math.max(0, 100 - deviation * 4);
+          }
         }
         
-        // Apply core weighting
         totalScore += sizeScore * weight;
         totalWeight += weight;
       });
       
-      return Math.round(totalScore / Math.max(1, totalWeight));
+      let score = Math.round(totalScore / Math.max(1, totalWeight));
+      
+      // Apply order efficiency penalty
+      const orderTotal = Object.values(orders).reduce(function(a, b) { return a + b; }, 0);
+      if (orderTotal > 0) {
+        const efficiency = calculateOrderEfficiency(data, inventory, coreIndices, orders);
+        
+        // If efficiency is low, apply severe penalty
+        if (efficiency < 0.3) {
+          score = Math.round(score * 0.5); // 50% penalty for wasteful orders
+        } else if (efficiency < 0.5) {
+          score = Math.round(score * 0.7); // 30% penalty
+        } else if (efficiency < 0.7) {
+          score = Math.round(score * 0.85); // 15% penalty
+        }
+      }
+      
+      return score;
+    }
+
+    function calculateOrderEfficiency(data, inventory, coreIndices, orders) {
+      const total = inventory.reduce(function(a, b) { return a + b; }, 0);
+      const orderTotal = Object.values(orders).reduce(function(a, b) { return a + b; }, 0);
+      
+      if (orderTotal === 0) return 1;
+      
+      let goodUnits = 0;
+      let badUnits = 0;
+      
+      data.sizes.forEach(function(size, index) {
+        const qty = orders[size] || 0;
+        if (qty === 0) return;
+        
+        const isCore = coreIndices.indexOf(index) !== -1;
+        const currentPercent = total > 0 ? (data.currentInventory[index] / total) * 100 : 0;
+        const ideal = data.idealPercent[index];
+        const gap = currentPercent - ideal;
+        
+        if (isCore && gap < 0) {
+          // Ordering to underserved core - excellent
+          goodUnits += qty;
+        } else if (!isCore && gap > 5) {
+          // Ordering to overstocked non-core - wasteful
+          badUnits += qty;
+        } else if (!isCore && gap > 0) {
+          // Slightly overstocked non-core - neutral/slight bad
+          badUnits += qty * 0.5;
+        } else {
+          // Neutral contribution
+          goodUnits += qty * 0.3;
+        }
+      });
+      
+      // Efficiency = good / total, penalized by bad
+      const efficiency = Math.max(0, (goodUnits - badUnits * 0.5) / orderTotal);
+      return Math.min(1, efficiency);
     }
 
     function getGrade(score) {
@@ -1589,29 +1471,79 @@
       return 'F';
     }
 
-    function updateRecommendation() {
-      if (!recommendationTextEl) return;
+    function updateOrderEfficiency() {
+      if (!orderEfficiencyBox) return;
       
       const model = modelData[currentModel];
       if (!model) return;
       
       const data = model[currentGender];
       const coreIndices = data.coreIndices;
+      const currentTotal = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
+      const orderTotal = Object.values(orderQuantities).reduce(function(a, b) { return a + b; }, 0);
       
-      // Analyze core size gaps
+      if (orderTotal === 0) {
+        orderEfficiencyBox.innerHTML = '';
+        return;
+      }
+      
+      const efficiency = calculateOrderEfficiency(data, data.currentInventory, coreIndices, orderQuantities);
+      
+      let boxClass = 'success';
+      let icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      let title = 'Efficient Order';
+      let message = 'Your order targets core size gaps. This will improve your distribution score.';
+      
+      if (efficiency < 0.3) {
+        boxClass = '';
+        icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-red)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
+        title = 'Wasteful Order Detected';
+        message = 'You are ordering to non-core sizes while core sizes remain underserved. This order will NOT improve your score significantly. Focus on core sizes (highlighted in pink).';
+      } else if (efficiency < 0.5) {
+        boxClass = 'caution';
+        icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>';
+        title = 'Suboptimal Order';
+        message = 'Some of your order targets sizes that are already well-stocked. Consider reallocating to core sizes for better score improvement.';
+      } else if (efficiency < 0.7) {
+        boxClass = 'caution';
+        icon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>';
+        title = 'Acceptable Order';
+        message = 'Your order partially addresses core size gaps. Better distribution would further improve your score.';
+      }
+      
+      orderEfficiencyBox.innerHTML = '\
+        <div class="warning-box ' + boxClass + '">\
+          <div class="flex items-start gap-3">\
+            <div class="shrink-0 mt-0.5">' + icon + '</div>\
+            <div>\
+              <div class="font-medium text-sm">' + title + '</div>\
+              <div class="text-xs text-[var(--fg-secondary)] mt-1">' + message + '</div>\
+            </div>\
+          </div>\
+        </div>\
+      ';
+    }
+
+    function updateRecommendation() {
+      if (!recommendationTextEl || !recommendationBox) return;
+      
+      const model = modelData[currentModel];
+      if (!model) return;
+      
+      const data = model[currentGender];
+      const coreIndices = data.coreIndices;
+      const currentTotal = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
+      
       const coreGaps = [];
       data.sizes.forEach(function(size, index) {
         if (coreIndices.indexOf(index) !== -1) {
-          const total = data.currentInventory.reduce(function(a, b) { return a + b; }, 0);
-          const afterCount = data.currentInventory[index] + (orderQuantities[size] || 0);
-          const orderTotal = Object.values(orderQuantities).reduce(function(a, b) { return a + b; }, 0);
-          const afterTotal = total + orderTotal;
-          const afterPercent = afterTotal > 0 ? (afterCount / afterTotal) * 100 : 0;
+          const currentPercent = currentTotal > 0 ? (data.currentInventory[index] / currentTotal) * 100 : 0;
           const ideal = data.idealPercent[index];
+          const gap = currentPercent - ideal;
           
           coreGaps.push({
             size: size,
-            gap: afterPercent - ideal,
+            gap: gap,
             ordered: orderQuantities[size] || 0
           });
         }
@@ -1621,27 +1553,24 @@
       const addressedCore = coreGaps.filter(function(g) { return g.ordered > 0; });
       
       let text = '';
+      let boxClass = '';
       
       if (criticalCore.length > 0) {
-        text = 'Core sizes ' + criticalCore.slice(0, 3).map(function(g) { return g.size; }).join(', ') + ' are still critically understocked. These sizes represent the majority of demand - focus your orders here for maximum score improvement.';
+        text = 'Critical core sizes need attention: ' + criticalCore.slice(0, 3).map(function(g) { return g.size; }).join(', ') + '. These sizes represent the majority of demand. Orders to non-core sizes will NOT improve your score.';
+        boxClass = 'border-[var(--accent-pink)]/20';
       } else if (addressedCore.length > 0) {
         const sizesText = addressedCore.map(function(g) { return g.size + ' (+' + g.ordered + ')' ; }).join(', ');
-        text = 'Good progress on core sizes: ' + sizesText + '. ';
-        
-        const remainingGaps = coreGaps.filter(function(g) { return g.gap < -3; });
-        if (remainingGaps.length > 0) {
-          text += 'Consider adding more to: ' + remainingGaps.slice(0, 2).map(function(g) { return g.size; }).join(', ') + '.';
-        } else {
-          text += 'Core size distribution is looking healthy!';
-        }
+        text = 'Good: ordering to core sizes ' + sizesText + '. This approach will improve your distribution score.';
+        boxClass = 'border-[var(--accent-green)]/30';
       } else {
-        text = 'This model has a well-balanced inventory distribution. Maintain focus on core sizes during replenishment to preserve alignment.';
+        text = 'This model has balanced inventory. Maintain focus on core sizes during replenishment.';
+        boxClass = 'border-[var(--accent-pink)]/20';
       }
       
       recommendationTextEl.textContent = text;
+      recommendationBox.className = 'mt-8 p-6 rounded-xl bg-gradient-to-r from-[var(--accent-pink)]/10 to-transparent border ' + boxClass;
     }
 
-    // Navigation
     function initNavigation() {
       const navbar = document.getElementById('navbar');
       const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -1650,11 +1579,7 @@
       if (!navbar || !mobileMenuBtn || !mobileMenu) return;
 
       window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
       });
 
       mobileMenuBtn.addEventListener('click', function() {
@@ -1668,38 +1593,31 @@
       });
     }
 
-    // Scroll reveal
     function initScrollReveal() {
       const observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
+          if (entry.isIntersecting) entry.target.classList.add('visible');
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-      document.querySelectorAll('.reveal, .stat-card').forEach(function(el) {
+      document.querySelectorAll('.reveal').forEach(function(el) {
         observer.observe(el);
       });
     }
 
-    // Counter animation
     function initCounters() {
       const counters = document.querySelectorAll('.counter');
       
       const observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
-            const target = parseInt(entry.target.getAttribute('data-target'));
-            animateCounter(entry.target, target);
+            animateCounter(entry.target, parseInt(entry.target.getAttribute('data-target')));
             observer.unobserve(entry.target);
           }
         });
       }, { threshold: 0.5 });
 
-      counters.forEach(function(counter) {
-        observer.observe(counter);
-      });
+      counters.forEach(function(counter) { observer.observe(counter); });
     }
 
     function animateCounter(element, target) {
@@ -1716,13 +1634,9 @@
       }, 30);
     }
 
-    // Particles
     function initParticles() {
       const particlesContainer = document.getElementById('particles-container');
-      if (!particlesContainer) return;
-      
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reducedMotion) return;
+      if (!particlesContainer || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       for (let i = 0; i < 20; i++) {
         const particle = document.createElement('div');
@@ -1734,16 +1648,12 @@
       }
     }
 
-    // Network canvas background
     function initNetworkCanvas() {
       const networkCanvas = document.getElementById('network-canvas');
-      if (!networkCanvas) return;
+      if (!networkCanvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       
       const ctx = networkCanvas.getContext('2d');
       if (!ctx) return;
-      
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reducedMotion) return;
 
       let width = 0;
       let height = 0;
@@ -1754,10 +1664,7 @@
         height = window.innerHeight;
         networkCanvas.width = width;
         networkCanvas.height = height;
-        initNodes();
-      }
-
-      function initNodes() {
+        
         nodes = [];
         const count = Math.floor((width * height) / 25000);
         for (let i = 0; i < count; i++) {
@@ -1786,18 +1693,13 @@
           ctx.fillStyle = 'rgba(233, 30, 140, 0.3)';
           ctx.fill();
           
-          nodes.forEach(function(other, j) {
-            if (i >= j) return;
-            const dx = node.x - other.x;
-            const dy = node.y - other.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            
+          nodes.slice(i + 1).forEach(function(other) {
+            const dist = Math.sqrt(Math.pow(node.x - other.x, 2) + Math.pow(node.y - other.y, 2));
             if (dist < 150) {
               ctx.beginPath();
               ctx.moveTo(node.x, node.y);
               ctx.lineTo(other.x, other.y);
-              const alpha = Math.max(0.01, Math.min(0.15, (1 - dist / 150) * 0.15));
-              ctx.strokeStyle = 'rgba(233, 30, 140, ' + alpha + ')';
+              ctx.strokeStyle = 'rgba(233, 30, 140, ' + Math.max(0.01, (1 - dist / 150) * 0.15) + ')';
               ctx.stroke();
             }
           });
@@ -1811,14 +1713,11 @@
       animate();
     }
 
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
   </script>
