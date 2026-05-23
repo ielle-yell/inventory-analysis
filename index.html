@@ -313,28 +313,18 @@
     .toggle-btn:hover:not(.active) { color: var(--fg-primary); }
 
     .size-input {
-      width: 44px;
+      width: 48px;
       background: var(--bg-primary);
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 5px 3px;
+      padding: 6px 4px;
       text-align: center;
       color: var(--fg-primary);
-      font-size: 12px;
+      font-size: 13px;
       transition: all 0.2s ease;
     }
 
     .size-input:focus { border-color: var(--accent-pink); }
-
-    .size-input.positive {
-      border-color: var(--accent-green);
-      background: rgba(46, 204, 113, 0.1);
-    }
-
-    .size-input.negative {
-      border-color: var(--accent-red);
-      background: rgba(231, 76, 60, 0.1);
-    }
 
     .info-box {
       padding: 12px 16px;
@@ -347,50 +337,35 @@
     .info-box.error { background: rgba(231, 76, 60, 0.1); border: 1px solid rgba(231, 76, 60, 0.3); }
     .info-box.neutral { background: rgba(233, 30, 140, 0.08); border: 1px solid var(--border); }
 
-    .model-row {
-      display: grid;
-      grid-template-columns: 1fr 60px 60px 60px 50px;
-      gap: 10px;
-      align-items: center;
-      padding: 10px 12px;
-      border-radius: 8px;
-      transition: background 0.2s;
-    }
-
-    .model-row:hover {
-      background: rgba(233, 30, 140, 0.05);
-    }
-
-    .model-row.selected {
-      background: rgba(233, 30, 140, 0.1);
-      border: 1px solid var(--accent-pink);
-    }
-
     .size-row {
       display: grid;
-      grid-template-columns: 50px 50px 60px 50px 60px 60px;
-      gap: 8px;
+      grid-template-columns: 60px 70px 80px 80px 70px 80px;
+      gap: 12px;
       align-items: center;
-      padding: 8px 0;
+      padding: 10px 0;
       border-bottom: 1px solid rgba(233, 30, 140, 0.05);
     }
 
     .size-row.core {
       background: rgba(233, 30, 140, 0.06);
-      margin: 0 -12px;
-      padding: 8px 12px;
+      margin: 0 -16px;
+      padding: 10px 16px;
     }
 
-    .score-card {
+    .score-panel {
       background: var(--bg-primary);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 16px;
-      text-align: center;
+      padding: 20px;
+    }
+
+    .score-value {
+      font-size: 32px;
+      font-weight: 700;
     }
 
     .score-change {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
     }
 
@@ -464,18 +439,17 @@
       <div class="text-center mb-10 reveal">
         <p class="text-sm font-medium tracking-[0.2em] text-[var(--accent-pink)] mb-4 uppercase">Interactive Tool</p>
         <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Inventory Distribution Planner</h2>
-        <p class="text-[var(--fg-secondary)] max-w-2xl mx-auto">Select a gender to see how 550 units should be distributed across models (based on sales share) and sizes (based on demand curve).</p>
+        <p class="text-[var(--fg-secondary)] max-w-2xl mx-auto">Select a model to plan inventory distribution across sizes based on demand patterns.</p>
       </div>
 
       <div class="dash-card p-6 md:p-8 reveal">
         <!-- Controls -->
-        <div class="flex flex-col sm:flex-row gap-4 mb-6">
+        <div class="flex flex-col sm:flex-row gap-4 mb-6 items-start sm:items-end">
           <div class="flex-1">
-            <label class="block text-sm font-medium mb-2">Target Inventory</label>
-            <div class="flex items-center gap-2">
-              <span class="font-display font-bold text-2xl text-[var(--accent-pink)]">550</span>
-              <span class="text-[var(--fg-secondary)]">units per gender</span>
-            </div>
+            <label class="block text-sm font-medium mb-2">Select Model</label>
+            <select class="select-styled w-full max-w-md" id="model-select">
+              <option value="">Choose a model...</option>
+            </select>
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">Gender</label>
@@ -484,89 +458,59 @@
               <button class="toggle-btn" data-gender="men">Men's</button>
             </div>
           </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Target</label>
+            <div class="font-display font-bold text-xl text-[var(--accent-pink)]">550 units</div>
+          </div>
         </div>
 
-        <!-- Two Column Layout -->
-        <div class="grid grid-cols-1 xl:grid-cols-5 gap-8">
-          
-          <!-- Left: Model Distribution -->
-          <div class="xl:col-span-2">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="font-display font-semibold text-lg">Model Distribution</h3>
-              <span class="text-xs text-[var(--fg-secondary)]">Based on YTD Sales Share</span>
-            </div>
-
-            <div class="text-xs text-[var(--fg-secondary)] grid grid-cols-[1fr_60px_60px_60px_50px] gap-2 mb-2 px-3">
-              <span>Model</span>
-              <span class="text-center">Ideal</span>
-              <span class="text-center">Current</span>
-              <span class="text-center">Score</span>
-              <span class="text-center">Status</span>
-            </div>
-
-            <div class="space-y-1 max-h-[500px] overflow-y-auto" id="model-list"></div>
-
-            <!-- Totals -->
-            <div class="mt-4 p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
-              <div class="grid grid-cols-3 gap-4 text-center text-sm">
-                <div>
-                  <div class="text-[var(--fg-secondary)]">Ideal Total</div>
-                  <div class="font-display font-bold text-xl">550</div>
-                </div>
-                <div>
-                  <div class="text-[var(--fg-secondary)]">Current Total</div>
-                  <div class="font-display font-bold text-xl" id="current-model-total">0</div>
-                </div>
-                <div>
-                  <div class="text-[var(--fg-secondary)]">Avg Score</div>
-                  <div class="font-display font-bold text-xl" id="avg-score">--</div>
-                </div>
-              </div>
+        <!-- Main Layout: Table + Side Panel -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" id="tool-content">
+          <!-- Size Distribution Table -->
+          <div class="lg:col-span-2">
+            <div class="p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]" id="size-table-container">
+              <p class="text-[var(--fg-secondary)] text-center py-8">Select a model to begin planning inventory distribution.</p>
             </div>
           </div>
 
-          <!-- Right: Size Distribution for Selected Model -->
-          <div class="xl:col-span-3">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="font-display font-semibold text-lg">Size Breakdown</h3>
-              <div class="flex items-center gap-3">
-                <span class="text-sm font-medium text-[var(--accent-pink)]" id="selected-model-name">Select a model</span>
-                <button class="btn-small" id="autofill-btn" disabled>Autofill Optimal</button>
+          <!-- Right Side Panel: Scores + Chart -->
+          <div class="space-y-4" id="side-panel">
+            <!-- Distribution Scores -->
+            <div class="score-panel" id="score-panel" style="display: none;">
+              <h4 class="text-sm font-medium text-[var(--fg-secondary)] mb-4">Distribution Scores</h4>
+              <div class="space-y-4">
+                <div>
+                  <div class="text-xs text-[var(--fg-secondary)] mb-1">Current</div>
+                  <div class="flex items-baseline gap-2">
+                    <span class="score-value" id="current-score">--</span>
+                    <span class="grade-badge" id="current-grade">--</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="text-xs text-[var(--fg-secondary)] mb-1">Projected</div>
+                  <div class="flex items-baseline gap-2">
+                    <span class="score-value" id="projected-score">--</span>
+                    <span class="grade-badge" id="projected-grade">--</span>
+                  </div>
+                </div>
+                <div class="pt-2 border-t border-[var(--border)]">
+                  <span class="score-change" id="score-change">--</span>
+                </div>
               </div>
             </div>
 
-            <div id="size-panel" class="p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
-              <p class="text-[var(--fg-secondary)] text-center py-8">Click on a model from the left panel to see size distribution details.</p>
-            </div>
-
-            <!-- Score Cards -->
-            <div class="mt-4 grid grid-cols-3 gap-4" id="score-cards" style="display: none;">
-              <div class="score-card">
-                <div class="text-xs text-[var(--fg-secondary)] mb-2">Current Score</div>
-                <div class="grade-badge" id="current-score-badge">--</div>
-              </div>
-              <div class="score-card">
-                <div class="text-xs text-[var(--fg-secondary)] mb-2">Projected Score</div>
-                <div class="grade-badge" id="projected-score-badge">--</div>
-              </div>
-              <div class="score-card">
-                <div class="text-xs text-[var(--fg-secondary)] mb-2">Change</div>
-                <div class="score-change" id="score-change">--</div>
-              </div>
-            </div>
-
-            <!-- Order Status Message -->
-            <div class="mt-4" id="order-status-container" style="display: none;">
+            <!-- Order Status -->
+            <div id="order-status-container" style="display: none;">
               <div class="info-box" id="order-status-box"></div>
             </div>
 
-            <!-- Size Chart -->
-            <div class="mt-4 p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]">
-              <h4 class="text-sm font-medium mb-3">Size Distribution Comparison</h4>
-              <canvas id="size-chart" class="w-full h-40"></canvas>
+            <!-- Distribution Chart -->
+            <div class="p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)]" id="chart-container" style="display: none;">
+              <h4 class="text-sm font-medium mb-3">Distribution Comparison</h4>
+              <canvas id="size-chart" class="w-full h-48"></canvas>
               <div class="flex justify-center gap-6 mt-3 text-xs text-[var(--fg-secondary)]">
                 <div class="flex items-center gap-2">
-                  <div class="w-3 h-3 rounded-full bg-[var(--accent-pink)]"></div>
+                  <div class="w-6 h-0 border-t-2 border-dashed border-[var(--accent-pink)] opacity-60"></div>
                   <span>Ideal</span>
                 </div>
                 <div class="flex items-center gap-2">
@@ -707,13 +651,9 @@
   <script>
     // === DATA STRUCTURES ===
     
-    // Target inventory per gender
     const TARGET_INVENTORY = 550;
-    
-    // Score tolerance - changes within this range don't affect score
     const SCORE_TOLERANCE = 1;
     
-    // Sales share percentages by gender (from YTD data)
     const salesShareData = {
       women: {
         'Brooks Adrenaline': 7.56,
@@ -725,7 +665,7 @@
         'Brooks Glycerin': 4.33,
         'Brooks Ghost Max': 4.33,
         'HOKA Gaviota': 2.00,
-        'HOKA Clifton': 3.44, // Updated from 3.78 to match spreadsheet
+        'HOKA Clifton': 3.44,
         'New Balance 860': 3.22,
         'HOKA Mach': 1.44,
         'ON Runner': 2.22,
@@ -738,7 +678,7 @@
         'Saucony Triumph': 3.00,
         'Saucony Guide': 1.56,
         'Saucony Ride': 1.44,
-        'Saucony Hurricane': 0.78, // Added
+        'Saucony Hurricane': 0.78,
         'New Balance 1080': 2.78,
         'New Balance 880': 1.56,
         'New Balance Ellipse': 1.78,
@@ -750,13 +690,13 @@
         'Mizuno Rider': 0.44,
         'Mizuno Inspire': 1.00,
         'Altra Exp Flow': 0.78,
-        'Altra Exp Flow ST': 0.56, // Added
+        'Altra Exp Flow ST': 0.56,
         'Altra Fwd Via': 1.67,
-        'Altra Escalante': 0.22, // Added
-        'Altra Torin': 0.44, // Added
-        'Altra Paradigm': 0.44, // Added
+        'Altra Escalante': 0.22,
+        'Altra Torin': 0.44,
+        'Altra Paradigm': 0.44,
         'Topo Atmos': 1.11,
-        'Topo Aura': 1.00 // Added
+        'Topo Aura': 1.00
       },
       men: {
         'Brooks Adrenaline': 6.50,
@@ -771,8 +711,8 @@
         'Brooks Ghost Max': 3.53,
         'HOKA Bondi': 3.20,
         'HOKA Gaviota': 3.19,
-        'HOKA Challenger': 1.10, // Added
-        'HOKA Bondi SR': 1.21, // Added
+        'HOKA Challenger': 1.10,
+        'HOKA Bondi SR': 1.21,
         'New Balance 1080': 2.53,
         'ASICS Novablast': 2.31,
         'ON Runner': 2.20,
@@ -788,61 +728,43 @@
         'Mizuno Rider': 1.21,
         'Mizuno Inspire': 1.43,
         'Altra Fwd Via': 1.43,
-        'Altra Escalante': 1.10, // Added
-        'Altra Torin': 0.77, // Added
-        'Brooks Hyperion Max': 0.55, // Added
+        'Altra Escalante': 1.10,
+        'Altra Torin': 0.77,
+        'Brooks Hyperion Max': 0.55,
         'Topo Phantom': 0.55
       }
     };
     
-    // Size distribution percentages (ideal curve)
     const sizeDistribution = {
       women: {
         sizes: ['6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11'],
         idealPercent: [2, 5, 9, 12, 16, 18, 15, 11, 7, 4, 1],
-        coreStart: 3, coreEnd: 7 // sizes 7.5 - 9.5
+        coreStart: 3, coreEnd: 7
       },
       men: {
         sizes: ['8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '12.5', '13'],
         idealPercent: [3, 5, 9, 12, 16, 19, 16, 9, 6, 3, 2],
-        coreStart: 3, coreEnd: 7 // sizes 9.5 - 11.5
+        coreStart: 3, coreEnd: 7
       }
     };
 
-    // Current inventory state
-    let currentInventory = {
-      women: {},
-      men: {}
-    };
-
-    // Orders being planned
-    let plannedOrders = {
-      women: {},
-      men: {}
-    };
-
-    // Selected model for detail view
+    let currentInventory = { women: {}, men: {} };
+    let plannedOrders = { women: {}, men: {} };
     let selectedModel = null;
     let selectedGender = 'women';
 
-    // DOM elements
-    let modelListEl = null;
-    let sizePanelEl = null;
+    let modelSelectEl = null;
+    let sizeTableContainer = null;
     let sizeChartCanvas = null;
     let sizeChartCtx = null;
 
-    // === INITIALIZATION ===
-    
     document.addEventListener('DOMContentLoaded', function() {
-      modelListEl = document.getElementById('model-list');
-      sizePanelEl = document.getElementById('size-panel');
+      modelSelectEl = document.getElementById('model-select');
+      sizeTableContainer = document.getElementById('size-table-container');
       sizeChartCanvas = document.getElementById('size-chart');
       if (sizeChartCanvas) sizeChartCtx = sizeChartCanvas.getContext('2d');
 
-      // Initialize inventory data
       initializeInventory();
-      
-      // Setup event handlers
       initTool();
       initNavigation();
       initScrollReveal();
@@ -858,28 +780,20 @@
         Object.keys(salesData).forEach(function(model) {
           const salesShare = salesData[model];
           const idealModelUnits = Math.round((salesShare / 100) * TARGET_INVENTORY);
-          
-          // Create deliberately suboptimal inventory
-          // Fill rate varies by model to create realistic variation
-          const baseFillRate = 0.50 + (Math.random() * 0.15); // 50-65% fill
+          const baseFillRate = 0.50 + (Math.random() * 0.15);
           const currentModelUnits = Math.round(idealModelUnits * baseFillRate);
           
-          // Distribute current units across sizes with deliberate imbalances
           const sizeUnits = {};
           let remaining = currentModelUnits;
           
-          // Create size distribution that's intentionally off from ideal
           sizeData.sizes.forEach(function(size, index) {
             const idealSizePercent = sizeData.idealPercent[index];
             const isCore = index >= sizeData.coreStart && index <= sizeData.coreEnd;
             
-            // Intentionally under-stock core sizes sometimes (creates room for improvement)
             let adjustedPercent = idealSizePercent;
             if (isCore) {
-              // Core sizes get 70-90% of ideal allocation
               adjustedPercent = idealSizePercent * (0.70 + Math.random() * 0.20);
             } else {
-              // Non-core sizes might be slightly over or under
               adjustedPercent = idealSizePercent * (0.80 + Math.random() * 0.40);
             }
             
@@ -889,14 +803,10 @@
             remaining -= sizeUnits[size];
           });
           
-          // Distribute remaining units randomly (creates more imbalance)
           if (remaining > 0) {
             const randomIndices = [];
-            for (let i = 0; i < sizeData.sizes.length; i++) {
-              randomIndices.push(i);
-            }
+            for (let i = 0; i < sizeData.sizes.length; i++) randomIndices.push(i);
             shuffleArray(randomIndices);
-            
             randomIndices.forEach(function(idx) {
               if (remaining <= 0) return;
               const size = sizeData.sizes[idx];
@@ -921,8 +831,6 @@
       }
     }
 
-    // === SCORING SYSTEM ===
-    
     function calculateModelScore(gender, model, inventory) {
       const salesShare = salesShareData[gender][model];
       const idealModelUnits = Math.round((salesShare / 100) * TARGET_INVENTORY);
@@ -937,51 +845,29 @@
       let maxScore = 0;
       const details = {};
       
-      // Score each size
       sizeData.sizes.forEach(function(size, index) {
         const idealPercent = sizeData.idealPercent[index];
         const isCore = index >= sizeData.coreStart && index <= sizeData.coreEnd;
         const idealUnits = Math.round(idealModelUnits * (idealPercent / 100));
         const currentUnits = modelInventory[size] || 0;
         
-        // Weight: core sizes are worth more
         const weight = isCore ? 2 : 1;
         maxScore += weight * 10;
         
-        // Calculate deviation
         const deviation = Math.abs(currentUnits - idealUnits);
-        
-        // Score based on deviation with tolerance
         let sizeScore;
-        if (deviation <= SCORE_TOLERANCE) {
-          sizeScore = 10; // Perfect or within tolerance
-        } else if (deviation <= 2) {
-          sizeScore = 9;
-        } else if (deviation <= 3) {
-          sizeScore = 7;
-        } else if (deviation <= 4) {
-          sizeScore = 5;
-        } else if (deviation <= 5) {
-          sizeScore = 3;
-        } else {
-          sizeScore = Math.max(0, 10 - deviation);
-        }
+        if (deviation <= SCORE_TOLERANCE) sizeScore = 10;
+        else if (deviation <= 2) sizeScore = 9;
+        else if (deviation <= 3) sizeScore = 7;
+        else if (deviation <= 4) sizeScore = 5;
+        else if (deviation <= 5) sizeScore = 3;
+        else sizeScore = Math.max(0, 10 - deviation);
         
         totalScore += sizeScore * weight;
-        
-        details[size] = {
-          ideal: idealUnits,
-          current: currentUnits,
-          deviation: deviation,
-          score: sizeScore,
-          weight: weight
-        };
+        details[size] = { ideal: idealUnits, current: currentUnits, deviation: deviation, score: sizeScore, weight: weight };
       });
       
-      // Convert to 0-100 scale
       const normalizedScore = Math.round((totalScore / maxScore) * 100);
-      
-      // Determine grade
       let grade;
       if (normalizedScore >= 90) grade = 'A';
       else if (normalizedScore >= 75) grade = 'B';
@@ -993,7 +879,6 @@
     }
 
     function calculateProjectedScore(gender, model) {
-      // Combine current inventory with planned orders
       const sizeData = sizeDistribution[gender];
       const currentModelInventory = currentInventory[gender][model] || {};
       const modelOrders = plannedOrders[gender][model] || {};
@@ -1007,150 +892,80 @@
     }
 
     function getGradeClass(grade) {
-      const gradeMap = {
-        'A': 'grade-a',
-        'B': 'grade-b',
-        'C': 'grade-c',
-        'D': 'grade-d',
-        'F': 'grade-f'
-      };
+      const gradeMap = { 'A': 'grade-a', 'B': 'grade-b', 'C': 'grade-c', 'D': 'grade-d', 'F': 'grade-f' };
       return gradeMap[grade] || 'grade-f';
     }
 
     function initTool() {
-      // Gender toggle
+      populateModelDropdown();
+      
       document.querySelectorAll('.toggle-btn[data-gender]').forEach(function(btn) {
         btn.addEventListener('click', function() {
           document.querySelectorAll('.toggle-btn[data-gender]').forEach(function(b) { b.classList.remove('active'); });
           this.classList.add('active');
           selectedGender = this.getAttribute('data-gender');
           selectedModel = null;
+          modelSelectEl.value = '';
+          populateModelDropdown();
           renderAll();
         });
       });
 
-      // Autofill button
-      document.getElementById('autofill-btn').addEventListener('click', function() {
-        if (!selectedModel) return;
-        autofillOptimal();
+      modelSelectEl.addEventListener('change', function() {
+        selectedModel = this.value || null;
+        if (selectedModel) {
+          // Reset orders for newly selected model
+          const sizeData = sizeDistribution[selectedGender];
+          sizeData.sizes.forEach(function(size) {
+            plannedOrders[selectedGender][selectedModel][size] = 0;
+          });
+        }
+        renderAll();
       });
 
       renderAll();
     }
 
-    function autofillOptimal() {
-      if (!selectedModel) return;
-      
-      const salesShare = salesShareData[selectedGender][selectedModel];
-      const idealModelUnits = Math.round((salesShare / 100) * TARGET_INVENTORY);
-      const sizeData = sizeDistribution[selectedGender];
-      const currentModelInventory = currentInventory[selectedGender][selectedModel] || {};
-      
-      sizeData.sizes.forEach(function(size, index) {
-        const idealPercent = sizeData.idealPercent[index];
-        const idealUnits = Math.round(idealModelUnits * (idealPercent / 100));
-        const currentUnits = currentModelInventory[size] || 0;
-        
-        // Fill gap up to ideal, but don't exceed reasonable order limits
-        const gap = idealUnits - currentUnits;
-        plannedOrders[selectedGender][selectedModel][size] = Math.max(0, Math.min(20, gap));
-      });
-      
-      renderAll();
-    }
-
-    function renderAll() {
-      renderModelList();
-      renderSizePanel();
-      drawSizeChart();
-      updateTotals();
-      updateScoreCards();
-    }
-
-    function renderModelList() {
-      if (!modelListEl) return;
-      
+    function populateModelDropdown() {
       const salesData = salesShareData[selectedGender];
-      
-      // Sort by sales share (descending)
       const sortedModels = Object.keys(salesData).sort(function(a, b) {
         return salesData[b] - salesData[a];
       });
       
-      modelListEl.innerHTML = '';
-      
+      modelSelectEl.innerHTML = '<option value="">Choose a model...</option>';
       sortedModels.forEach(function(model) {
-        const salesShare = salesData[model];
-        const idealUnits = Math.round((salesShare / 100) * TARGET_INVENTORY);
-        
-        // Calculate current total
-        const modelInventory = currentInventory[selectedGender][model] || {};
-        const currentTotal = Object.values(modelInventory).reduce(function(a, b) { return a + b; }, 0);
-        
-        // Calculate score
-        const scoreResult = calculateModelScore(selectedGender, model);
-        
-        const row = document.createElement('div');
-        row.className = 'model-row' + (selectedModel === model ? ' selected' : '');
-        row.style.cursor = 'pointer';
-        
-        const statusBadge = '<span class="text-xs px-2 py-0.5 rounded ' + getGradeClass(scoreResult.grade) + '">' + scoreResult.score + scoreResult.grade + '</span>';
-        
-        row.innerHTML = '\
-          <div class="text-sm font-medium truncate" title="' + model + '">' + model + '</div>\
-          <div class="text-center text-sm">' + idealUnits + '</div>\
-          <div class="text-center text-sm">' + currentTotal + '</div>\
-          <div class="text-center">' + statusBadge + '</div>\
-          <div class="text-center text-xs text-[var(--fg-secondary)]">' + (currentTotal < idealUnits ? 'Under' : currentTotal > idealUnits ? 'Over' : 'OK') + '</div>\
-        ';
-        
-        row.addEventListener('click', function() {
-          selectedModel = model;
-          renderAll();
-        });
-        
-        modelListEl.appendChild(row);
+        const option = document.createElement('option');
+        option.value = model;
+        option.textContent = model + ' (' + salesData[model].toFixed(2) + '%)';
+        modelSelectEl.appendChild(option);
       });
     }
 
-    function renderSizePanel() {
-      if (!sizePanelEl) return;
-      
-      document.getElementById('selected-model-name').textContent = selectedModel || 'Select a model';
-      document.getElementById('autofill-btn').disabled = !selectedModel;
-      
+    function renderAll() {
+      renderSizeTable();
+      renderSidePanel();
+      drawSizeChart();
+    }
+
+    function renderSizeTable() {
       if (!selectedModel) {
-        sizePanelEl.innerHTML = '<p class="text-[var(--fg-secondary)] text-center py-8">Click on a model from the left panel to see size distribution details.</p>';
-        document.getElementById('score-cards').style.display = 'none';
-        document.getElementById('order-status-container').style.display = 'none';
+        sizeTableContainer.innerHTML = '<p class="text-[var(--fg-secondary)] text-center py-8">Select a model to begin planning inventory distribution.</p>';
         return;
       }
       
-      document.getElementById('score-cards').style.display = 'grid';
-      
       const salesData = salesShareData[selectedGender];
       const sizeData = sizeDistribution[selectedGender];
-      
       const salesShare = salesData[selectedModel];
       const idealModelUnits = Math.round((salesShare / 100) * TARGET_INVENTORY);
       const currentModelInventory = currentInventory[selectedGender][selectedModel] || {};
       const modelOrders = plannedOrders[selectedGender][selectedModel] || {};
       
-      let html = '';
+      let html = '<div class="mb-4"><h4 class="font-display font-semibold text-lg">' + selectedModel + '</h4>';
+      html += '<p class="text-sm text-[var(--fg-secondary)]">Ideal: ' + idealModelUnits + ' units based on ' + salesShare.toFixed(2) + '% sales share</p></div>';
       
-      // Header row
-      html += '\
-        <div class="size-row text-xs text-[var(--fg-secondary)] pb-2 border-b border-[var(--border)]">\
-          <div>Size</div>\
-          <div class="text-center">Ideal</div>\
-          <div class="text-center">Current</div>\
-          <div class="text-center">Gap</div>\
-          <div class="text-center">Order</div>\
-          <div class="text-center">After</div>\
-        </div>\
-      ';
+      html += '<div class="size-row text-xs text-[var(--fg-secondary)] pb-2 border-b border-[var(--border)]">';
+      html += '<div>Size</div><div class="text-center">Ideal</div><div class="text-center">Current</div><div class="text-center">Gap</div><div class="text-center">Order</div><div class="text-center">After</div></div>';
       
-      // Size rows
       sizeData.sizes.forEach(function(size, index) {
         const isCore = index >= sizeData.coreStart && index <= sizeData.coreEnd;
         const idealPercent = sizeData.idealPercent[index];
@@ -1161,46 +976,32 @@
         
         const gapClass = gap > 2 ? 'text-[var(--accent-red)]' : gap < -2 ? 'text-[var(--accent-orange)]' : 'text-[var(--accent-green)]';
         
-        html += '\
-          <div class="size-row' + (isCore ? ' core' : '') + '">\
-            <div class="text-sm font-medium">' + size + (isCore ? ' <span class="text-[var(--accent-pink)]">*</span>' : '') + '</div>\
-            <div class="text-center text-sm">' + idealUnits + '</div>\
-            <div class="text-center text-sm">' + currentUnits + '</div>\
-            <div class="text-center text-sm ' + gapClass + '">' + gap + '</div>\
-            <div class="text-center">\
-              <input type="number" class="size-input" value="' + orderQty + '" min="0" max="20" data-size="' + size + '">\
-            </div>\
-            <div class="text-center text-sm font-medium">' + (currentUnits + orderQty) + '</div>\
-          </div>\
-        ';
+        html += '<div class="size-row' + (isCore ? ' core' : '') + '">';
+        html += '<div class="font-medium">' + size + (isCore ? ' <span class="text-[var(--accent-pink)]">*</span>' : '') + '</div>';
+        html += '<div class="text-center">' + idealUnits + '</div>';
+        html += '<div class="text-center">' + currentUnits + '</div>';
+        html += '<div class="text-center ' + gapClass + '">' + gap + '</div>';
+        html += '<div class="text-center"><input type="number" class="size-input" value="' + orderQty + '" min="0" max="20" data-size="' + size + '"></div>';
+        html += '<div class="text-center font-medium">' + (currentUnits + orderQty) + '</div></div>';
       });
       
-      // Footer with totals
-      const totalIdeal = idealModelUnits;
       const totalCurrent = Object.values(currentModelInventory).reduce(function(a, b) { return a + b; }, 0);
       const totalOrder = Object.values(modelOrders).reduce(function(a, b) { return a + b; }, 0);
       
-      html += '\
-        <div class="mt-4 pt-4 border-t border-[var(--border)] grid grid-cols-3 gap-4 text-center">\
-          <div>\
-            <div class="text-xs text-[var(--fg-secondary)]">Ideal Total</div>\
-            <div class="font-display font-bold text-lg">' + totalIdeal + '</div>\
-          </div>\
-          <div>\
-            <div class="text-xs text-[var(--fg-secondary)]">Current</div>\
-            <div class="font-display font-bold text-lg">' + totalCurrent + '</div>\
-          </div>\
-          <div>\
-            <div class="text-xs text-[var(--fg-secondary)]">After Order</div>\
-            <div class="font-display font-bold text-lg">' + (totalCurrent + totalOrder) + '</div>\
-          </div>\
-        </div>\
-      ';
+      html += '<div class="mt-4 pt-4 border-t border-[var(--border)] grid grid-cols-3 gap-4 text-center">';
+      html += '<div><div class="text-xs text-[var(--fg-secondary)]">Current Total</div><div class="font-display font-bold text-xl">' + totalCurrent + '</div></div>';
+      html += '<div><div class="text-xs text-[var(--fg-secondary)]">Order Total</div><div class="font-display font-bold text-xl">' + totalOrder + '/' + idealModelUnits + '</div></div>';
+      html += '<div><div class="text-xs text-[var(--fg-secondary)]">Projected Total</div><div class="font-display font-bold text-xl">' + (totalCurrent + totalOrder) + '</div></div>';
+      html += '</div>';
       
-      sizePanelEl.innerHTML = html;
+      html += '<div class="mt-4 flex gap-2">';
+      html += '<button class="btn-small" id="autofill-btn">Autofill Optimal</button>';
+      html += '<button class="btn-small" id="clear-btn">Clear Orders</button>';
+      html += '</div>';
       
-      // Add event listeners to inputs
-      sizePanelEl.querySelectorAll('input[data-size]').forEach(function(input) {
+      sizeTableContainer.innerHTML = html;
+      
+      sizeTableContainer.querySelectorAll('input[data-size]').forEach(function(input) {
         input.addEventListener('input', function() {
           const size = this.getAttribute('data-size');
           const val = Math.max(0, Math.min(20, parseInt(this.value) || 0));
@@ -1209,85 +1010,109 @@
           renderAll();
         });
       });
+      
+      document.getElementById('autofill-btn').addEventListener('click', function() {
+        if (!selectedModel) return;
+        const salesShare = salesShareData[selectedGender][selectedModel];
+        const idealModelUnits = Math.round((salesShare / 100) * TARGET_INVENTORY);
+        const sizeData = sizeDistribution[selectedGender];
+        const currentModelInventory = currentInventory[selectedGender][selectedModel] || {};
+        
+        sizeData.sizes.forEach(function(size, index) {
+          const idealPercent = sizeData.idealPercent[index];
+          const idealUnits = Math.round(idealModelUnits * (idealPercent / 100));
+          const currentUnits = currentModelInventory[size] || 0;
+          const gap = idealUnits - currentUnits;
+          plannedOrders[selectedGender][selectedModel][size] = Math.max(0, Math.min(20, gap));
+        });
+        renderAll();
+      });
+      
+      document.getElementById('clear-btn').addEventListener('click', function() {
+        if (!selectedModel) return;
+        const sizeData = sizeDistribution[selectedGender];
+        sizeData.sizes.forEach(function(size) {
+          plannedOrders[selectedGender][selectedModel][size] = 0;
+        });
+        renderAll();
+      });
     }
 
-    function updateScoreCards() {
+    function renderSidePanel() {
+      const scorePanel = document.getElementById('score-panel');
+      const chartContainer = document.getElementById('chart-container');
+      const orderStatusContainer = document.getElementById('order-status-container');
+      
       if (!selectedModel) {
-        document.getElementById('order-status-container').style.display = 'none';
+        scorePanel.style.display = 'none';
+        chartContainer.style.display = 'none';
+        orderStatusContainer.style.display = 'none';
         return;
       }
+      
+      scorePanel.style.display = 'block';
+      chartContainer.style.display = 'block';
       
       const currentScore = calculateModelScore(selectedGender, selectedModel);
       const projectedScore = calculateProjectedScore(selectedGender, selectedModel);
       const scoreDiff = projectedScore.score - currentScore.score;
       
-      // Update badges
-      const currentBadge = document.getElementById('current-score-badge');
-      const projectedBadge = document.getElementById('projected-score-badge');
-      const scoreChange = document.getElementById('score-change');
+      document.getElementById('current-score').textContent = currentScore.score;
+      document.getElementById('current-grade').textContent = currentScore.grade;
+      document.getElementById('current-grade').className = 'grade-badge ' + getGradeClass(currentScore.grade);
       
-      currentBadge.textContent = currentScore.score + currentScore.grade;
-      currentBadge.className = 'grade-badge ' + getGradeClass(currentScore.grade);
+      document.getElementById('projected-score').textContent = projectedScore.score;
+      document.getElementById('projected-grade').textContent = projectedScore.grade;
+      document.getElementById('projected-grade').className = 'grade-badge ' + getGradeClass(projectedScore.grade);
       
-      projectedBadge.textContent = projectedScore.score + projectedScore.grade;
-      projectedBadge.className = 'grade-badge ' + getGradeClass(projectedScore.grade);
-      
-      // Score change
+      const scoreChangeEl = document.getElementById('score-change');
       if (scoreDiff > 0) {
-        scoreChange.textContent = '+' + scoreDiff + ' pts';
-        scoreChange.className = 'score-change positive';
+        scoreChangeEl.textContent = '+' + scoreDiff + ' pts';
+        scoreChangeEl.className = 'score-change positive';
       } else if (scoreDiff < 0) {
-        scoreChange.textContent = scoreDiff + ' pts';
-        scoreChange.className = 'score-change negative';
+        scoreChangeEl.textContent = scoreDiff + ' pts';
+        scoreChangeEl.className = 'score-change negative';
       } else {
-        scoreChange.textContent = 'No change';
-        scoreChange.className = 'score-change neutral';
+        scoreChangeEl.textContent = 'No change';
+        scoreChangeEl.className = 'score-change neutral';
       }
       
-      // Update order status message
-      updateOrderStatus(currentScore, projectedScore, scoreDiff);
-    }
-
-    function updateOrderStatus(currentScore, projectedScore, scoreDiff) {
-      const container = document.getElementById('order-status-container');
-      const box = document.getElementById('order-status-box');
-      
+      // Order status
       const modelOrders = plannedOrders[selectedGender][selectedModel] || {};
       const totalOrder = Object.values(modelOrders).reduce(function(a, b) { return a + b; }, 0);
       
       if (totalOrder === 0) {
-        container.style.display = 'none';
-        return;
-      }
-      
-      container.style.display = 'block';
-      
-      let message = '';
-      let boxClass = 'neutral';
-      
-      if (scoreDiff > 5) {
-        message = 'Efficient Order: This order significantly improves distribution alignment.';
-        boxClass = 'success';
-      } else if (scoreDiff > 0) {
-        message = 'Positive Impact: This order improves the distribution score.';
-        boxClass = 'success';
-      } else if (scoreDiff === 0) {
-        message = 'Neutral Impact: This order maintains the current distribution quality.';
-        boxClass = 'neutral';
-      } else if (scoreDiff > -5) {
-        message = 'Minor Deviation: This order slightly reduces distribution alignment.';
-        boxClass = 'warning';
+        orderStatusContainer.style.display = 'none';
       } else {
-        message = 'Inefficient Order: Consider adjusting quantities to better match ideal distribution.';
-        boxClass = 'error';
+        orderStatusContainer.style.display = 'block';
+        const box = document.getElementById('order-status-box');
+        let message = '';
+        let boxClass = 'neutral';
+        
+        if (scoreDiff > 5) {
+          message = 'Efficient Order: This order significantly improves distribution alignment.';
+          boxClass = 'success';
+        } else if (scoreDiff > 0) {
+          message = 'Positive Impact: This order improves the distribution score.';
+          boxClass = 'success';
+        } else if (scoreDiff === 0) {
+          message = 'Neutral Impact: This order maintains the current distribution quality.';
+          boxClass = 'neutral';
+        } else if (scoreDiff > -5) {
+          message = 'Minor Deviation: This order slightly reduces distribution alignment.';
+          boxClass = 'warning';
+        } else {
+          message = 'Inefficient Order: Consider adjusting quantities to better match ideal distribution.';
+          boxClass = 'error';
+        }
+        
+        box.textContent = message;
+        box.className = 'info-box ' + boxClass;
       }
-      
-      box.textContent = message;
-      box.className = 'info-box ' + boxClass;
     }
 
     function drawSizeChart() {
-      if (!sizeChartCanvas || !sizeChartCtx) return;
+      if (!sizeChartCanvas || !sizeChartCtx || !selectedModel) return;
       
       const rect = sizeChartCanvas.getBoundingClientRect();
       const dpr = window.devicePixelRatio || 1;
@@ -1300,8 +1125,6 @@
       const padding = 30;
       
       sizeChartCtx.clearRect(0, 0, width, height);
-      
-      if (!selectedModel) return;
       
       const salesData = salesShareData[selectedGender];
       const sizeData = sizeDistribution[selectedGender];
@@ -1317,10 +1140,11 @@
         Math.max.apply(null, Object.values(currentModelInventory).map(function(v, i) { return v + (modelOrders[sizeData.sizes[i]] || 0); }).concat([0]))
       );
       
-      // Draw ideal curve
+      // Draw ideal curve (dotted line)
       sizeChartCtx.beginPath();
-      sizeChartCtx.strokeStyle = '#E91E8C';
+      sizeChartCtx.strokeStyle = 'rgba(233, 30, 140, 0.5)';
       sizeChartCtx.lineWidth = 2;
+      sizeChartCtx.setLineDash([5, 5]);
       
       sizeData.idealPercent.forEach(function(percent, index) {
         const x = padding + index * xStep;
@@ -1329,6 +1153,7 @@
         else sizeChartCtx.lineTo(x, y);
       });
       sizeChartCtx.stroke();
+      sizeChartCtx.setLineDash([]);
       
       // Draw current inventory
       sizeChartCtx.beginPath();
@@ -1358,7 +1183,7 @@
       });
       sizeChartCtx.stroke();
       
-      // Draw points and labels
+      // Draw labels
       sizeChartCtx.fillStyle = '#A8A2A4';
       sizeChartCtx.font = '9px Space Grotesk';
       sizeChartCtx.textAlign = 'center';
@@ -1367,34 +1192,6 @@
         const x = padding + index * xStep;
         sizeChartCtx.fillText(size, x, height - 8);
       });
-    }
-
-    function updateTotals() {
-      const salesData = salesShareData[selectedGender];
-      
-      let currentTotal = 0;
-      let totalScore = 0;
-      let modelCount = 0;
-      
-      Object.keys(salesData).forEach(function(model) {
-        const modelInventory = currentInventory[selectedGender][model] || {};
-        currentTotal += Object.values(modelInventory).reduce(function(a, b) { return a + b; }, 0);
-        
-        const scoreResult = calculateModelScore(selectedGender, model);
-        totalScore += scoreResult.score;
-        modelCount++;
-      });
-      
-      document.getElementById('current-model-total').textContent = currentTotal;
-      
-      const avgScore = modelCount > 0 ? Math.round(totalScore / modelCount) : 0;
-      let avgGrade = 'F';
-      if (avgScore >= 90) avgGrade = 'A';
-      else if (avgScore >= 75) avgGrade = 'B';
-      else if (avgScore >= 60) avgGrade = 'C';
-      else if (avgScore >= 40) avgGrade = 'D';
-      
-      document.getElementById('avg-score').textContent = avgScore + avgGrade;
     }
 
     function initNavigation() {
@@ -1496,7 +1293,6 @@
       animate();
     }
 
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
